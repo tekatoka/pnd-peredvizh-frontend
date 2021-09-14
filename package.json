@@ -98,7 +98,8 @@
     "redux-thunk": "^2.3.0",
     "rickshaw": "1.7.1",
     "tabler-icons": "^1.10.0",
-    "webpack": "4.43.0"
+    "webpack": "4.43.0",
+    "webpack-dev-server": "3.11.0"
   },
   "devDependencies": {
     "@babel/core": "7.10.4",
