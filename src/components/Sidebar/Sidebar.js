@@ -54,9 +54,6 @@ class Sidebar extends React.Component {
                 this.element.style.height = `${this.element.scrollHeight}px`;
             } else {
                 this.element.classList.remove(s.sidebarOpen);
-                setTimeout(() => {
-                    this.element.style.height = '';
-                }, 0);
             }
         }
     }

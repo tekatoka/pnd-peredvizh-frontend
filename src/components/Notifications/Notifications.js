@@ -33,13 +33,6 @@ class Notifications extends React.Component {
     this.setState({
       isLoad: true,
     });
-
-    setTimeout(() => {
-      this.setState({
-        newNotifications: (<NewNotificationsDemo />),
-        isLoad: false,
-      });
-    }, 1500);
   }
 
   render() {

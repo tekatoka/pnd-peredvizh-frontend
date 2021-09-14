@@ -49,9 +49,6 @@ class Register extends React.Component {
             } else {
                 this.props.dispatch(registerError("Passwords are not equal"));
             }
-            setTimeout(() => {
-                this.props.dispatch(registerError());
-            }, 3 * 1000)
         }
     }
 
