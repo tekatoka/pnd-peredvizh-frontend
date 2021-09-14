@@ -17,26 +17,26 @@ export default function Startpage()  {
   // }
 
 
-  useEffect(() => {
-    fetch(`https://graphql.contentful.com/content/v1/spaces/rywkwx6777os/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer Elwb5oH4ZRZ4jAEM5F9lhTgRD3ZCGg0lbc6Si2FU00k",
-        },
-        body: JSON.stringify(
-          { 
-            query: getPersonsQuery 
-          }),
-      })
-      .then((response) => response.json())
-      .then(({ data, errors }) => {
-        if (errors) {
-          console.error(errors);
-        }
-        data && data.personCollection && setPersons(data.personCollection.items);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`https://graphql.contentful.com/content/v1/spaces/rywkwx6777os/`, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer Elwb5oH4ZRZ4jAEM5F9lhTgRD3ZCGg0lbc6Si2FU00k",
+  //       },
+  //       body: JSON.stringify(
+  //         { 
+  //           query: getPersonsQuery 
+  //         }),
+  //     })
+  //     .then((response) => response.json())
+  //     .then(({ data, errors }) => {
+  //       if (errors) {
+  //         console.error(errors);
+  //       }
+  //       data && data.personCollection && setPersons(data.personCollection.items);
+  //     });
+  // }, []);
 
 
   // const onSearchChange = event => {
