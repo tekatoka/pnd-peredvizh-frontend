@@ -14,6 +14,7 @@ import Login from '../pages/login';
 import Register from '../pages/register';
 import { logoutUser } from '../actions/user';
 import Startpage from '../pages/startpage/Startpage';
+import { Subpage } from '../pages/subpages/Subpage';
 
 const PrivateRoute = ({dispatch, component, ...rest }) => {
     if (!Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
@@ -40,6 +41,7 @@ class App extends React.PureComponent {
             <HashRouter>
                 <Switch>
                     <Route path="/" exact component={Startpage}/>
+                    <Route path="/about" render={(props) => <Subpage {...props} slug={`about`} />} />
                     {
                         //<Route path="/" exact render={() => <Redirect to="/app/main"/>}/>
                     }
