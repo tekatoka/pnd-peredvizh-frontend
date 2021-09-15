@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, Redirect } from 'react-router';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 /* eslint-disable */
@@ -16,29 +16,22 @@ import { logoutUser } from '../actions/user';
 import Startpage from '../pages/startpage/Startpage';
 import { Subpage } from '../pages/subpages/Subpage';
 
-const PrivateRoute = ({dispatch, component, ...rest }) => {
-    if (!Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
-        dispatch(logoutUser());
-        return (<Redirect to="/login"/>)
-    } else {
-        return ( // eslint-disable-line
-            <Route {...rest} render={props => (React.createElement(component, props))}/>
-        );
-    }
-};
-
-const CloseButton = ({closeToast}) => <i onClick={closeToast} className="la la-close notifications-close"/>
+// const PrivateRoute = ({dispatch, component, ...rest }) => {
+//     if (!Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
+//         dispatch(logoutUser());
+//         return (<Redirect to="/login"/>)
+//     } else {
+//         return ( // eslint-disable-line
+//             <Route {...rest} render={props => (React.createElement(component, props))}/>
+//         );
+//     }
+// };
 
 class App extends React.PureComponent {
   render() {
     return (
         <React.Fragment>
-            <ToastContainer
-                autoClose={5000}
-                hideProgressBar
-                closeButton={<CloseButton/>}
-            />
-            <HashRouter>
+            <BrowserRouter>
                 <Switch>
                     <Route path="/" exact component={Startpage}/>
                     <Route path="/about" render={(props) => <Subpage {...props} slug={`about`} />} />
@@ -58,7 +51,7 @@ class App extends React.PureComponent {
                         //<Redirect from="*" to="/app/main/dashboard"/>
                     }
                 </Switch>
-            </HashRouter>
+            </BrowserRouter>
         </React.Fragment>
 
     );
