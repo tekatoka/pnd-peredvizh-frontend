@@ -12,6 +12,7 @@ import am4geodata_worldHigh from "@amcharts/amcharts4-geodata/worldHigh";
 import s from './Map.module.scss';
 
 import Modal from "../../components/modals/Modal";
+import Loader from '../../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
   
   class Map extends Component {
   
@@ -19,7 +20,8 @@ import Modal from "../../components/modals/Modal";
       super(props);
       this.state = {
           modalVisible: false,
-          selectedCity: ''
+          selectedCity: '',
+          loaded: false
         };
       this.setSelectedCity = this.setSelectedCity.bind(this);
       this.toggleModal = this.toggleModal.bind(this);
@@ -50,6 +52,7 @@ import Modal from "../../components/modals/Modal";
       latitude: 50,
       longitude: 50
     };
+    
     // map.zoomControl = new am4maps.ZoomControl();
     // map.zoomControl.layout = 'horizontal';
     // map.zoomControl.align = 'left';
@@ -74,6 +77,7 @@ import Modal from "../../components/modals/Modal";
     // plusButtonHoverState.properties.fill = am4core.color("#354D84");
     // let minusButtonHoverState = map.zoomControl.minusButton.background.states.create("hover");
     // minusButtonHoverState.properties.fill = am4core.color("#354D84");
+
     let polygonTemplate = polygonSeries.mapPolygons.template;
     //polygonTemplate.tooltipText = "{name}";
     polygonTemplate.fill = am4core.color("#474D84");
@@ -153,6 +157,15 @@ label.adapter.add("dy", function(dy) {
   return (120 + dy) * -1;
 });
 
+map.preloader.preventShow = false;
+map.preloader.progress = 1;
+
+map.events.on('ready', () => {
+  this.setState({
+    loaded: true
+  })
+});
+
     this.map = map;
   }
 
@@ -165,6 +178,10 @@ label.adapter.add("dy", function(dy) {
   render() {
     return (
         <React.Fragment>
+          {
+            !this.state.loaded &&
+            <Loader />
+          }
         {
         this.state.modalVisible && 
         <div className={`${s.modalWrapper} }`}>

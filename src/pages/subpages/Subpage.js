@@ -2,12 +2,16 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
+import Loader from '../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
+
 import s from './Subpage.module.scss';
 
 export const Subpage = (props) =>  {
 
   const [pageId, setPageId] = useState([]);
   const [pageData, setPageData] = useState({});
+
+  const [loaded, setLoaded] = useState(false);
 
   const [searchField, setSearchField] = useState('');
 
@@ -26,7 +30,8 @@ export const Subpage = (props) =>  {
 
     axios.get('https://backend.peredvizh.org/pages/' + props.slug)
     .then((response) => {
-      setPageData(response.data)
+      setPageData(response.data);
+      setLoaded(true)
     })
     .catch((reason) => {
       if (!reason.response || !reason.response.status === 400) {
@@ -34,7 +39,7 @@ export const Subpage = (props) =>  {
       } else {
         // Handle else
       }
-      console.log(reason.message)
+      setLoaded(true)
     })
   }, []);
 
@@ -70,7 +75,11 @@ export const Subpage = (props) =>  {
   //   );
 
     return (
-      <div>
+      <React.Fragment>
+        {
+          !loaded &&
+          <Loader />
+        }
         {
           pageData && pageData.content &&
           <div className={`${s.pageContent}`}>
@@ -80,6 +89,6 @@ export const Subpage = (props) =>  {
             
           </div>
         }
-      </div>
+      </React.Fragment>
     );
   }

@@ -12,3 +12,21 @@
     margin: 0 $spacer;
   }
 }
+
+.loader {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+  .spinner {
+    position: absolute;
+    top: 50%;
+    width: 100%; //ie fix
+    margin-top: -10px;
+    font-size: 20px;
+    text-align: center;
+  }
+}
