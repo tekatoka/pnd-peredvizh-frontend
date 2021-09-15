@@ -24,7 +24,7 @@ export const Subpage = (props) =>  {
   useEffect(() => {
     props && 
 
-    axios.get('http://backend.peredvizh.org/pages/' + props.slug)
+    axios.get('https://backend.peredvizh.org/pages/' + props.slug)
     .then((response) => {
       setPageData(response.data)
     })
