@@ -15,7 +15,7 @@ class Loader extends React.Component {
     render() {
         return (
             <div className={cx(s.root, s.loader)}>
-                <i className="la la-circle-notch la-spin" style={{fontSize: 64}}/>
+                <i className="la la-asterisk la-spin" style={{fontSize: 64}}/>
                 {/* la-dharmachakra */}
             </div>
         );
