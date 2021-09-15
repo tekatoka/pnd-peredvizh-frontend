@@ -77,7 +77,7 @@ export const Subpage = (props) =>  {
     return (
       <React.Fragment>
         {
-          !loaded &&
+          loaded &&
           <Loader />
         }
         {

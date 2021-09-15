@@ -1,6 +1,6 @@
 @import "../../styles/app";
 
-.root {
+.root1 {
   width: 100%;
   height: 100%;
   display: flex;
@@ -23,7 +23,7 @@
 
   .spinner {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 100px);
     width: 100%; //ie fix
     margin-top: -10px;
     font-size: 20px;
