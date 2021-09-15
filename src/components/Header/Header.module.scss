@@ -3,9 +3,6 @@
 .root {
   display: flex;
   justify-content: flex-end !important;
-  @media (max-width: breakpoint-max(sm)) {
-    margin-bottom: 50px;
-  }
 
   ul > li > a {
     padding: 0.5rem 12px;

@@ -1,31 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router';
-import { HashRouter, BrowserRouter } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
-
-/* eslint-disable */
-import ErrorPage from '../pages/error';
-/* eslint-enable */
+import { Switch, Route } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 import '../styles/theme.scss';
 import LayoutComponent from '../components/Layout';
-import Login from '../pages/login';
-import Register from '../pages/register';
-import { logoutUser } from '../actions/user';
-import Startpage from '../pages/startpage/Startpage';
-import { Subpage } from '../pages/subpages/Subpage';
-
-// const PrivateRoute = ({dispatch, component, ...rest }) => {
-//     if (!Login.isAuthenticated(JSON.parse(localStorage.getItem('authenticated')))) {
-//         dispatch(logoutUser());
-//         return (<Redirect to="/login"/>)
-//     } else {
-//         return ( // eslint-disable-line
-//             <Route {...rest} render={props => (React.createElement(component, props))}/>
-//         );
-//     }
-// };
 
 class App extends React.PureComponent {
   render() {
@@ -33,23 +12,7 @@ class App extends React.PureComponent {
         <React.Fragment>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact component={Startpage}/>
-                    <Route path="/about" render={(props) => <Subpage {...props} slug={`about`} />} />
-                    {
-                        //<Route path="/" exact render={() => <Redirect to="/app/main"/>}/>
-                    }
-                    <Route path="/app" exact render={() => <Redirect to="/app/main"/>}/>
-                    <Route path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>
-                    {
-                        //<PrivateRoute path="/app" dispatch={this.props.dispatch} component={LayoutComponent}/>
-                    }
-                    <Route path="/register" exact component={Register}/>
-                    <Route path="/login" exact component={Login}/>
-                    <Route path="/error" exact component={ErrorPage}/>
-                    <Route component={ErrorPage}/>
-                    {
-                        //<Redirect from="*" to="/app/main/dashboard"/>
-                    }
+                    <Route path="/" dispatch={this.props.dispatch} component={LayoutComponent}/>
                 </Switch>
             </BrowserRouter>
         </React.Fragment>

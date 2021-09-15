@@ -70,7 +70,7 @@ export const Subpage = (props) =>  {
   //   );
 
     return (
-      <div className='main'>
+      <div>
         {
           pageData && pageData.content &&
           <div className={`${s.pageContent}`}>
