@@ -13,6 +13,7 @@ $glyphicons-halflings-font-base-size: 14px !default;
 
 $glyphicons-halflings-font-path: "../fonts/glyphicons" !default;
 $fa-font-path: "../fonts/font-awesome" !default;
+$roboto-mono-font-path: "../fonts/roboto_mono" !default;
 
 /*
  * typography
@@ -25,30 +26,34 @@ $font-size-larger: 1.1rem;
 $font-size-mini: 0.9rem;
 $font-size-index: 0.7rem;
 
-$font-family-base: "Open Sans", sans-serif;
+$font-family-base: 'Roboto Mono', monospace;
 
 // Color system
 //
 
-$white: #f4f4f5 !default;
-$gray-100: #f8f9fa !default;
-$gray-200: #e9ecef !default;
-$gray-300: #d6dee5 !default;
-$gray-400: #c1ccd3 !default;
-$gray-500: #a3aeb7 !default;
-$gray-600: #798892 !default;
+$white: #fff !default;
+$gray-100: #f9f9f9 !default;
+$gray-200: #e9e9e9 !default;
+$gray-300: #d3d3d3 !default;
+$gray-400: #c5c5c5 !default;
+$gray-500: #a9a9a9 !default;
+$gray-600: #808080 !default;
 $gray-700: #495057 !default;
 $gray-800: #3c484f !default;
 $gray-900: #29323a !default;
 $black: #000 !default;
+
 $gray-light: $gray-100 !default;
+$gray-default: $gray-500 !default;
+$gray-dark: $gray-800 !default;
 
 $bg-custom-dark: #040620;
-$main-background: #1B1E3F;
+$main-background: $gray-100;
 $main-gradient: radial-gradient(farthest-side ellipse at 10% 0, #333867 20%, #17193B);
 
 $lime: #8cbf26 !default;
 $red: #db2a34 !default;
+$red-pale: #ff3b3f !default;
 $red-dark: #d04f4f !default;
 $blue: #2477ff !default;
 $green: #2d8515 !default;
@@ -58,7 +63,7 @@ $purple: #a700ae !default;
 $brown: #a05000 !default;
 $teal: #4179cf !default;
 $subtle-blue: #474d84 !default;
-$gray: #595d78 !default;
+$gray: $gray-default !default;
 $inverse: #30314e !default;
 $violet_deep: #1b1e3c !default;
 $icon-blue:  #3979F6 !default;
@@ -66,7 +71,7 @@ $main-gray:  #C1C3CF !default;
 $header-gray: #51536C !default;
 
 $theme-colors: (
-  primary: $blue,
+  primary: $gray-dark,
   secondary: rgba($white, 0.9),
   success: $green,
   info: $teal,
@@ -83,13 +88,17 @@ $theme-colors: (
   info-light: #f2fafa,
   warning-light: #fdf7e6,
   danger-light: #fff2ef,
+  primary-gray: $gray-default,
+  primary-lightgray: $gray-light,
+  primary-darkgray: $gray-dark,
+  red: $red-pale
 );
 
-$link-color: #1870dc;
+$link-color: $red-pale;
 $icon-color: $main-gray;
 
-$text-color: rgba($white, 0.9) !default;
-$content-color: rgba($white, 0.6) !default;
+$text-color: $gray-dark !default;
+$content-color: $gray-dark  !default;
 $text-muted: $gray-400 !default;
 
 $font-weight-bold: 700 !default;
@@ -141,13 +150,13 @@ $breadcrumb-bg: transparent;
 
 // Widgets
 // -------------------------
-$widget-bg: rgba(27, 30, 60, 1);
-$widget-border-radius: 10px;
+$widget-bg: $white;
+$widget-border-radius: 5px;
 $widget-padding-vertical: 15px !default;
 $widget-padding-horizontal: 20px !default;
-$widget-bg-color: rgba(27, 30, 60, 1);
+$widget-bg-color: $white;
 
-$widget-title-color: #fff;
+$widget-title-color: $gray-dark;
 $widget-shadow: 0 25px 20px -20px rgba(0, 0, 0, 0.1),
   0 0 15px rgba(0, 0, 0, 0.06);
 $widget-shadow-designated: -1px 0 8px $gray-400;
@@ -174,12 +183,12 @@ $input-group-addon-border-color: transparent;
 //== Navbar
 //
 
-$navbar-height: 50px !default;
+$navbar-height: 60px !default;
 $navbar-padding-y: 0 !default;
 $navbar-padding-x: 0 !default;
 
 // Custom navbar links
-$navbar-link-color: $text-transparent !default;
+$navbar-link-color: $gray-dark !default;
 $navbar-link-hover-color: $gray-800 !default;
 $navbar-link-hover-bg: transparent !default;
 $navbar-link-active-color: $gray-700 !default;

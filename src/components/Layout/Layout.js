@@ -61,7 +61,8 @@ class Layout extends React.Component {
                     <Route path="/app/typography" exact component={CoreTypography} /> */}
                   </Switch>
               <footer className={s.contentFooter}>
-                <a href="https://peredvizh.org">peredvizh.org</a>
+                <a href="/">peredvizh.org</a>
+                <a href="https://panda-platforma.berlin" target="_blank" className="pull-right">&copy; {(new Date().getFullYear())} by PANDA platforma</a>
               </footer>
             </main>
           </Hammer>

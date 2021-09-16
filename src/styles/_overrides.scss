@@ -11,9 +11,14 @@
 
 .navbar {
   height: $navbar-height;
+  min-height: $navbar-height;
   border: none;
   font-weight: 500;
   padding: 0.4rem 0px;
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 
   @media (max-width: breakpoint-max(sm)) {
     padding: 0.9rem 15px;
@@ -64,14 +69,6 @@
 .nav {
   .dropdown-toggle {
     color: $white;
-  }
-
-  .nav-item.dropdown.show .nav-link.active,
-  .nav-item.show .dropdown-toggle,
-  .nav-link.active,
-  .dropdown-menu {
-    color: $white;
-    background-color: rgba($widget-bg-color, 1);
   }
 }
 
@@ -676,11 +673,6 @@ h6,
 
       &:hover {
         background-color: $nav-tabs-active-link-hover-color;
-      }
-
-      &.active {
-        background: $widget-bg-color;
-        color: $white;
       }
     }
   }

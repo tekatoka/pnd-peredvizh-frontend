@@ -89,7 +89,6 @@
   color: $content-color;
   display: block;
   position: relative;
-  margin-bottom: $grid-gutter-width;
   border-radius: $widget-border-radius;
   background: $widget-bg-color;
   box-shadow: $widget-shadow;
@@ -189,7 +188,7 @@
     display: flex;
     padding: 1px 4px;
     border-radius: 4px;
-    color: $white;
+    color: $gray-dark;
     background: transparent;
     border: none;
     cursor: pointer;
@@ -197,7 +196,7 @@
     @include transition(color 0.15s ease-in-out);
 
     &:hover {
-      color: rgba($white, 0.75);
+      color: $red-pale;
       text-decoration: none;
     }
 

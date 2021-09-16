@@ -1,7 +1,14 @@
 @import '../../../styles/app';
+
 .map {
     position: relative;
     height: 100%;
+    top: -15px;
+    margin-top: 0!important;
+
+    g[role^='region'] + g {
+      display: none;
+    }
   }
   
   .mapChart {
@@ -23,8 +30,6 @@
     top: 10%;
     z-index: 1000;
     width: 100%;
-
-
 
     > div {
         max-width: 450px;

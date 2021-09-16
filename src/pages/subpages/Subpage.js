@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import axios from 'axios';
 
-import Loader from '../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
-
 import s from './Subpage.module.scss';
 
 export const Subpage = (props) =>  {
@@ -76,10 +74,6 @@ export const Subpage = (props) =>  {
 
     return (
       <React.Fragment>
-        {
-          loaded &&
-          <Loader />
-        }
         {
           pageData && pageData.content &&
           <div className={`${s.pageContent}`}>
