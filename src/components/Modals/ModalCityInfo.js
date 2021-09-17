@@ -4,10 +4,10 @@ import { Row, Col, Button } from "reactstrap";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import uuid from "uuid/v4";
-import Widget from "../../../components/Widget";
+import Widget from "../Widget/Widget";
 import s from "./Modal.module.scss";
 
-class Modal extends React.Component {
+class ModalCityInfo extends React.Component {
 
     constructor(props) {
         super(props);
@@ -23,21 +23,13 @@ class Modal extends React.Component {
     },
   };
 
-  componentDidMount() {
-    
-  }
-
-
   render() {
     return (
       <div className={s.root}>
-        <Widget title={<h6> {this.props.title}</h6>} close handleToggleModal={this.props.toggleModal}> 
-        {
-        //collapse
-        }
+        <Widget title={<h6></h6>} close handleToggleModal={this.props.toggleModal}> 
           <Row>
             <Col xs="12">
-              <h2><p>Here comes info about {this.props.title}</p></h2>
+              <h2><p>Here comes info about {this.props.city}</p></h2>
             </Col>
           </Row>
         </Widget>
@@ -46,4 +38,4 @@ class Modal extends React.Component {
   }
 }
 
-export default Modal;
+export default ModalCityInfo;

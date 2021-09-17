@@ -5,14 +5,15 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
 
 import cities from './cities';
-//import am4geodata_usaHigh from "@amcharts/amcharts4-geodata/usaHigh";
 import am4geodata_worldHigh from "@amcharts/amcharts4-geodata/worldHigh";
 
 //import AnimateNumber from 'react-animated-number';
 import s from './Map.module.scss';
+import globalstyle from '../../../components/Layout/Layout.module.scss';
 import '../../../styles/app.scss';
 
-import Modal from "../../components/modals/Modal";
+import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
+
 //import Loader from '../../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
   
   class Map extends Component {
@@ -20,13 +21,9 @@ import Modal from "../../components/modals/Modal";
     constructor(props) {
       super(props);
       this.state = {
-          modalVisible: false,
           selectedCity: '',
           loaded: false
         };
-
-        this.setWrapperRef = this.setWrapperRef.bind(this);
-        this.handleClickOutside = this.handleClickOutside.bind(this);
     }
 
   setSelectedCity = (selectedCity) => {
@@ -35,18 +32,6 @@ import Modal from "../../components/modals/Modal";
     });
   };
 
-  toggleModal = (show) => {
-      this.setState({
-        modalVisible: show
-      });
-
-      if(show) {
-        document.addEventListener('mousedown', this.handleClickOutside);
-      } else {
-        document.removeEventListener('mousedown', this.handleClickOutside);
-      }
-    };
-
   componentDidMount() {
     this.map = this.createMap();
   }
@@ -54,18 +39,6 @@ import Modal from "../../components/modals/Modal";
   componentWillUnmount() {
     if(this.map) {
       this.map.dispose();
-    }
-  }
-
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
-
-  handleClickOutside(event) {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({
-        modalVisible: false
-      });
     }
   }
 
@@ -109,7 +82,7 @@ import Modal from "../../components/modals/Modal";
     polygonTemplate.strokeWidth = 1;
 
     polygonTemplate.events.on("hit", (ev) => {
-      this.toggleModal(false);
+      this.props.toggleModal(false);
     });
 
     let hs = polygonTemplate.states.create("hover");
@@ -183,7 +156,7 @@ import Modal from "../../components/modals/Modal";
       // zoom to an object
       ev.target.series.chart.zoomToMapObject(ev.target);
       this.setSelectedCity(ev.target.dataItem.dataContext.name);
-      this.toggleModal(true);
+      this.props.toggleModal(true);
     });
 
     var label = pin.createChild(am4core.Label);
@@ -212,19 +185,19 @@ import Modal from "../../components/modals/Modal";
 
   render() {
     return (
-        <React.Fragment>
-        {
-        this.state.modalVisible && 
-        <div className={`${s.modalWrapper} }`}>
-          <div 
-              ref={this.setWrapperRef}
-              className={`py-0 animate__animated animate__faster animate__fadeInUp `}
-          >
-              <Modal title={this.state.selectedCity} toggleModal={this.toggleModal} />
-          </div>
-        </div>
-      }
-      <div className={s.map} id="map"></div>
+      <React.Fragment>
+            {
+            this.props.modalVisible && 
+            <div className={`${globalstyle.modalWrapper}`}>
+              <div 
+                  ref={this.props.setWrapperRef}
+                  className={`py-0 animate__animated animate__faster animate__fadeInUp `}
+              >
+                  <ModalCityInfo toggleModal={this.props.toggleModal} city={this.state.selectedCity} />
+              </div>
+            </div>
+            }
+        <div className={s.map} id="map"></div>
       </React.Fragment>
     );
   }

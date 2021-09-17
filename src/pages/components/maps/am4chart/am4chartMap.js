@@ -10,8 +10,6 @@ import am4geodata_worldHigh from "@amcharts/amcharts4-geodata/worldHigh";
 
 //import AnimateNumber from 'react-animated-number';
 import s from './am4chartMap.module.scss';
-
-import Modal from "../../modals/Modal";
   
   class Am4chartMap extends Component {
   
@@ -165,16 +163,6 @@ label.adapter.add("dy", function(dy) {
   render() {
     return (
         <React.Fragment>
-                  {
-                  this.state.modalVisible && 
-                  <div className={`${s.modalWrapper} }`}>
-                    <div 
-                        className={`py-0 animate__animated animate__faster animate__fadeInUp `}
-                    >
-                        <Modal title={this.state.selectedCity} toggleModal={this.toggleModal} />
-                    </div>
-                  </div>
-                }
       <div className={s.map} id="map">
         
         </div>

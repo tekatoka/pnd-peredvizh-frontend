@@ -77,10 +77,8 @@ export const Subpage = (props) =>  {
         {
           pageData && pageData.content &&
           <div className={`${s.pageContent}`}>
-            
-            <h2>{pageData.title}</h2>
+            <h2 className={s.pageTitle}>{pageData.title}</h2>
             <ReactMarkdown>{pageData.content}</ReactMarkdown>
-            
           </div>
         }
       </React.Fragment>

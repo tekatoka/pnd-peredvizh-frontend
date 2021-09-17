@@ -1,0 +1,44 @@
+@import '../../styles/app';
+
+.pageTitle {
+  color: $red-pale;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.pageContent {
+  max-width: 750px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 25px;
+}
+
+.personItem {
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+    border-bottom: 1px dashed $gray-default;
+    text-align: justify;
+
+    .date {
+        color: $red-pale;
+        margin-bottom: 25px;
+    }
+
+    .icon {
+        color: $red-pale;
+        font-size: 20px;
+        line-height: 32px;
+
+        &:hover {
+            cursor: pointer;
+            font-size: 32px;
+        }
+    }
+
+    .imageContainer {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+}

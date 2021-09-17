@@ -23,34 +23,13 @@ import {
   Form,
   FormGroup,
 } from "reactstrap";
-import Notifications from "../Notifications";
-import PowerIcon from "../Icons/HeaderIcons/PowerIcon";
-import BellIcon from "../Icons/HeaderIcons/BellIcon";
-import SettingsIcon from "../Icons/HeaderIcons/SettingsIcon";
-import MessageIcon from "../Icons/HeaderIcons/MessageIcon";
 import BurgerIcon from "../Icons/HeaderIcons/BurgerIcon";
-import SearchIcon from "../Icons/HeaderIcons/SearchIcon";
-import ArrowIcon from "../Icons/HeaderIcons/ArrowIcon";
-
-
-import { logoutUser } from "../../actions/user";
-import {
-  openSidebar,
-  closeSidebar,
-  changeSidebarPosition,
-  changeSidebarVisibility,
-} from "../../actions/navigation";
-
-import sender1 from "../../assets/people/a1.jpg";
-import sender2 from "../../assets/people/a5.jpg";
-import sender3 from "../../assets/people/a4.jpg";
-
-import avatar from "../../assets/people/a7.jpg";
 
 import s from "./Header.module.scss";
 import "animate.css";
 
 import mainMenu from "./mainMenu.json";
+import hashTags from "./hashTags.json";
 
 class Header extends React.Component {
   static propTypes = {
@@ -103,8 +82,6 @@ class Header extends React.Component {
 
   render() {
 
-    const menu = mainMenu;
-
     return (
 
       <Navbar className={`d-print-none `}>
@@ -115,7 +92,7 @@ class Header extends React.Component {
 
           <Nav className="ml-md-0">
           {
-            menu.map(el => {
+            mainMenu.map(el => {
               return (
                 <NavItem className={s.mainMenuItem}>
                   <NavLink className={`${s.navItem} ${this.state.currentPath == el.link ? s.active : ''}`} href={el.link}>{el.name}</NavLink>
@@ -127,30 +104,32 @@ class Header extends React.Component {
         </div>
 
         <div className={s.miniSearch}>
-              <NavLink
-                onClick={this.toggleSearchOpen}
-                className={s.navItem}
-                href="#"
-              >
-                <SearchIcon addId='header-search' className={s.headerIcon} />
-              </NavLink>
+          <NavLink
+            onClick={this.toggleSearchOpen}
+            className={s.navItem}
+            href="#"
+          >
+            <i className={`${s.headerIcon} fa fa-hashtag`} />
+            {
+              //<SearchIcon addId='header-search' className={s.headerIcon} />
+            }
+          </NavLink>
         </div>
         <Collapse
-            className={`${s.searchCollapse} ml-lg-0 mr-md-3`}
+            className={`${s.collapsedMenu}`}
             isOpen={this.state.searchOpen}
           >
-          <InputGroup className={`input-group-no-border ${s.searchForm}`}>
-            <InputGroupAddon addonType="prepend">
-              <InputGroupText className={s.inputGroupText}>
-                <SearchIcon className={s.headerIcon} />
-              </InputGroupText>
-            </InputGroupAddon>
-            <Input
-              id="search-input"
-              className="input-transparent"
-              placeholder="Поиск..."
-            />
-          </InputGroup>
+            <Nav className={s.mobileNav}>
+              {
+                hashTags.map(el => {
+                  return (
+                    <NavItem>
+                      <NavLink className={`${s.navItem} ${s.hashTagItem}`} href={el.link}>{el.name}</NavLink>
+                    </NavItem>
+                  )
+                })
+              }
+            </Nav>
         </Collapse>
 
         <div className={s.burger}>
@@ -164,11 +143,11 @@ class Header extends React.Component {
         </div>
         <Collapse
           isOpen={this.state.mobileMenuOpen}
-          className={s.burgerMenu}
+          className={s.collapsedMenu}
           >          
             <Nav className={s.mobileNav}>
               {
-                menu.map(el => {
+                mainMenu.map(el => {
 
                   return (
                     <NavItem>

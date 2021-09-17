@@ -11,6 +11,8 @@ import { Subpage } from '../../pages/subpages/Subpage';
 import Header from '../Header';
 import { openSidebar, closeSidebar } from '../../actions/navigation';
 import s from './Layout.module.scss';
+import { EventsList } from '../../pages/events/EventsList';
+import { PeopleList } from '../../pages/people/PeopleList';
 
 class Layout extends React.Component {
   static propTypes = {
@@ -26,9 +28,26 @@ class Layout extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      modalVisible: false
+    };
+
     this.handleSwipe = this.handleSwipe.bind(this);
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
+  toggleModal = (show) => {
+    this.setState({
+      modalVisible: show
+    });
+
+    if(show) {
+      document.addEventListener('mousedown', this.handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', this.handleClickOutside);
+    }
+  };
 
   handleSwipe(e) {
     if ('ontouchstart' in window) {
@@ -46,23 +65,43 @@ class Layout extends React.Component {
     }
   }
 
+  setWrapperRef(node) {
+    this.wrapperRef = node;
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({
+        modalVisible: false
+      });
+    }
+  }
+
   render() {
     return (
         <div className={s.wrap}>
           <Header />
           <Hammer onSwipe={this.handleSwipe}>
+
             <main className={s.content}>
                   <Switch>
-                    <Route path="/" exact component={Startpage}/>
+                    <Route path="/" exact render={(props) => <Startpage {...props} toggleModal={this.toggleModal} setWrapperRef={this.setWrapperRef} modalVisible={this.state.modalVisible} />} />
                     <Route path="/about" render={(props) => <Subpage {...props} slug={`about`} />} />
+                    <Route path="/events" render={(props) => <EventsList {...props} slug={`events`} toggleModal={this.toggleModal} setWrapperRef={this.setWrapperRef} modalVisible={this.state.modalVisible} />} />
+                    <Route path="/people" render={(props) => <PeopleList {...props} slug={`people`} toggleModal={this.toggleModal} setWrapperRef={this.setWrapperRef} modalVisible={this.state.modalVisible} />} />
+                    <Route path="/impressum" render={(props) => <Subpage {...props} slug={`impressum`} />} />
                     <Route path="/app/main" exact render={() => <Redirect to="/app/main/dashboard" />} />
-                    {/* <Route path="/app/tables" exact component={TablesStatic} />
-                    <Route path="/app/components/maps" exact component={MapsGoogle} />
-                    <Route path="/app/typography" exact component={CoreTypography} /> */}
                   </Switch>
+
               <footer className={s.contentFooter}>
-                <a href="/">peredvizh.org</a>
-                <a href="https://panda-platforma.berlin" target="_blank" className="pull-right">&copy; {(new Date().getFullYear())} by PANDA platforma</a>
+                <span className={`${s.footerLinksLeft}`}>
+                  <a href="/">peredvizh.org</a>
+                </span>
+                <span className={`${s.footerLinksRight} pull-right`}>
+                  <a href="/impressum">Impressum</a>
+                  <a href="#">Datenschutz</a>
+                  <a href="https://panda-platforma.berlin" target="_blank">&copy; {(new Date().getFullYear())} by PANDA platforma</a>
+                </span>
               </footer>
             </main>
           </Hammer>

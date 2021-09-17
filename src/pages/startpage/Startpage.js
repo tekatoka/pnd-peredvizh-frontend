@@ -7,9 +7,11 @@ import { query as getPersonsQuery } from '../../api/queries/getPersons';
 
 import Map from './map/Map';
 
-export default function Startpage()  {
+const Startpage = (props) =>  {
 
     return (
-          <Map />
+          <Map toggleModal={props.toggleModal} modalVisible={props.modalVisible} />
     );
   }
+
+export default Startpage;

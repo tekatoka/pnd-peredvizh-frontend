@@ -76,9 +76,8 @@
     "highcharts": "^8.1.2",
     "highcharts-react-official": "^3.0.0",
     "lato-font": "^3.0.0",
-    "roboto-font": "^0.1.0",
     "line-awesome": "^1.3.0",
-    "moment": "^2.27.0",
+    "moment": "^2.29.1",
     "rc-hammerjs": "^0.6.10",
     "react": "^16.13.1",
     "react-animate-height": "^2.0.21",
@@ -88,6 +87,7 @@
     "react-dom": "^16.13.1",
     "react-google-maps": "^9.4.5",
     "react-markdown": "^7.0.1",
+    "react-player": "^2.9.0",
     "react-redux": "^5.0.7",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
@@ -100,6 +100,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "rickshaw": "1.7.1",
+    "roboto-font": "^0.1.0",
     "tabler-icons": "^1.10.0"
   },
   "devDependencies": {
