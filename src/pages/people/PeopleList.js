@@ -22,7 +22,7 @@ export const PeopleList = (props) => {
   useEffect(() => {
     props && 
 
-    axios.get('https://backend.peredvizh.org/people/')
+    axios.get('https://pnd-peredvizh-api.herokuapp.com/people/')
       .then((response) => {
         setPeople(response.data);
       })

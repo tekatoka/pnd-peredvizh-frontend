@@ -26,7 +26,7 @@ export const Subpage = (props) =>  {
   useEffect(() => {
     props && 
 
-    axios.get('https://backend.peredvizh.org/pages/' + props.slug)
+    axios.get('https://pnd-peredvizh-api.herokuapp.com/pages/' + props.slug)
     .then((response) => {
       setPageData(response.data);
       setLoaded(true)

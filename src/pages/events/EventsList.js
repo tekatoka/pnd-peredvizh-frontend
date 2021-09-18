@@ -23,7 +23,7 @@ export const EventsList = (props) => {
   useEffect(() => {
     props && 
 
-    axios.get('https://backend.peredvizh.org/events/')
+    axios.get('https://pnd-peredvizh-api.herokuapp.com/events/')
       .then((response) => {
         setEvents(response.data);
       })
