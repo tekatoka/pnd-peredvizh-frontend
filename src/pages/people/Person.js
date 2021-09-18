@@ -23,8 +23,13 @@ export const Person = (props) => {
         {
           person &&
           <div className={s.personItem}>
-            <h2 className={s.pageTitle}>{person.Name}</h2>
-            <Row>
+            <div className={s.imageContainer}>
+              <img src={person.Image.formats["thumbnail"].url} className={s.image} />
+              <div className={s.text}>{person.Name}</div>
+            </div>
+
+            {/* <h2 className={s.pageTitle}>{person.Name}</h2> */}
+            {/* <Row>
               {
                 imageAvailable &&
                 <Col className={s.imageContainer} xs={12} lg={6}><img src = {person.Image.formats["thumbnail"].url} /></Col>
@@ -40,7 +45,7 @@ export const Person = (props) => {
                   })
                 }
               </Col>
-            </Row>
+            </Row> */}
           </div>
         }
       </React.Fragment>

@@ -45,6 +45,16 @@ export const PeopleList = (props) => {
                 return <Person person={e} toggleModal={props.toggleModal} />
               })
             }
+                        {
+              people.map(e => {
+                return <Person person={e} toggleModal={props.toggleModal} />
+              })
+            }
+                        {
+              people.map(e => {
+                return <Person person={e} toggleModal={props.toggleModal} />
+              })
+            }
           </div>
         }
       </React.Fragment>
