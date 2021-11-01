@@ -7,6 +7,7 @@ import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
 import cities from './cities';
 //import am4geodata_usaHigh from "@amcharts/amcharts4-geodata/usaHigh";
 import am4geodata_worldHigh from "@amcharts/amcharts4-geodata/worldHigh";
+import am4geodata_continentsHigh from "@amcharts/amcharts4-geodata/continentsHigh";
 
 //import AnimateNumber from 'react-animated-number';
 import s from './am4chartMap.module.scss';
@@ -37,7 +38,7 @@ import s from './am4chartMap.module.scss';
 
   componentDidMount() {
     let map = am4core.create("map", am4maps.MapChart);
-    map.geodata = am4geodata_worldHigh;
+    map.geodata = am4geodata_continentsHigh;
     map.percentHeight = 100;
     map.dy = 10;
     map.projection = new am4maps.projections.Miller();
