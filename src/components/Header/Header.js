@@ -3,33 +3,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import {
-  Navbar,
-  Nav,
-  NavItem,
-  NavLink,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
-  Input,
-  UncontrolledAlert,
-  Dropdown,
-  Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  Badge,
-  ButtonGroup,
-  Button,
-  Form,
-  FormGroup,
+  Navbar
 } from "reactstrap";
-import BurgerIcon from "../Icons/HeaderIcons/BurgerIcon";
+
+import { MainMenu, MainMenuMobile } from "./menues/MainMenu";
+import { HashTagMenu, HashTagMenuMobile } from "./menues/HashTagMenu";
+import { SocialMediaMenu } from "./menues/SocialMediaMenu";
 
 import s from "./Header.module.scss";
 import "animate.css";
-
-import mainMenu from "./mainMenu.json";
-import hashTags from "./hashTags.json";
 
 class Header extends React.Component {
   static propTypes = {
@@ -90,74 +72,12 @@ class Header extends React.Component {
         </header>
         <div className={`${s.root}`}>
 
-          <Nav className="ml-md-0">
-          {
-            mainMenu.map(el => {
-              return (
-                <NavItem className={s.mainMenuItem}>
-                  <NavLink className={`${s.navItem} ${this.state.currentPath == el.link ? s.active : ''}`} href={el.link}>{el.name}</NavLink>
-                </NavItem>
-              )
-            })
-          }
-          </Nav>
+          <SocialMediaMenu />
+          <MainMenu currentPath={this.state.currentPath} />
         </div>
-
-        <div className={s.miniSearch}>
-          <NavLink
-            onClick={this.toggleSearchOpen}
-            className={s.navItem}
-            href="#"
-          >
-            <i className={`${s.headerIcon} fa fa-hashtag`} />
-            {
-              //<SearchIcon addId='header-search' className={s.headerIcon} />
-            }
-          </NavLink>
-        </div>
-        <Collapse
-            className={`${s.collapsedMenu}`}
-            isOpen={this.state.searchOpen}
-          >
-            <Nav className={s.mobileNav}>
-              {
-                hashTags.map(el => {
-                  return (
-                    <NavItem>
-                      <NavLink className={`${s.navItem} ${s.hashTagItem}`} href={el.link}>{el.name}</NavLink>
-                    </NavItem>
-                  )
-                })
-              }
-            </Nav>
-        </Collapse>
-
-        <div className={s.burger}>
-          <NavLink
-              onClick={this.toggleMobileMenu}
-              className={`${s.navItem} text-white`}
-              href="#"
-            >
-              <BurgerIcon className={s.headerIcon} />
-            </NavLink>
-        </div>
-        <Collapse
-          isOpen={this.state.mobileMenuOpen}
-          className={s.collapsedMenu}
-          >          
-            <Nav className={s.mobileNav}>
-              {
-                mainMenu.map(el => {
-
-                  return (
-                    <NavItem>
-                      <NavLink className={`${s.navItem} ${this.state.currentPath == el.link ? s.activeMobile : ''}`} href={el.link}>{el.name}</NavLink>
-                    </NavItem>
-                  )
-                })
-              }
-            </Nav>
-        </Collapse>        
+        <HashTagMenu toggleSearchOpen={this.toggleSearchOpen} />
+        <HashTagMenuMobile searchOpen={this.state.searchOpen} />
+        <MainMenuMobile handleClick={this.toggleMobileMenu} isOpen={this.state.mobileMenuOpen} currentPath={this.state.currentPath} />
       </Navbar>
 
       

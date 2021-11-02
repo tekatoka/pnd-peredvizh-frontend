@@ -147,6 +147,7 @@
   top: 7px;
   right: 45px;
 
+
   @media (min-width: breakpoint-max(md)) {
     right: 15px;
   }
@@ -174,6 +175,10 @@
   -webkit-box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
 
+  > #socialMedia {
+    padding: 1.25rem 0;
+  }
+
   @media(max-width: breakpoint-max(md)) {
     left: 0;
     width: 100%;
@@ -200,6 +205,23 @@
 
     &:hover, &:focus {
       color: $gray-dark!important;
+    }
+  }
+}
+
+.socialMediaItem {
+
+  > a {
+    margin: 0!important;
+    font-size: 1.5rem;
+    padding: 0.3rem 1rem!important;
+
+    > i {
+      color: $red-pale;
+    }
+
+    &:hover > i {
+      color: $gray-800
     }
   }
 }
