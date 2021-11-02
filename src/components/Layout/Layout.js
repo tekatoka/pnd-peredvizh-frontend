@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter, Redirect } from 'react-router';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import Hammer from 'rc-hammerjs';
+import { CookieNotice } from '../CookieNotice/CookieNotice';
 
 import Startpage from '../../pages/startpage/Startpage';
 import { Subpage } from '../../pages/subpages/Subpage';
@@ -103,6 +104,7 @@ class Layout extends React.Component {
                   <a href="https://panda-platforma.berlin" target="_blank">&copy; {(new Date().getFullYear())} by PANDA platforma</a>
                 </span>
               </footer>
+              <CookieNotice />
             </main>
           </Hammer>
         </div>
