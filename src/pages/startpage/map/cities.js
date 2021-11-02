@@ -7,7 +7,7 @@ export default [
         longitude: 13.404954,
         size: 6,
         name: 'Берлин',
-        date: "17.-19.12.21",
+        date: "17-19\n12.21",
         fill: "#F00",
         labelPositionAngle: 90
     },

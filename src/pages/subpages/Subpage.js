@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
-import axios from 'axios';
+import axios from "./../../axios.config";
 
 import s from './Subpage.module.scss';
 
@@ -26,7 +26,7 @@ export const Subpage = (props) =>  {
   useEffect(() => {
     props && 
 
-    axios.get('https://pnd-peredvizh-api.herokuapp.com/pages/' + props.slug)
+    axios.get('/pages/' + props.slug)
     .then((response) => {
       setPageData(response.data);
       setLoaded(true)

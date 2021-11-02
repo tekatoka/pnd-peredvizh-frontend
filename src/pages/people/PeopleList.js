@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from "./../../axios.config";
 
 import {
   Container,
@@ -10,7 +10,6 @@ import {
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-import globalstyle from '../../components/Layout/Layout.module.scss';
 import s from './People.module.scss';
 import ModalVideo from '../../components/Modals/ModalVideo';
 import { Person } from './Person';
@@ -22,7 +21,7 @@ export const PeopleList = (props) => {
   useEffect(() => {
     props && 
 
-    axios.get('https://pnd-peredvizh-api.herokuapp.com/people/')
+    axios.get('/people')
       .then((response) => {
         setPeople(response.data);
       })

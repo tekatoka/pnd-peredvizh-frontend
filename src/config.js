@@ -1,6 +1,9 @@
 export default {
   auth: {
-    email: 'admin@flatlogic.com',
-    password: 'password'
-  }
+    email: 'info@panda-platforma-berlin',
+    password: ''
+  },
+  api: {
+    baseUrl: "https://pnd-peredvizh-api.herokuapp.com"
+  } 
 };

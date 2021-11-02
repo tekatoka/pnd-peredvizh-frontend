@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from "./../../axios.config";
 
 import {
   Container,
@@ -23,7 +23,7 @@ export const EventsList = (props) => {
   useEffect(() => {
     props && 
 
-    axios.get('https://pnd-peredvizh-api.herokuapp.com/events/')
+    axios.get('/events')
       .then((response) => {
         setEvents(response.data);
       })
