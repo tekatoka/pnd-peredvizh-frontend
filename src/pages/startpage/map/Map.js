@@ -1,35 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
-
-import cities from './cities';
-import am4geodata_worldHigh from "@amcharts/amcharts4-geodata/worldHigh";
 import am4geodata_continentsHigh from "@amcharts/amcharts4-geodata/continentsHigh";
 
-//import AnimateNumber from 'react-animated-number';
-import s from './Map.module.scss';
-import globalstyle from '../../../components/Layout/Layout.module.scss';
-import '../../../styles/app.scss';
+import cities from "./cities";
+import s from "./Map.module.scss";
+import "../../../styles/app.scss";
 
-import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
+import { toggleModal } from "../../../actions/modal";
+import ModalDialog from "../../../components/Modal/ModalDialog";
+import CityInfo from "../../../components/CityInfo";
 
 //import Loader from '../../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
-  
-  class Map extends Component {
-  
-    constructor(props) {
-      super(props);
-      this.state = {
-          selectedCity: '',
-          loaded: false
-        };
-    }
+
+class Map extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedCity: "",
+      loaded: false,
+    };
+  }
 
   setSelectedCity = (selectedCity) => {
     this.setState({
-      selectedCity: selectedCity
+      selectedCity: selectedCity,
     });
   };
 
@@ -38,7 +37,7 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
   }
 
   componentWillUnmount() {
-    if(this.map) {
+    if (this.map) {
       this.map.dispose();
     }
   }
@@ -52,14 +51,13 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
       red: "#ff3b3f",
       paleblack: "#12142B",
       black: "#000",
-      white: "#fff"
-    }
+      white: "#fff",
+    };
 
     return colors;
-  }
+  };
 
   createMap = () => {
-
     let colors = this.getColors();
 
     let map = am4core.create("map", am4maps.MapChart);
@@ -73,7 +71,7 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
     map.homeZoomLevel = 4.5;
     map.homeGeoPoint = {
       latitude: 55,
-      longitude: 55
+      longitude: 55,
     };
 
     let polygonTemplate = polygonSeries.mapPolygons.template;
@@ -100,9 +98,9 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
     circle.strokeWidth = 0;
     let circleHoverState = circle.states.create("hover");
     circleHoverState.properties.strokeWidth = 1;
-    circle.tooltipText = '{name}';
-    circle.showTooltip=true;
-    circle.propertyFields.radius = 'size';
+    circle.tooltipText = "{name}";
+    circle.showTooltip = true;
+    circle.propertyFields.radius = "size";
 
     // Add line series
     var lineSeries = map.series.push(new am4maps.MapSplineSeries());
@@ -110,24 +108,29 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
     lineSeries.mapLines.template.line.strokeWidth = 4;
     lineSeries.mapLines.template.line.nonScalingStroke = true;
     lineSeries.mapLines.template.line.strokeDasharray = "5 3";
-    lineSeries.mapLines.template.line.adapter.add("strokeWidth", function(strokeWidth, target){
-      target.strokeDasharray = (5 / map.zoomLevel) + " " + (3 / map.zoomLevel)
-      return strokeWidth;
-    });
+    lineSeries.mapLines.template.line.adapter.add(
+      "strokeWidth",
+      function (strokeWidth, target) {
+        target.strokeDasharray = 5 / map.zoomLevel + " " + 3 / map.zoomLevel;
+        return strokeWidth;
+      }
+    );
 
-    lineSeries.data = [{
-      "multiGeoLine": [
-        [
-          { "latitude": 52.520008, "longitude": 13.404954 },
-          { "latitude": 59.937500, "longitude": 30.308611 },
-          { "latitude": 55.751244, "longitude": 37.618423 },
-          { "latitude": 55.78874, "longitude": 49.12214 },
-          { "latitude": 56.833332, "longitude": 60.583332 },
-          { "latitude": 56.01839, "longitude": 92.86717 },
-          { "latitude": 52.29778, "longitude": 104.29639 }
-        ]
-      ]
-    }]
+    lineSeries.data = [
+      {
+        multiGeoLine: [
+          [
+            { latitude: 52.520008, longitude: 13.404954 },
+            { latitude: 59.9375, longitude: 30.308611 },
+            { latitude: 55.751244, longitude: 37.618423 },
+            { latitude: 55.78874, longitude: 49.12214 },
+            { latitude: 56.833332, longitude: 60.583332 },
+            { latitude: 56.01839, longitude: 92.86717 },
+            { latitude: 52.29778, longitude: 104.29639 },
+          ],
+        ],
+      },
+    ];
 
     // Creating a pin bullet
     var pin = cityTemplate.createChild(am4plugins_bullets.PinBullet);
@@ -146,7 +149,7 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
 
     pin.label = new am4core.Label();
     pin.label.text = "{date}";
-    pin.label.fontSize="12px";
+    pin.label.fontSize = "12px";
     pin.label.fontWeight = "bold";
     pin.label.fill = am4core.color(colors.paleblack);
 
@@ -168,61 +171,48 @@ import ModalCityInfo from "../../../components/Modals/ModalCityInfo";
     label.propertyFields.dy = "length";
     label.verticalCenter = "middle";
     label.fill = am4core.color(colors.paleblack);
-    label.adapter.add("dy", function(dy) {
+    label.adapter.add("dy", function (dy) {
       return (110 + dy) * -1;
     });
 
     map.preloader.preventShow = false;
     map.preloader.progress = 1;
 
-    map.events.on('ready', () => {
+    map.events.on("ready", () => {
       this.setState({
-        loaded: true
-      })
+        loaded: true,
+      });
     });
 
     return map;
-  }
+  };
 
   render() {
     return (
       <React.Fragment>
-            {
-            this.props.modalVisible && 
-            <div className={`${globalstyle.modalWrapper}`}>
-              <div 
-                  ref={this.props.setWrapperRef}
-                  className={`py-0 animate__animated animate__faster animate__fadeInUp `}
-              >
-                  <ModalCityInfo toggleModal={this.props.toggleModal} city={this.state.selectedCity} />
-              </div>
-            </div>
-            }
+
+      <ModalDialog>
+        <CityInfo city={this.state.selectedCity} />
+      </ModalDialog>
+
         <div className={s.map} id="map"></div>
       </React.Fragment>
     );
   }
 }
 
-export default Map;
+function mapStateToProps(store) {
+  return {
+    modalVisible: store.modal.modalVisible,
+  };
+}
 
-{
-  //<div className={s.mapChart}>
-    
-    // <div className={s.stats}>
-    //   <h6 className="mt-1">GEO-LOCATIONS</h6>
-    //   <p className="h3 m-0">
-    //     <span className="mr-xs fw-normal">
-    //       <AnimateNumber
-    //         value={1656843}
-    //         initialValue={0}
-    //         duration={1000} 
-    //         stepPrecision={0}
-    //         formatValue={n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
-    //       /></span>
-    //     <i className="fa fa-map-marker" />
-    //   </p>
-    // </div>
-  
-    //</div>
-    }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    toggleModal: (showModal) => {
+      dispatch(toggleModal(showModal));
+    },
+  };
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Map));

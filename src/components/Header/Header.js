@@ -87,9 +87,6 @@ class Header extends React.Component {
 
 function mapStateToProps(store) {
   return {
-    isSidebarOpened: store.navigation.sidebarOpened,
-    sidebarVisibility: store.navigation.sidebarVisibility,
-    sidebarPosition: store.navigation.sidebarPosition,
   };
 }
 

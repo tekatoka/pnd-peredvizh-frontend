@@ -12,7 +12,7 @@ class App extends React.PureComponent {
         <React.Fragment>
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" dispatch={this.props.dispatch} component={LayoutComponent}/>
+                    <Route path="/" component={LayoutComponent}/>
                 </Switch>
             </BrowserRouter>
         </React.Fragment>
@@ -21,8 +21,4 @@ class App extends React.PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps)(App);
+export default App;

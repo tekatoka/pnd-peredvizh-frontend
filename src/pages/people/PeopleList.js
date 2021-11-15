@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "./../../axios.config";
 
-import {
-  Container,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-
 import s from './People.module.scss';
-import ModalVideo from '../../components/Modals/ModalVideo';
 import { Person } from './Person';
 
 export const PeopleList = (props) => {
@@ -41,17 +31,17 @@ export const PeopleList = (props) => {
           <div className={`${s.pageContent}`}>
             {
               people.map(e => {
-                return <Person person={e} toggleModal={props.toggleModal} />
+                return <Person person={e} />
               })
             }
                         {
               people.map(e => {
-                return <Person person={e} toggleModal={props.toggleModal} />
+                return <Person person={e} />
               })
             }
                         {
               people.map(e => {
-                return <Person person={e} toggleModal={props.toggleModal} />
+                return <Person person={e} />
               })
             }
           </div>
