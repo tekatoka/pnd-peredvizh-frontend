@@ -20,10 +20,11 @@ export const Person = (props) => {
   const [person, setPerson] = useState();
 
   useEffect(() => {
-    const id = props.match.params.id;
-    axios.get('/people/' + id)
+    const slug = props.match.params.slug;
+    axios.get('/people?slug=' + slug)
       .then((response) => {
-        setPerson(response.data);
+        if(Array.isArray(response.data)) setPerson(response.data[0])
+        else setPerson(response.data);
       })
       .catch((reason) => {
         if (!reason.response || !reason.response.status === 400) {

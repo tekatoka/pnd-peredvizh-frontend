@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 
-import '../styles/theme.scss';
-import LayoutComponent from '../components/Layout';
+import './styles/theme.scss';
+import LayoutComponent from './components/Layout/Layout';
 
 class App extends React.PureComponent {
   render() {

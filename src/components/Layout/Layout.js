@@ -47,7 +47,7 @@ const Layout = (props) => {
             />
             
             <Route
-              path="/people/:id"
+              path="/people/:slug"
               render={(props) => <Person {...props} slug={`people`} />}
             />
 

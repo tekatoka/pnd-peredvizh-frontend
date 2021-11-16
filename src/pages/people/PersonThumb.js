@@ -18,7 +18,7 @@ export const PersonThumb = (props) => {
     const person = props.person;
     const imageAvailable = (person.Image && person.Image.url) ? true : false;
 
-    const profileUrl = "/people/" + person.id;
+    const profileUrl = "/people/" + person.slug;
     
     return (
       <React.Fragment>
