@@ -1,4 +1,5 @@
 @import "../../styles/app";
+@import "../../styles/variables";
 
 .root1 {
   width: 100%;
@@ -23,10 +24,11 @@
 
   .spinner {
     position: absolute;
-    top: calc(50% - 100px);
+    top: calc(50% - 25px);
     width: 100%; //ie fix
     margin-top: -10px;
     font-size: 20px;
     text-align: center;
+    color: $gray-300;
   }
 }

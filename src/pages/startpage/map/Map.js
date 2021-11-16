@@ -15,14 +15,14 @@ import { toggleModal } from "../../../actions/modal";
 import ModalDialog from "../../../components/Modal/ModalDialog";
 import CityInfo from "../../../components/CityInfo";
 
-//import Loader from '../../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
+import Loader from '../../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedCity: "",
-      loaded: false,
+      isLoaded: false,
     };
   }
 
@@ -180,7 +180,7 @@ class Map extends Component {
 
     map.events.on("ready", () => {
       this.setState({
-        loaded: true,
+        isLoaded: true,
       });
     });
 
@@ -190,7 +190,7 @@ class Map extends Component {
   render() {
     return (
       <React.Fragment>
-
+      {!this.state.isLoaded && <Loader />}
       <ModalDialog>
         <CityInfo city={this.state.selectedCity} />
       </ModalDialog>
