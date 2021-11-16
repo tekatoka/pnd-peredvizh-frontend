@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "./../../axios.config";
 
 import s from './People.module.scss';
-import { Person } from './Person';
+import { PersonThumb } from './PersonThumb';
 
 export const PeopleList = (props) => {
 
@@ -31,17 +31,17 @@ export const PeopleList = (props) => {
           <div className={`${s.pageContent}`}>
             {
               people.map(e => {
-                return <Person person={e} />
+                return <PersonThumb person={e} />
               })
             }
                         {
               people.map(e => {
-                return <Person person={e} />
+                return <PersonThumb person={e} />
               })
             }
                         {
               people.map(e => {
-                return <Person person={e} />
+                return <PersonThumb person={e} />
               })
             }
           </div>

@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import axios from "./../../axios.config";
+
 import {
   Container,
   Row,
@@ -15,38 +17,29 @@ import s from './People.module.scss';
 
 export const Person = (props) => {
 
-    const person = props.person;
-    const imageAvailable = (person.Image && person.Image.url) ? true : false;
+  const [person, setPerson] = useState();
+
+  useEffect(() => {
+    const id = props.match.params.id;
+    axios.get('/people/' + id)
+      .then((response) => {
+        setPerson(response.data);
+      })
+      .catch((reason) => {
+        if (!reason.response || !reason.response.status === 400) {
+          // Handle 400
+        } else {
+          // Handle else
+        }
+      })
+    
+    }, []);
 
     return (
       <React.Fragment>
         {
-          person &&
-          <div className={s.personItem}>
-            <div className={s.imageContainer}>
-              <img src={person.Image.formats["thumbnail"].url} className={s.image} />
-              <div className={s.text}>{person.Name}</div>
-            </div>
-
-            {/* <h2 className={s.pageTitle}>{person.Name}</h2> */}
-            {/* <Row>
-              {
-                imageAvailable &&
-                <Col className={s.imageContainer} xs={12} lg={6}><img src = {person.Image.formats["thumbnail"].url} /></Col>
-              }
-              
-              <Col xs={12} lg={imageAvailable ? 6 : 12}>
-                <ReactMarkdown>{person.Description}</ReactMarkdown>
-
-                {person.events && person.events.length > 0 &&
-
-                  person.events.map(e => {
-                    return <div><a href="#">{e.name} | {Moment(e.date).format("DD/MM/YYYY")}</a></div>
-                  })
-                }
-              </Col>
-            </Row> */}
-          </div>
+          person && 
+          <div>{person.Name}</div>
         }
       </React.Fragment>
     );

@@ -13,6 +13,7 @@ import { toggleModal } from "../../actions/modal";
 import s from "./Layout.module.scss";
 import EventsList from "../../pages/events/EventsList";
 import { PeopleList } from "../../pages/people/PeopleList";
+import { Person } from "../../pages/people/Person";
 
 const Layout = (props) => {
   useEffect(() => {
@@ -44,6 +45,12 @@ const Layout = (props) => {
               path="/events"
               render={(props) => <EventsList {...props} slug={`events`} />}
             />
+            
+            <Route
+              path="/people/:id"
+              render={(props) => <Person {...props} slug={`people`} />}
+            />
+
             <Route
               path="/people"
               render={(props) => <PeopleList {...props} slug={`people`} />}
