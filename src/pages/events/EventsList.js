@@ -9,9 +9,7 @@ import { Link } from "react-router-dom";
 import { Event } from "./Event";
 import ModalDialog from "../../components/Modal/ModalDialog";
 import Video from "../../components/Video";
-import { toggleModal } from "../../actions/modal";
-
-import globalstyle from "../../components/Layout/Layout.module.scss";
+import { mapStateToProps, mapDispatchToProps } from "../../store/_functions/mapToProps";
 import s from "./Events.module.scss";
 
 const EventsList = (props) => {
@@ -24,6 +22,7 @@ const EventsList = (props) => {
         .get("/events")
         .then((response) => {
           setEvents(response.data);
+          props.setIsLoaded();
         })
         .catch((reason) => {
           if (!reason.response || !reason.response.status === 400) {
@@ -31,6 +30,7 @@ const EventsList = (props) => {
           } else {
             // Handle else
           }
+          props.setIsLoaded();
         });
   }, []);
 
@@ -56,20 +56,6 @@ const EventsList = (props) => {
       )}
     </React.Fragment>
   );
-};
-
-function mapStateToProps(store) {
-  return {
-    modalVisible: store.modal.modalVisible,
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleModal: (showModal) => {
-      dispatch(toggleModal(showModal));
-    },
-  };
 };
 
 export default withRouter(

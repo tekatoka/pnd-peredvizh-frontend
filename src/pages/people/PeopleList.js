@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from "react-redux";
+import { withRouter } from "react-router";
 import axios from "./../../axios.config";
-
 import s from './People.module.scss';
 import { PersonThumb } from './PersonThumb';
+import { mapStateToProps, mapDispatchToProps } from '../../store/_functions/mapToProps';
 
-export const PeopleList = (props) => {
+const PeopleList = (props) => {
 
   const [people, setPeople] = useState([]);
 
@@ -14,6 +16,7 @@ export const PeopleList = (props) => {
     axios.get('/people')
       .then((response) => {
         setPeople(response.data);
+        props.setIsLoaded();
       })
       .catch((reason) => {
         if (!reason.response || !reason.response.status === 400) {
@@ -21,6 +24,7 @@ export const PeopleList = (props) => {
         } else {
           // Handle else
         }
+        props.setIsLoaded();
       })
     }, []);
 
@@ -49,3 +53,5 @@ export const PeopleList = (props) => {
       </React.Fragment>
     );
   }
+
+  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PeopleList));

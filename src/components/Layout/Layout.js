@@ -6,14 +6,16 @@ import Hammer from "rc-hammerjs";
 import { CookieNotice } from "../CookieNotice/CookieNotice";
 
 import Startpage from "../../pages/startpage/Startpage";
-import { Subpage } from "../../pages/subpages/Subpage";
+import Subpage from "../../pages/subpages/Subpage";
 
 import Header from "../Header";
-import { toggleModal } from "../../actions/modal";
+import { mapStateToProps, mapDispatchToProps } from "../../store/_functions/mapToProps";
+
 import s from "./Layout.module.scss";
 import EventsList from "../../pages/events/EventsList";
-import { PeopleList } from "../../pages/people/PeopleList";
-import { Person } from "../../pages/people/Person";
+import PeopleList from "../../pages/people/PeopleList";
+import Person from "../../pages/people/Person";
+import Loader from "../Loader/Loader";
 
 const Layout = (props) => {
   useEffect(() => {
@@ -31,6 +33,7 @@ const Layout = (props) => {
       <Header />
       <Hammer>
         <main className={s.content}>
+          {!props.isLoaded && <Loader />}
           <Switch>
             <Route
               path="/"
@@ -83,20 +86,6 @@ const Layout = (props) => {
       </Hammer>
     </div>
   );
-};
-
-function mapStateToProps(store) {
-  return {
-    modalVisible: store.modal.modalVisible,
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleModal: (showModal) => {
-      dispatch(toggleModal(showModal));
-    },
-  };
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Layout));

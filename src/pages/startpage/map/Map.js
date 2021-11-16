@@ -11,18 +11,15 @@ import cities from "./cities";
 import s from "./Map.module.scss";
 import "../../../styles/app.scss";
 
-import { toggleModal } from "../../../actions/modal";
 import ModalDialog from "../../../components/Modal/ModalDialog";
 import CityInfo from "../../../components/CityInfo";
-
-import Loader from '../../../components/Loader/Loader'; // eslint-disable-line css-modules/no-unused-class
+import { mapStateToProps, mapDispatchToProps } from "../../../store/_functions/mapToProps";
 
 class Map extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCity: "",
-      isLoaded: false,
+      selectedCity: ""
     };
   }
 
@@ -179,9 +176,7 @@ class Map extends Component {
     map.preloader.progress = 1;
 
     map.events.on("ready", () => {
-      this.setState({
-        isLoaded: true,
-      });
+      this.props.setIsLoaded();
     });
 
     return map;
@@ -190,7 +185,6 @@ class Map extends Component {
   render() {
     return (
       <React.Fragment>
-      {!this.state.isLoaded && <Loader />}
       <ModalDialog>
         <CityInfo city={this.state.selectedCity} />
       </ModalDialog>
@@ -200,19 +194,5 @@ class Map extends Component {
     );
   }
 }
-
-function mapStateToProps(store) {
-  return {
-    modalVisible: store.modal.modalVisible,
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    toggleModal: (showModal) => {
-      dispatch(toggleModal(showModal));
-    },
-  };
-};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Map));

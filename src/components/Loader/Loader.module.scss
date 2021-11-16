@@ -24,8 +24,11 @@
 
   .spinner {
     position: absolute;
+    position: absolute;
     top: calc(50% - 25px);
-    width: 100%; //ie fix
+    left: calc(50% - 30px);
+    width: 64px;
+    // width: 100%; //ie fix
     margin-top: -10px;
     font-size: 20px;
     text-align: center;
