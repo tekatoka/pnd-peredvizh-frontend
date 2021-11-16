@@ -34,17 +34,17 @@ const PeopleList = (props) => {
           people && 
           <div className={`${s.pageContent}`}>
             {
-              people.map(e => {
+              people.map((e, index) => {
+                return <PersonThumb person={e}  />
+              })
+            }
+                        {
+              people.map((e, index) => {
                 return <PersonThumb person={e} />
               })
             }
                         {
-              people.map(e => {
-                return <PersonThumb person={e} />
-              })
-            }
-                        {
-              people.map(e => {
+              people.map((e, index) => {
                 return <PersonThumb person={e} />
               })
             }

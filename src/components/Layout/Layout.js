@@ -15,6 +15,7 @@ import s from "./Layout.module.scss";
 import EventsList from "../../pages/events/EventsList";
 import PeopleList from "../../pages/people/PeopleList";
 import Person from "../../pages/people/Person";
+import NotFoundPage from "../../pages/404";
 import Loader from "../Loader/Loader";
 
 const Layout = (props) => {
@@ -66,6 +67,9 @@ const Layout = (props) => {
               path="/app/main"
               exact
               render={() => <Redirect to="/app/main/dashboard" />}
+            />
+            <Route path="*" 
+              render={(props) => <NotFoundPage {...props} slug={`404`} />}
             />
           </Switch>
 

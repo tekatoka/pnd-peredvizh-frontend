@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import axios from "./../../axios.config";
 import { mapStateToProps, mapDispatchToProps } from "../../store/_functions/mapToProps";
+import NotFoundPage from "../404";
 
 import {
   Container,
@@ -26,8 +27,10 @@ const Person = (props) => {
     const slug = props.match.params.slug;
     axios.get('/people?slug=' + slug)
       .then((response) => {
-        if(Array.isArray(response.data)) setPerson(response.data[0])
-        else setPerson(response.data);
+        let personData;
+        if(Array.isArray(response.data)) personData = response.data[0]
+        else personData = response.data;
+        setPerson(personData);
         props.setIsLoaded(true);
       })
       .catch((reason) => {
@@ -43,9 +46,13 @@ const Person = (props) => {
 
     return (
       <React.Fragment>
-        {
-          person && 
+        {props.isLoaded && 
+        <div>
+        {person ? 
           <div>{person.Name}</div>
+          :
+          <NotFoundPage />}
+          </div>
         }
       </React.Fragment>
     );
