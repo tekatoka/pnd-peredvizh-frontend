@@ -18,10 +18,10 @@ import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import s from './People.module.scss';
-import Loader from '../../components/Loader/Loader';
 
 const Person = (props) => {
   const [person, setPerson] = useState();
+  const [personLoaded, setPersonLoaded] = useState(false);
 
   useEffect(() => {
     const slug = props.match.params.slug;
@@ -30,6 +30,7 @@ const Person = (props) => {
         let personData;
         if(Array.isArray(response.data)) personData = response.data[0]
         else personData = response.data;
+        if(!personData) personData = {};
         setPerson(personData);
         props.setIsLoaded(true);
       })
@@ -44,16 +45,23 @@ const Person = (props) => {
     
     }, []);
 
+    useEffect(() => {
+      if(person != undefined) {
+        setPersonLoaded(true);
+      }
+    }, [person])
+
     return (
       <React.Fragment>
-        {props.isLoaded && 
+        {personLoaded && 
         <div>
-        {person ? 
+          {person && Object.keys(person).length > 0 ? 
           <div>{person.Name}</div>
           :
           <NotFoundPage />}
-          </div>
+        </div>
         }
+        
       </React.Fragment>
     );
   }

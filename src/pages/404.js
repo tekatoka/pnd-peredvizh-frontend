@@ -11,10 +11,10 @@ const NotFoundPage = (props) =>  {
     useEffect(() => {
       props.setIsLoaded();
     }, []);
-    
+
     return (
-        <div style={{textAlign: "center", height: "100%"}}>
-            <img src={PageNotFound}  />
+        <div style={{textAlign: "center", height: "100%", maxWidth: "100%", marginTop: "10rem"}}>
+            <img src={PageNotFound} style={{maxWidth: "100%"}} />
             <p style={{marginTop:"25px"}}>
               <Link to="/">На главную</Link>
             </p>
