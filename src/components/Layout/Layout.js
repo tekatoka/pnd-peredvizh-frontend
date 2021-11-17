@@ -20,16 +20,6 @@ import PeopleList from "../../pages/people/PeopleList";
 import Person from "../../pages/people/Person";
 import NotFoundPage from "../../pages/404";
 import Loader from "../Loader/Loader";
-import config from "../../config";
-
-// const favIcons = [
-//   { rel: 'icon', type: 'image/x-icon', href: require('./../images/favicons/favicon.ico') },
-
-//   { rel: 'apple-touch-icon', sizes: '180x180', href: require('./../images/favicons/apple-touch-icon.png') },
-
-//   { rel: 'icon', type: 'image/png', sizes: '32x32', href: require('./../images/favicons/favicon-32x32.png') },
-//   { rel: 'icon', type: 'image/png', sizes: '16x16', href: require('./../images/favicons/favicon-16x16.png') }
-// ];
 
 const Layout = (props) => {
   useEffect(() => {
