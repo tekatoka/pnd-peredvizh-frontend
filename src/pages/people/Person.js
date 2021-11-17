@@ -32,6 +32,7 @@ const Person = (props) => {
         else personData = response.data;
         if(!personData) personData = {};
         setPerson(personData);
+        
         props.setIsLoaded(true);
       })
       .catch((reason) => {
@@ -40,6 +41,7 @@ const Person = (props) => {
         } else {
           // Handle else
         }
+        
         props.setIsLoaded(true);
       })
     
