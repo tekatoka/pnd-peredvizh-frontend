@@ -30,7 +30,7 @@ const Person = (props) => {
         let personData;
         if(Array.isArray(response.data)) personData = response.data[0]
         else personData = response.data;
-        if(!personData) personData = {};
+        
         setPerson(personData);
         
         props.setIsLoaded(true);
@@ -47,11 +47,11 @@ const Person = (props) => {
     
     }, []);
 
-    useEffect(() => {
-      if(person != undefined) {
-        setPersonLoaded(true);
-      }
-    }, [person])
+    // useEffect(() => {
+    //   if(person != undefined) {
+    //     setPersonLoaded(true);
+    //   }
+    // }, [person])
 
     return (
       <React.Fragment>
