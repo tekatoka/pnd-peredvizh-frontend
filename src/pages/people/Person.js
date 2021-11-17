@@ -41,7 +41,7 @@ const Person = (props) => {
         } else {
           // Handle else
         }
-        
+
         props.setIsLoaded(true);
       })
     
@@ -55,15 +55,9 @@ const Person = (props) => {
 
     return (
       <React.Fragment>
-        {personLoaded && 
-        <div>
-          {person && Object.keys(person).length > 0 ? 
+        {personLoaded && person && 
           <div>{person.Name}</div>
-          :
-          <NotFoundPage />}
-        </div>
         }
-        
       </React.Fragment>
     );
   }

@@ -9,7 +9,10 @@ import Startpage from "../../pages/startpage/Startpage";
 import Subpage from "../../pages/subpages/Subpage";
 
 import Header from "../Header";
-import { mapStateToProps, mapDispatchToProps } from "../../store/_functions/mapToProps";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../store/_functions/mapToProps";
 
 import s from "./Layout.module.scss";
 import EventsList from "../../pages/events/EventsList";
@@ -17,6 +20,16 @@ import PeopleList from "../../pages/people/PeopleList";
 import Person from "../../pages/people/Person";
 import NotFoundPage from "../../pages/404";
 import Loader from "../Loader/Loader";
+import config from "../../config";
+
+// const favIcons = [
+//   { rel: 'icon', type: 'image/x-icon', href: require('./../images/favicons/favicon.ico') },
+
+//   { rel: 'apple-touch-icon', sizes: '180x180', href: require('./../images/favicons/apple-touch-icon.png') },
+
+//   { rel: 'icon', type: 'image/png', sizes: '32x32', href: require('./../images/favicons/favicon-32x32.png') },
+//   { rel: 'icon', type: 'image/png', sizes: '16x16', href: require('./../images/favicons/favicon-16x16.png') }
+// ];
 
 const Layout = (props) => {
   useEffect(() => {
@@ -30,65 +43,66 @@ const Layout = (props) => {
   }, []);
 
   return (
-    <div className={s.wrap}>
-      <Header />
-      <Hammer>
-        <main className={s.content}>
-          {!props.isLoaded && <Loader />}
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={(props) => <Startpage {...props} />}
-            />
-            <Route
-              path="/about"
-              render={(props) => <Subpage {...props} slug={`about`} />}
-            />
-            <Route
-              path="/events"
-              render={(props) => <EventsList {...props} slug={`events`} />}
-            />
-            
-            <Route
-              path="/people/:slug"
-              render={(props) => <Person {...props} slug={`people`} />}
-            />
+      <div className={s.wrap}>
+        <Header />
+        <Hammer>
+          <main className={s.content}>
+            {!props.isLoaded && <Loader />}
+            <Switch>
+              <Route
+                path="/"
+                exact
+                render={(props) => <Startpage {...props} />}
+              />
+              <Route
+                path="/about"
+                render={(props) => <Subpage {...props} slug={`about`} />}
+              />
+              <Route
+                path="/events"
+                render={(props) => <EventsList {...props} slug={`events`} />}
+              />
 
-            <Route
-              path="/people"
-              render={(props) => <PeopleList {...props} slug={`people`} />}
-            />
-            <Route
-              path="/impressum"
-              render={(props) => <Subpage {...props} slug={`impressum`} />}
-            />
-            <Route
-              path="/app/main"
-              exact
-              render={() => <Redirect to="/app/main/dashboard" />}
-            />
-            <Route path="*" 
-              render={(props) => <NotFoundPage {...props} slug={`404`} />}
-            />
-          </Switch>
+              <Route
+                path="/people/:slug"
+                render={(props) => <Person {...props} slug={`people`} />}
+              />
 
-          <footer className={s.contentFooter}>
-            <span className={`${s.footerLinksLeft}`}>
-              <a href="/">peredvizh.org</a>
-            </span>
-            <span className={`${s.footerLinksRight} pull-right`}>
-              <a href="/impressum">Impressum</a>
-              <a href="#">Datenschutz</a>
-              <a href="https://panda-platforma.berlin" target="_blank">
-                &copy; {new Date().getFullYear()} by PANDA platforma
-              </a>
-            </span>
-          </footer>
-          <CookieNotice />
-        </main>
-      </Hammer>
-    </div>
+              <Route
+                path="/people"
+                render={(props) => <PeopleList {...props} slug={`people`} />}
+              />
+              <Route
+                path="/impressum"
+                render={(props) => <Subpage {...props} slug={`impressum`} />}
+              />
+              <Route
+                path="/app/main"
+                exact
+                render={() => <Redirect to="/app/main/dashboard" />}
+              />
+              <Route
+                path="*"
+                render={(props) => <NotFoundPage {...props} slug={`404`} />}
+              />
+            </Switch>
+
+            <footer className={s.contentFooter}>
+              <span className={`${s.footerLinksLeft}`}>
+                <a href="/">peredvizh.org</a>
+              </span>
+              <span className={`${s.footerLinksRight} pull-right`}>
+                <a href="/impressum">Impressum</a>
+                <a href="#">Datenschutz</a>
+                <a href="https://panda-platforma.berlin" target="_blank">
+                  &copy; {new Date().getFullYear()} by PANDA platforma
+                </a>
+              </span>
+            </footer>
+            <CookieNotice />
+          </main>
+        </Hammer>
+      </div>
   );
 };
 
