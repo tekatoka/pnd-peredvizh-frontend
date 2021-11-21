@@ -1,57 +1,41 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import axios from "./../../axios.config";
-import s from './People.module.scss';
-import { PersonThumb } from './PersonThumb';
-import { mapStateToProps, mapDispatchToProps } from '../../store/_functions/mapToProps';
+import s from "./People.module.scss";
+import { PersonThumb } from "./PersonThumb";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../store/mapToProps/mapToProps";
 
 const PeopleList = (props) => {
-
-  const [people, setPeople] = useState([]);
+  const { peopleList, getPeopleList } = props;
 
   useEffect(() => {
-    props && 
+    if (!Array.isArray(peopleList) || !peopleList.length) {
+      getPeopleList();
+    }
+  }, [props]);
 
-    axios.get('/people')
-      .then((response) => {
-        setPeople(response.data);
-        props.setIsLoaded();
-      })
-      .catch((reason) => {
-        if (!reason.response || !reason.response.status === 400) {
-          // Handle 400
-        } else {
-          // Handle else
-        }
-        props.setIsLoaded();
-      })
-    }, []);
+  return (
+    <React.Fragment>
+      {peopleList && (
+        <div className={`${s.pageContent}`}>
+          {peopleList.map((e, index) => {
+            return <PersonThumb person={e} />;
+          })}
+          {peopleList.map((e, index) => {
+            return <PersonThumb person={e} />;
+          })}
+          {peopleList.map((e, index) => {
+            return <PersonThumb person={e} />;
+          })}
+        </div>
+      )}
+    </React.Fragment>
+  );
+};
 
-    return (
-      <React.Fragment>
-        {
-          people && 
-          <div className={`${s.pageContent}`}>
-            {
-              people.map((e, index) => {
-                return <PersonThumb person={e}  />
-              })
-            }
-                        {
-              people.map((e, index) => {
-                return <PersonThumb person={e} />
-              })
-            }
-                        {
-              people.map((e, index) => {
-                return <PersonThumb person={e} />
-              })
-            }
-          </div>
-        }
-      </React.Fragment>
-    );
-  }
-
-  export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PeopleList));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(PeopleList)
+);

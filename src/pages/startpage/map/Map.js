@@ -13,7 +13,7 @@ import "../../../styles/app.scss";
 
 import ModalDialog from "../../../components/Modal/ModalDialog";
 import CityInfo from "../../../components/CityInfo";
-import { mapStateToProps, mapDispatchToProps } from "../../../store/_functions/mapToProps";
+import { mapStateToProps, mapDispatchToProps } from "../../../store/mapToProps/mapToProps";
 
 class Map extends Component {
   constructor(props) {
@@ -176,7 +176,7 @@ class Map extends Component {
     map.preloader.progress = 1;
 
     map.events.on("ready", () => {
-      this.props.setIsLoaded();
+      //map is loaded
     });
 
     return map;

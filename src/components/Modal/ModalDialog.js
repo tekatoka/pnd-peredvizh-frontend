@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Widget from "../Widget/Widget";
 import s from "./Modal.module.scss";
-import { toggleModal } from "../../store/actions/modal";
+import { toggleModal } from "../../store/actions/modal.actions";
 
 const ModalDialog = (props) => {
   const { modalVisible, toggleModal, children } = props;
