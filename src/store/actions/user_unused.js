@@ -1,3 +1,9 @@
+import {toast} from 'react-toastify';
+
+export const REGISTER_REQUEST = 'REGISTER_REQUEST';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
@@ -28,6 +34,19 @@ export function receiveLogout() {
     };
 }
 
+export function receiveRegister() {
+    return {
+        type: REGISTER_SUCCESS
+    };
+}
+
+export function registerError(payload) {
+    return {
+        type: REGISTER_FAILURE,
+        payload,
+    };
+}
+
 // Logs the user out
 export function logoutUser() {
     return (dispatch) => {
@@ -49,3 +68,15 @@ export function loginUser(creds) {
         }
     }
 }
+
+export function registerUser(payload) {
+    return (dispatch) => {
+        if (payload.creds.email.length > 0 && payload.creds.password.length > 0) {
+            toast.success("You've been registered successfully");
+            payload.history.push('/login');
+        } else {
+            dispatch(registerError('Something was wrong. Try again'));
+        }
+    }
+}
+

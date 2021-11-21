@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import axios from "./../../axios.config";
 
 import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -9,41 +8,32 @@ import { Link } from "react-router-dom";
 import { Event } from "./Event";
 import ModalDialog from "../../components/Modal/ModalDialog";
 import Video from "../../components/Video";
-import { mapStateToProps, mapDispatchToProps } from "../../store/_functions/mapToProps";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../store/mapToProps/mapToProps";
 import s from "./Events.module.scss";
 
 const EventsList = (props) => {
-  const [events, setEvents] = useState([]);
   const [videoUrl, setVideoUrl] = useState("");
 
+  const { eventList, getEventsList } = props;
+
   useEffect(() => {
-    props &&
-      axios
-        .get("/events")
-        .then((response) => {
-          setEvents(response.data);
-          props.setIsLoaded();
-        })
-        .catch((reason) => {
-          if (!reason.response || !reason.response.status === 400) {
-            // Handle 400
-          } else {
-            // Handle else
-          }
-          props.setIsLoaded();
-        });
-  }, []);
+    if (!Array.isArray(eventList) || !eventList.length) {
+      getEventsList();
+    }
+  }, [props]);
 
   return (
     <React.Fragment>
-
       <ModalDialog>
         <Video video={videoUrl} />
       </ModalDialog>
 
-      {events && (
+      {eventList && (
         <div className={`${s.pageContent}`}>
-          {events.map((e) => {
+          {eventList.map((e) => {
             return (
               <Event
                 event={e}

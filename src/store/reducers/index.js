@@ -1,8 +1,23 @@
 import { combineReducers } from 'redux';
-import modal from './modal';
-import loader from './loader';
+import modal from './modal.reducer';
+import people from "./people.reducer";
+import events from "./events.reducer";
+import subpage from "./subpages.reducer";
 
-export default combineReducers({
+import { RESET_STORE } from '../actions/store.actions';
+
+const appReducer = combineReducers({
   modal,
-  loader
+  events,
+  people,
+  subpage
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === RESET_STORE) {
+    state = undefined;
+  }
+  return appReducer(state, action)
+}
+
+export default rootReducer;
