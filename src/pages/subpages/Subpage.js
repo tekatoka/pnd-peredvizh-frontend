@@ -11,7 +11,7 @@ import s from "./Subpage.module.scss";
 
 const Subpage = (props) => {
   const slug = props.slug;
-  const { currentPage, getSubpageBySlug } = props;
+  const { isLoading, currentPage, getSubpageBySlug } = props;
 
   useEffect(() => {
     if (!currentPage || slug != currentPage.slug) {
@@ -21,7 +21,7 @@ const Subpage = (props) => {
 
   return (
     <React.Fragment>
-      {currentPage && currentPage.content && (
+      {!isLoading && currentPage && (
         <div className={`${s.pageContent}`}>
           <h2 className={s.pageTitle}>{currentPage.title}</h2>
           <ReactMarkdown>{currentPage.content}</ReactMarkdown>
