@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Switch, Route, withRouter, Redirect } from "react-router";
+import { withRouter } from "react-router";
 import Hammer from "rc-hammerjs";
 import { CookieNotice } from "../CookieNotice/CookieNotice";
-
-import Startpage from "../../pages/startpage/Startpage";
-import Subpage from "../../pages/subpages/Subpage";
+import Routes from "../../Routes";
 
 import Header from "../Header";
 import {
@@ -15,11 +13,7 @@ import {
 } from "../../store/mapToProps/mapToProps";
 
 import s from "./Layout.module.scss";
-import EventsList from "../../pages/events/EventsList";
-import PeopleList from "../../pages/people/PeopleList";
-import PersonPage from "../../pages/people/PersonPage";
-import EventPage from "../../pages/events/EventPage";
-import NotFoundPage from "../../pages/404";
+
 import Loader from "../Loader/Loader";
 
 const Layout = (props) => {
@@ -48,51 +42,7 @@ const Layout = (props) => {
       <Hammer>
         <main className={s.content}>
           {props.isLoading && <Loader />}
-          <Switch>
-            <Route
-              path="/"
-              exact
-              render={(props) => <Startpage {...props} />}
-            />
-            <Route
-              path="/about"
-              render={(props) => <Subpage {...props} slug={`about`} />}
-            />
-
-            <Route
-              path="/events/:slug"
-              render={(props) => <EventPage {...props} />}
-            />
-
-            <Route
-              path="/events"
-              render={(props) => <EventsList {...props} slug={`events`} />}
-            />
-
-            <Route
-              path="/people/:slug"
-              render={(props) => <PersonPage {...props} slug={`people`} />}
-            />
-
-            <Route
-              path="/people"
-              render={(props) => <PeopleList {...props} />}
-            />
-            <Route
-              path="/impressum"
-              render={(props) => <Subpage {...props} slug={`impressum`} />}
-            />
-            <Route
-              path="/app/main"
-              exact
-              render={() => <Redirect to="/app/main/dashboard" />}
-            />
-            <Route
-              path="*"
-              render={(props) => <NotFoundPage {...props} slug={`404`} />}
-            />
-          </Switch>
-
+          <Routes />
           <footer className={s.contentFooter}>
             <span className={`${s.footerLinksLeft}`}>
               <a href="/">peredvizh.org</a>

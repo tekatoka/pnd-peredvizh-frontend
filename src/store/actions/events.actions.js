@@ -1,4 +1,6 @@
 import eventsService from "../services/events.service";
+import _ from 'lodash';
+import moment from "moment";
 
 export const GET_EVENTLIST_REQUEST = "GET_EVENTLIST_REQUEST";
 export const GET_EVENTLIST_SUCCESS = "GET_EVENTLIST_SUCCESS";
@@ -13,7 +15,14 @@ export function getEventsList() {
     dispatch(request());
     eventsService.getEventsList().then(
       (res) => {
-        dispatch(success(res.data));
+        let data = res.data;
+        if(data.length > 0) {
+          //order events by date
+          data = _.orderBy(data, (o) => {
+            return moment(o.StartDate)
+          }, ['asc']);
+        }
+        dispatch(success(data));
       },
       (error) => {
         dispatch(failure(error.toString()));
