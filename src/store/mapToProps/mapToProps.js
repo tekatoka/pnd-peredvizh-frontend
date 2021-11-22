@@ -9,7 +9,7 @@ import { getCities } from "../actions/cities.actions";
 export const  mapStateToProps = (store) => {
     return {
       modalVisible: store.modal.modalVisible,
-      isLoading: store.events.isLoading || store.people.isLoading || store.subpage.isLoading,
+      isLoading: store.events.isLoading || store.people.isLoading || store.subpage.isLoading || store.cities.isLoading || store.projectYear.isLoading,
       eventList: store.events.eventList,
       selectedEvent: store.events.selectedEvent,
       peopleList: store.people.peopleList,
