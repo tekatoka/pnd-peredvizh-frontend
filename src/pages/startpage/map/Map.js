@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+import _ from "lodash";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 
@@ -7,39 +8,45 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
 import am4geodata_continentsHigh from "@amcharts/amcharts4-geodata/continentsHigh";
 
-import cities from "./cities";
+import cities1 from "./cities";
 import s from "./Map.module.scss";
 import "../../../styles/app.scss";
 
 import ModalDialog from "../../../components/Modal/ModalDialog";
-import CityInfo from "../../../components/CityInfo";
-import { mapStateToProps, mapDispatchToProps } from "../../../store/mapToProps/mapToProps";
+import CityInfo from "../../../components/CityInfo/CityInfo";
+import {
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../../store/mapToProps/mapToProps";
 
-class Map extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedCity: ""
-    };
-  }
+const Map = (props) => {
+  const [citiesList, setCitiesList] = useState();
+  const [selectedCity, setSelectedCity] = useState();
 
-  setSelectedCity = (selectedCity) => {
-    this.setState({
-      selectedCity: selectedCity,
-    });
-  };
+  const { cities, getCities, toggleModal } = props;
 
-  componentDidMount() {
-    this.map = this.createMap();
-  }
+  useEffect(() => {
+    if (!cities) getCities();
+  }, []);
 
-  componentWillUnmount() {
-    if (this.map) {
-      this.map.dispose();
-    }
-  }
+  useEffect(() => {
+    if (cities && cities.length > 0)
+      setCitiesList(
+        _.orderBy(
+          cities,
+          (c) => {
+            return c.Longitude;
+          },
+          ["asc"]
+        )
+      );
+  }, [cities]);
 
-  getColors = () => {
+  useEffect(() => {
+    if (citiesList) createMap();
+  }, [citiesList]);
+
+  const getColors = () => {
     let colors = {
       lightgray: "#d3d3d3",
       middlegray: "#c5c5c5",
@@ -54,8 +61,8 @@ class Map extends Component {
     return colors;
   };
 
-  createMap = () => {
-    let colors = this.getColors();
+  const createMap = () => {
+    let colors = getColors();
 
     let map = am4core.create("map", am4maps.MapChart);
     map.geodata = am4geodata_continentsHigh;
@@ -72,32 +79,34 @@ class Map extends Component {
     };
 
     let polygonTemplate = polygonSeries.mapPolygons.template;
-    //polygonTemplate.tooltipText = "{name}";
+    polygonTemplate.tooltipText = "{Name}";
     polygonTemplate.fill = am4core.color(colors.lightgray);
     polygonTemplate.stroke = am4core.color(colors.darkgray);
     polygonTemplate.strokeWidth = 1;
 
     polygonTemplate.events.on("hit", (ev) => {
-      this.props.toggleModal(false);
+      toggleModal(false);
     });
 
     let hs = polygonTemplate.states.create("hover");
     hs.properties.fill = am4core.color(colors.gray);
     let citySeries = map.series.push(new am4maps.MapImageSeries());
-    citySeries.data = cities;
-    citySeries.dataFields.value = "size";
+
+    citySeries.data = citiesList;
+
+    citySeries.dataFields.value = 4;
     let cityTemplate = citySeries.mapImages.template;
     cityTemplate.nonScaling = true;
-    cityTemplate.propertyFields.latitude = "latitude";
-    cityTemplate.propertyFields.longitude = "longitude";
+    cityTemplate.propertyFields.latitude = "Latitude";
+    cityTemplate.propertyFields.longitude = "Longitude";
     let circle = cityTemplate.createChild(am4core.Circle);
     circle.fill = am4core.color(colors.red);
     circle.strokeWidth = 0;
     let circleHoverState = circle.states.create("hover");
     circleHoverState.properties.strokeWidth = 1;
-    circle.tooltipText = "{name}";
+    circle.tooltipText = "{Name}";
     circle.showTooltip = true;
-    circle.propertyFields.radius = "size";
+    circle.propertyFields.radius = 4;
 
     // Add line series
     var lineSeries = map.series.push(new am4maps.MapSplineSeries());
@@ -113,18 +122,13 @@ class Map extends Component {
       }
     );
 
+    let geoLineData = [];
+    citiesList.map(c => geoLineData.push({latitude: c.Latitude, longitude: c.Longitude}));
+    
     lineSeries.data = [
       {
         multiGeoLine: [
-          [
-            { latitude: 52.520008, longitude: 13.404954 },
-            { latitude: 59.9375, longitude: 30.308611 },
-            { latitude: 55.751244, longitude: 37.618423 },
-            { latitude: 55.78874, longitude: 49.12214 },
-            { latitude: 56.833332, longitude: 60.583332 },
-            { latitude: 56.01839, longitude: 92.86717 },
-            { latitude: 52.29778, longitude: 104.29639 },
-          ],
+          geoLineData
         ],
       },
     ];
@@ -145,9 +149,9 @@ class Map extends Component {
     pinHoverState.properties.fill = am4core.color(colors.lightgray);
 
     pin.label = new am4core.Label();
-    pin.label.text = "{date}";
-    pin.label.fontSize = "12px";
-    pin.label.fontWeight = "bold";
+    // pin.label.text = "{date}";
+    // pin.label.fontSize = "12px";
+    // pin.label.fontWeight = "bold";
     pin.label.fill = am4core.color(colors.paleblack);
 
     let pinLabelHoverState = pin.label.states.create("hover");
@@ -156,12 +160,15 @@ class Map extends Component {
     cityTemplate.events.on("hit", (ev) => {
       // zoom to an object
       ev.target.series.chart.zoomToMapObject(ev.target);
-      this.setSelectedCity(ev.target.dataItem.dataContext.name);
-      this.props.toggleModal(true);
+      setSelectedCity({
+        name: ev.target.dataItem.dataContext.Name,
+        id: ev.target.dataItem.dataContext.id,
+      });
+      toggleModal(true);
     });
 
     var label = pin.createChild(am4core.Label);
-    label.text = "{name}";
+    label.text = "{Name}";
     label.fontSize = "16px";
     label.fontWeight = "bold";
     label.position = "bottom";
@@ -182,17 +189,16 @@ class Map extends Component {
     return map;
   };
 
-  render() {
-    return (
-      <React.Fragment>
-      <ModalDialog>
-        <CityInfo city={this.state.selectedCity} />
-      </ModalDialog>
-
-        <div className={s.map} id="map"></div>
-      </React.Fragment>
-    );
-  }
-}
+  return (
+    <React.Fragment>
+      {selectedCity && (
+        <ModalDialog>
+          <CityInfo city={selectedCity} />
+        </ModalDialog>
+      )}
+      <div className={s.map} id="map"></div>
+    </React.Fragment>
+  );
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Map));

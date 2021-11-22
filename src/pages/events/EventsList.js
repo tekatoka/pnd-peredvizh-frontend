@@ -17,7 +17,7 @@ import s from "./Events.module.scss";
 const EventsList = (props) => {
   const [videoUrl, setVideoUrl] = useState("");
 
-  const { eventList, getEventsList } = props;
+  const { eventList, getEventsList, toggleModal } = props;
 
   useEffect(() => {
     if (!Array.isArray(eventList)) {
@@ -37,7 +37,7 @@ const EventsList = (props) => {
             return (
               <Event
                 event={e}
-                toggleModal={props.toggleModal}
+                toggleModal={toggleModal}
                 setVideoUrl={setVideoUrl}
               />
             );

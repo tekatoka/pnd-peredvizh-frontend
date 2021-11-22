@@ -3,7 +3,8 @@ import React, { Component } from "react";
 const CityInfo = ({city}) => {
     return(
         <>
-            <h2><p>Here comes info about {city}</p></h2>
+            <h2><p>Here comes info about {city.name}</p></h2>
+            <>{city.id}</>
         </>
     )
 }

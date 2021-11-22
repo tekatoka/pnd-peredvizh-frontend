@@ -4,6 +4,7 @@ import { getPeopleList, getPersonBySlug } from "../actions/people.actions";
 import { getSubpageBySlug } from "../actions/subpages.actions";
 import { resetStore } from "../actions/store.actions";
 import { getProjectYear } from "../actions/projectYear.actions";
+import { getCities } from "../actions/cities.actions";
 
 export const  mapStateToProps = (store) => {
     return {
@@ -14,7 +15,8 @@ export const  mapStateToProps = (store) => {
       peopleList: store.people.peopleList,
       selectedPerson: store.people.selectedPerson,
       currentPage: store.subpage.current,
-      currentProjectYear: store.projectYear.current
+      currentProjectYear: store.projectYear.current,
+      cities: store.cities.citiesList
     };
   }
   
@@ -43,6 +45,9 @@ export const mapDispatchToProps = (dispatch) => {
       },
       getProjectYear: (year) => {
         dispatch(getProjectYear(year))
+      },
+      getCities: () => {
+        dispatch(getCities())
       }
     };
   };
