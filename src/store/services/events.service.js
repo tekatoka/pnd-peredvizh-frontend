@@ -4,6 +4,10 @@ class eventsService {
   async getEventsList() {
     return await client.get('/events');
   }
+
+  async getEventBySlug(slug) {
+    return await client.get('/events?slug=' + slug);
+  }
 }
 
 export default new eventsService();

@@ -10,7 +10,7 @@ import {
 export default function register(
   state = {
     isLoading: false,
-    peopleList: [],
+    peopleList: null,
     selectedPerson: null,
     errorMessage: "",
   },

@@ -15,15 +15,19 @@ export const Event = (props) => {
     toggleModal(true);
   };
 
+  const eventUrl = "/events/" + event.slug;
+
   return (
     <React.Fragment>
       {event && (
         <div className={s.eventItem}>
-          <h2 className={s.pageTitle}>{event.name}</h2>
-          <div className={s.date}>{`${Moment(event.date).format(
+          <Link to={eventUrl}>
+          <h2 className={s.pageTitle}>{event.Name}</h2>
+          </Link>
+          <div className={s.date}>{`${Moment(event.Date).format(
             "DD/MM/YYYY"
-          )} ${Moment(event.date).format("hh:mm")}`}</div>
-          <ReactMarkdown>{event.description}</ReactMarkdown>
+          )} ${Moment(event.Date).format("hh:mm")}`}</div>
+          <ReactMarkdown>{event.Description}</ReactMarkdown>
 
           {event.Links && (
             <>

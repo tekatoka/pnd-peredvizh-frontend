@@ -17,7 +17,8 @@ import {
 import s from "./Layout.module.scss";
 import EventsList from "../../pages/events/EventsList";
 import PeopleList from "../../pages/people/PeopleList";
-import Person from "../../pages/people/Person";
+import PersonPage from "../../pages/people/PersonPage";
+import EventPage from "../../pages/events/EventPage";
 import NotFoundPage from "../../pages/404";
 import Loader from "../Loader/Loader";
 
@@ -57,6 +58,12 @@ const Layout = (props) => {
               path="/about"
               render={(props) => <Subpage {...props} slug={`about`} />}
             />
+
+            <Route
+              path="/events/:slug"
+              render={(props) => <EventPage {...props} />}
+            />
+
             <Route
               path="/events"
               render={(props) => <EventsList {...props} slug={`events`} />}
@@ -64,12 +71,12 @@ const Layout = (props) => {
 
             <Route
               path="/people/:slug"
-              render={(props) => <Person {...props} slug={`people`} />}
+              render={(props) => <PersonPage {...props} slug={`people`} />}
             />
 
             <Route
               path="/people"
-              render={(props) => <PeopleList {...props} slug={`people`} />}
+              render={(props) => <PeopleList {...props} />}
             />
             <Route
               path="/impressum"
