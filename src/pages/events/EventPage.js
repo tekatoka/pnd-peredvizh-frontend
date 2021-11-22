@@ -23,17 +23,19 @@ import s from "./Events.module.scss";
 
 const EventPage = (props) => {
   const slug = props.match.params.slug;
+
   const { isLoading, selectedEvent, getEventBySlug } = props;
+  const [loadedData, setLoadedData] = useState(false);
 
   useEffect(() => {
     if (!selectedEvent || slug != selectedEvent.slug) {
       getEventBySlug(slug);
     }
+    setLoadedData(true);
   }, [selectedEvent]);
-  
   return (
     <React.Fragment>
-      {!isLoading && (
+      {!isLoading && loadedData && (
         <div>
           {selectedEvent && slug == selectedEvent.slug ? (
             <div>{selectedEvent.Name}</div>
