@@ -1,0 +1,16 @@
+@import '../../styles/app';
+
+.pageTitle {
+  color: $red-pale;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.pageContent {
+  max-width: 750px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 25px;
+}

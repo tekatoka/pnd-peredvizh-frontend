@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import Moment from "moment";
+import moment from "moment";
 import ReactMarkdown from "react-markdown";
 
 import s from "./Events.module.scss";
@@ -24,9 +24,9 @@ export const Event = (props) => {
           <Link to={eventUrl}>
           <h2 className={s.pageTitle}>{event.Name}</h2>
           </Link>
-          <div className={s.date}>{`${Moment(event.Date).format(
+          <div className={s.date}>{`${moment(event.StartDate).format(
             "DD/MM/YYYY"
-          )} ${Moment(event.Date).format("hh:mm")}`}</div>
+          )} ${moment(event.StartDate).format("HH:mm")}`}</div>
           <ReactMarkdown>{event.Description}</ReactMarkdown>
 
           {event.Links && (
