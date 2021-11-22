@@ -12,7 +12,7 @@ const PeopleList = (props) => {
   const { peopleList, getPeopleList } = props;
 
   useEffect(() => {
-    if (!Array.isArray(peopleList) || !peopleList.length) {
+    if (!Array.isArray(peopleList)) {
       getPeopleList();
     }
   }, [props]);

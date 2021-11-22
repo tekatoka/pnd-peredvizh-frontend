@@ -20,7 +20,7 @@ const EventsList = (props) => {
   const { eventList, getEventsList } = props;
 
   useEffect(() => {
-    if (!Array.isArray(eventList) || !eventList.length) {
+    if (!Array.isArray(eventList)) {
       getEventsList();
     }
   }, [props]);
