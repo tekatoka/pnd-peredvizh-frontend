@@ -8,7 +8,6 @@ import * as am4maps from "@amcharts/amcharts4/maps";
 import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
 import am4geodata_continentsHigh from "@amcharts/amcharts4-geodata/continentsHigh";
 
-import cities1 from "./cities";
 import s from "./Map.module.scss";
 import "../../../styles/app.scss";
 
@@ -23,7 +22,7 @@ const Map = (props) => {
   const [citiesList, setCitiesList] = useState();
   const [selectedCity, setSelectedCity] = useState();
 
-  const { cities, getCities, toggleModal } = props;
+  const { cities, getCities, setMapLoading, toggleModal } = props;
 
   useEffect(() => {
     if (!cities) getCities();
@@ -62,6 +61,7 @@ const Map = (props) => {
   };
 
   const createMap = () => {
+    setMapLoading(true);
     let colors = getColors();
 
     let map = am4core.create("map", am4maps.MapChart);
@@ -184,6 +184,7 @@ const Map = (props) => {
 
     map.events.on("ready", () => {
       //map is loaded
+      setMapLoading(false);
     });
 
     return map;
