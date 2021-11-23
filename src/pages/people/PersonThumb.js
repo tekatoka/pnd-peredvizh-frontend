@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import Moment from 'moment';
 import ReactMarkdown from 'react-markdown';
 import s from './People.module.scss';
+import NoImage from "../../assets/avatar.png";
 
 export const PersonThumb = (props) => {
 
@@ -27,7 +28,7 @@ export const PersonThumb = (props) => {
           <Link to={profileUrl}>
             <div className={s.personItem}>
             <div className={s.imageContainer}>
-              <img src={person.Image.formats["thumbnail"].url} className={s.image} />
+              <img src={person.Image ? person.Image.formats["thumbnail"].url : NoImage} className={s.image} />
               <div className={s.text}>{person.Name}</div>
             </div>
 
