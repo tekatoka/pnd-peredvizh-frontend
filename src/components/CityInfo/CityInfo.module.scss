@@ -1,0 +1,14 @@
+@import "../../styles/app";
+@import "../../styles/variables";
+
+.pageTitle {
+  color: $red-pale;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.infoContainer {
+  height: auto;
+  min-height: 150px;
+}

@@ -7,7 +7,7 @@ export const PoetTeam = ({ people }) => {
   return (
     people &&
     people.map((person, index) => {
-      return <div><Link to={`/people/${person.slug}`}>{person.Name}</Link></div>
+      return <div key={index}><Link to={`/people/${person.slug}`}>{person.Name}</Link></div>
     })
   );
 };

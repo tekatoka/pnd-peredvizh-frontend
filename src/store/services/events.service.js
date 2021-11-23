@@ -6,7 +6,7 @@ class eventsService {
   }
 
   async getEventBySlug(slug) {
-    return await client.get('/events?slug=' + slug);
+    return await client.get('/events/slugs/' + slug);
   }
 }
 

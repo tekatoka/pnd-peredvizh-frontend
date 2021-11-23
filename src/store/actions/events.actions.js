@@ -46,7 +46,7 @@ export function getEventBySlug(slug) {
     dispatch(request());
     eventsService.getEventBySlug(slug).then(
       (res) => {
-        dispatch(success(res.data[0]));
+        dispatch(success(res.data));
       },
       (error) => {
         dispatch(failure(error.toString()));
