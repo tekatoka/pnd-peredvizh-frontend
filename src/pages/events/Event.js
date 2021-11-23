@@ -22,7 +22,7 @@ export const Event = (props) => {
       {event && (
         <div className={s.eventItem}>
           <Link to={eventUrl}>
-          <h2 className={s.pageTitle}>{event.Name}</h2>
+          <h2 className="page-title">{event.Name}</h2>
           </Link>
           <div className={s.date}>{`${moment(event.StartDate).format(
             "DD/MM/YYYY"

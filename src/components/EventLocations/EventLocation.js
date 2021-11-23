@@ -7,7 +7,7 @@ export const EventLocation = ({ location, startDate, endDate, counterNumber }) =
     <div>
               {moment(startDate).format("DD.MM.yyyy")}
               <br />
-              {counterNumber}
+              {counterNumber && counterNumber}
       {location && (
         <>
           <div>{location.City && location.City.Name}</div>

@@ -33,7 +33,7 @@ const CityInfo = (props) => {
 
   return (
     <>
-      <h2 className={s.pageTitle}>{city.name}</h2>
+      <h2 className="page-title">{city.name}</h2>
       <div className={s.infoContainer}>
         {isLoading && <Loader />}
         {!isLoading && selectedCity && eventsList && eventsList.length > 0 && (

@@ -1,18 +1,33 @@
 .page-title {
-  color: $text-color;
-  font-weight: 400;
-  line-height: 1;
-  /* stylelint-disable-next-line */
-  margin: 11px 0 (1.5*$spacer);
-
-  small {
-    color: rgba($white, 0.7);
-  }
-
-  @media (max-width: breakpoint-max(sm)) {
-    margin-top: 0;
-  }
+  color: $red-pale;
+  text-transform: uppercase;
+  margin-bottom: 25px;
+  font-weight: 500;
 }
+
+.page-content {
+  max-width: 950px;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  padding: 25px;
+}
+
+// .page-title {
+//   color: $text-color;
+//   font-weight: 400;
+//   line-height: 1;
+//   /* stylelint-disable-next-line */
+//   margin: 11px 0 (1.5*$spacer);
+
+//   small {
+//     color: rgba($white, 0.7);
+//   }
+
+//   @media (max-width: breakpoint-max(sm)) {
+//     margin-top: 0;
+//   }
+// }
 
 .page-top-line {
   display: flex;

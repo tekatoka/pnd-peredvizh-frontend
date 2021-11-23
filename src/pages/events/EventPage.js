@@ -19,6 +19,8 @@ import {
 import { Link } from "react-router-dom";
 import Moment from "moment";
 import ReactMarkdown from "react-markdown";
+import { PageContent, PageTitle } from "../../elements/PageElements";
+import { EventLocation } from "../../components/EventLocations/EventLocation";
 import s from "./Events.module.scss";
 
 const EventPage = (props) => {
@@ -36,13 +38,19 @@ const EventPage = (props) => {
   return (
     <React.Fragment>
       {!isLoading && loadedData && (
-        <div>
+        <PageContent>
           {selectedEvent && slug == selectedEvent.slug ? (
-            <div>{selectedEvent.Name}</div>
+            <>
+            <PageTitle>{selectedEvent.Name}</PageTitle>
+            <div>
+              {selectedEvent.event_location &&
+              <EventLocation location={selectedEvent.event_location} startDate={selectedEvent.StartDate} endDate={selectedEvent.EndDate} />}
+            </div>
+            </>
           ) : (
             <NotFoundPage />
           )}
-        </div>
+        </PageContent>
       )}
     </React.Fragment>
   );

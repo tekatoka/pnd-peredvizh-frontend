@@ -7,6 +7,7 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
+import { PageContent } from "../../elements/PageElements";
 
 const PeopleList = (props) => {
   const { peopleList, getPeopleList } = props;
@@ -20,7 +21,7 @@ const PeopleList = (props) => {
   return (
     <React.Fragment>
       {peopleList && (
-        <div className={`${s.pageContent}`}>
+        <PageContent>
           {peopleList.map((e, index) => {
             return <PersonThumb person={e} />;
           })}
@@ -30,7 +31,7 @@ const PeopleList = (props) => {
           {peopleList.map((e, index) => {
             return <PersonThumb person={e} />;
           })}
-        </div>
+        </PageContent>
       )}
     </React.Fragment>
   );

@@ -31,7 +31,7 @@ export const PersonThumb = (props) => {
               <div className={s.text}>{person.Name}</div>
             </div>
 
-            {/* <h2 className={s.pageTitle}>{person.Name}</h2> */}
+            {/* <h2 className="page-title">{person.Name}</h2> */}
             {/* <Row>
               {
                 imageAvailable &&

@@ -6,6 +6,7 @@ import {
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
 import NotFoundPage from "../404";
+import { PageContent, PageTitle } from "../../elements/PageElements";
 
 import {
   Container,
@@ -36,13 +37,13 @@ const Person = (props) => {
   return (
     <React.Fragment>
       {!isLoading && loadedData && (
-        <div>
+        <PageContent>
           {selectedPerson && slug == selectedPerson.slug ? (
-            <div>{selectedPerson.Name}</div>
+            <PageTitle>{selectedPerson.Name}</PageTitle>
           ) : (
             <NotFoundPage />
           )}
-        </div>
+        </PageContent>
       )}
     </React.Fragment>
   );

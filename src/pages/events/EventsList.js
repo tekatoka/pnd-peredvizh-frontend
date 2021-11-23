@@ -12,6 +12,7 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
+import { PageContent } from "../../elements/PageElements";
 import s from "./Events.module.scss";
 
 const EventsList = (props) => {
@@ -32,7 +33,7 @@ const EventsList = (props) => {
       </ModalDialog>
 
       {eventList && (
-        <div className={`${s.pageContent}`}>
+        <PageContent>
           {eventList.map((e) => {
             return (
               <Event
@@ -42,7 +43,7 @@ const EventsList = (props) => {
               />
             );
           })}
-        </div>
+        </PageContent>
       )}
     </React.Fragment>
   );

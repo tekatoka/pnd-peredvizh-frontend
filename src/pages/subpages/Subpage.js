@@ -6,6 +6,7 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
+import { PageContent, PageTitle } from "../../elements/PageElements";
 
 import s from "./Subpage.module.scss";
 
@@ -22,10 +23,10 @@ const Subpage = (props) => {
   return (
     <React.Fragment>
       {!isLoading && currentPage && (
-        <div className={`${s.pageContent}`}>
-          <h2 className={s.pageTitle}>{currentPage.title}</h2>
+        <PageContent>
+          <PageTitle>{currentPage.title}</PageTitle>
           <ReactMarkdown>{currentPage.content}</ReactMarkdown>
-        </div>
+        </PageContent>
       )}
     </React.Fragment>
   );
