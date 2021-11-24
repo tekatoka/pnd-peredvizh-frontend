@@ -68,3 +68,40 @@
       }
     }
 }
+
+.slideCaptionPrimary {
+  font-size: 1rem;
+
+  @media (max-width: breakpoint-max(sm)) {
+    font-size: .75rem;
+    margin-bottom: 5px;
+  }
+}
+
+.slideCaptionSecondary {
+  font-size: 0.75rem;
+
+  @media (max-width: breakpoint-max(sm)) {
+    font-size: .55rem;
+  }
+}
+
+.carousel.slide {
+  text-align: center;
+}
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 10px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 0;
+  padding-bottom: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.visually-hidden {
+  display: none;
+}

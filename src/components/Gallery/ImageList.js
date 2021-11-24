@@ -39,20 +39,17 @@ const ImageList = (props) => {
     <React.Fragment>
       <ModalDialog>
           <ImageCarousel items={items} activeItem={currentItemId} />
-        {/* {items && items.length} - id {currentItemId} */}
       </ModalDialog>
       <Row>
         {items &&
           items.map((item) => {
-            const imageUrl = item.Image
-              ? item.ImageUrl
-                ? item.ImageUrl
-                : item.Image.formats["small"] ? item.Image.formats["small"].url : item.Image.formats["thumbnail"].url
-              : NoImage;
+            const imagePublicId = item.Image && item.Image.provider_metadata ? item.Image.provider_metadata.public_id : null;
+            const imageUrl = item.Image && item.ImageUrl ? item.ImageUrl : NoImage;
             const description = type == "people" ? item.Name : "";
             const link = type == "people" ? "/people/" + item.slug : "";
             return (
               <ImageThumb
+                imagePublicId={imagePublicId}
                 imageUrl={imageUrl}
                 description={description}
                 link={link}

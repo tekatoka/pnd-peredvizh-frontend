@@ -19,5 +19,8 @@ export default {
   auth: {
     email: 'info@panda-platforma-berlin',
     password: ''
+  },
+  cloudinary: {
+    cloudName: "hwb64zldk"
   }
 }

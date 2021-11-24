@@ -50,6 +50,7 @@ const EventPage = (props) => {
                   />
                 )}
               </div>
+
               {selectedEvent.PhotoGallery &&
                 selectedEvent.PhotoGallery.Photo &&
                 selectedEvent.PhotoGallery.Photo.length > 0 && (
