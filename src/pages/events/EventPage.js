@@ -27,7 +27,7 @@ import s from "./Events.module.scss";
 const EventPage = (props) => {
   const slug = props.match.params.slug;
 
-  const { isLoading, selectedEvent, getEventBySlug, toggleModal } = props;
+  const { isLoading, selectedEvent, getEventBySlug, toggleModal, modalVisible } = props;
 
   useEffect(() => {
     if (!selectedEvent || slug != selectedEvent.slug) {

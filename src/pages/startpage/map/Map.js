@@ -22,7 +22,15 @@ const Map = (props) => {
   const [citiesList, setCitiesList] = useState();
   const [selectedCity, setSelectedCity] = useState();
 
-  const { cities, getCities, setMapLoading, toggleModal } = props;
+  const { cities, getCities, setMapLoading, toggleModal, modalVisible } = props;
+
+  const handleToggleModal = (item) => {
+    setSelectedCity({
+      name: item.Name,
+      id: item.id,
+    });
+    toggleModal(true);
+  };
 
   useEffect(() => {
     if (!cities) getCities();
@@ -84,9 +92,9 @@ const Map = (props) => {
     polygonTemplate.stroke = am4core.color(colors.darkgray);
     polygonTemplate.strokeWidth = 1;
 
-    polygonTemplate.events.on("hit", (ev) => {
-      toggleModal(false);
-    });
+    // polygonTemplate.events.on("hit", (ev) => {
+    //   toggleModal(false);
+    // });
 
     let hs = polygonTemplate.states.create("hover");
     hs.properties.fill = am4core.color(colors.gray);
@@ -123,13 +131,13 @@ const Map = (props) => {
     );
 
     let geoLineData = [];
-    citiesList.map(c => geoLineData.push({latitude: c.Latitude, longitude: c.Longitude}));
-    
+    citiesList.map((c) =>
+      geoLineData.push({ latitude: c.Latitude, longitude: c.Longitude })
+    );
+
     lineSeries.data = [
       {
-        multiGeoLine: [
-          geoLineData
-        ],
+        multiGeoLine: [geoLineData],
       },
     ];
 
@@ -160,11 +168,11 @@ const Map = (props) => {
     cityTemplate.events.on("hit", (ev) => {
       // zoom to an object
       ev.target.series.chart.zoomToMapObject(ev.target);
-      setSelectedCity({
-        name: ev.target.dataItem.dataContext.Name,
-        id: ev.target.dataItem.dataContext.id,
-      });
-      toggleModal(true);
+      // setSelectedCity({
+      //   name: ev.target.dataItem.dataContext.Name,
+      //   id: ev.target.dataItem.dataContext.id,
+      // });
+      handleToggleModal(ev.target.dataItem.dataContext);
     });
 
     var label = pin.createChild(am4core.Label);
@@ -192,7 +200,7 @@ const Map = (props) => {
 
   return (
     <React.Fragment>
-      {selectedCity && (
+      {modalVisible && selectedCity && (
         <ModalDialog>
           <CityInfo city={selectedCity} />
         </ModalDialog>

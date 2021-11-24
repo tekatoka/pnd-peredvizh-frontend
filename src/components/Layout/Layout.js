@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+import ReactDOM from 'react-dom';
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Hammer from "rc-hammerjs";
 import { CookieNotice } from "../CookieNotice/CookieNotice";
 import Routes from "../../Routes";
+import _ from "lodash";
 
 import Header from "../Header";
 import {
@@ -17,12 +18,14 @@ import s from "./Layout.module.scss";
 import Loader from "../Loader/Loader";
 
 const Layout = (props) => {
+  const {history, toggleModal, isLoading, resetStore} = props;
   useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27) {
-        props.toggleModal(false);
+        toggleModal(false);
       }
     };
+
     window.addEventListener("keydown", close);
     return () => window.removeEventListener("keydown", close);
   }, []);
@@ -31,18 +34,23 @@ const Layout = (props) => {
     if (window.performance) {
       //trigger only on page refresh
       if (performance.navigation.type == 1) {
-        props.resetStore();
+        resetStore();
       }
     }
-    props.toggleModal(false);
+    toggleModal(false);
   }, []);
+
+  useEffect(() => history.listen(() => {
+    // do something on route change
+    toggleModal(false);
+}), [])
 
   return (
     <div className={s.wrap}>
       <Header />
       <Hammer>
         <main className={s.content}>
-          {props.isLoading && <Loader />}
+          {isLoading && <Loader />}
           <Routes />
           <footer className={s.contentFooter}>
             <span className={`${s.footerLinksLeft}`}>

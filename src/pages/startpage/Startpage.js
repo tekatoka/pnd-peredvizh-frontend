@@ -6,7 +6,7 @@ import Map from './map/Map';
 const Startpage = (props) =>  {
 
     return (
-          <Map toggleModal={props.toggleModal} modalVisible={props.modalVisible} />
+          <Map  />
     );
   }
 
