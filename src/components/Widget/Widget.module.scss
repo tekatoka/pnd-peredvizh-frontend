@@ -3,7 +3,7 @@
 .title {
   margin-top: 0;
   color: $widget-title-color;
-  padding: 15px 20px 0;
+  padding: 0!important;
 
   @include clearfix();
 }
@@ -177,8 +177,8 @@
   top: 0;
   right: 0;
   display: flex;
-  padding: 14px;
-  font-size: $font-size-sm;
+  padding: 10px;
+  font-size: $font-size-larger;
 
   & > div {
     display: flex;

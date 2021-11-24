@@ -34,6 +34,7 @@ const Layout = (props) => {
         props.resetStore();
       }
     }
+    props.toggleModal(false);
   }, []);
 
   return (
