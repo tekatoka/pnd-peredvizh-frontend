@@ -10,6 +10,7 @@ import {
   Button,
   Row,
   Col,
+  Carousel
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import ModalDialog from "../../components/Modal/ModalDialog";
@@ -21,22 +22,31 @@ import { PageContent } from "../../elements/PageElements";
 import { ImageThumb } from "./ImageThumb";
 import NoImage from "../../assets/avatar.png";
 import s from "./Gallery.module.scss";
+import { ImageCarousel } from "./ImageCarousel";
 
 const ImageList = (props) => {
   const [videoUrl, setVideoUrl] = useState("");
 
   const { items, type, toggleModal } = props;
+  const [currentItemId, setCurrentItemId] = useState();
+
+  const handleToggleModal = (id) => {
+    setCurrentItemId(id);
+    toggleModal(true);
+  };
 
   return (
     <React.Fragment>
-      <ModalDialog>{items && items.length}</ModalDialog>
+      <ModalDialog>
+          <ImageCarousel items={items} activeItem={currentItemId} />
+      </ModalDialog>
       <Row>
         {items &&
           items.map((item) => {
             const imageUrl = item.Image
               ? item.ImageUrl
                 ? item.ImageUrl
-                : item.Image.formats["thumbnail"].url
+                : item.Image.formats["small"].url
               : NoImage;
             const description = type == "people" ? item.Name : "";
             const link = type == "people" ? "/people/" + item.slug : "";
@@ -45,7 +55,7 @@ const ImageList = (props) => {
                 imageUrl={imageUrl}
                 description={description}
                 link={link}
-                toggleModal={toggleModal}
+                toggleModal={() => handleToggleModal(item.id)}
                 type={type}
               />
             );

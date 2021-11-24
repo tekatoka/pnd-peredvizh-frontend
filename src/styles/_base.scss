@@ -367,4 +367,30 @@ table > thead > tr > th {
   background-color: $bg-addition !important;
 }
 
+.carousel.slide {
+  text-align: center;
+}
 
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 10px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 0;
+  padding-bottom: 0;
+  color: #fff;
+  text-align: center;
+}
+
+// .carousel-inner .carousel-item {
+//   position: relative;
+//   -webkit-transition: 0.8s ease-in-out left;
+//   -moz-transition: 0.8s ease-in-out left;
+//   -o-transition: 0.8s ease-in-out left;
+//   transition: 0.8s ease-in-out left;
+// }
+
+.visually-hidden {
+  display: none;
+}

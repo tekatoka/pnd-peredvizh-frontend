@@ -11,7 +11,7 @@ const ModalDialog = (props) => {
     modalVisible && (
       <div
         className={`${s.modalWrapper}`}
-        onClick={() => toggleModal(!modalVisible)}
+        //onClick={() => toggleModal(!modalVisible)}
       >
         <div
           className={`mt-4 py-0 animate__animated animate__faster animate__fadeInUp `}
