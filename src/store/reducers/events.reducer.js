@@ -36,6 +36,7 @@ export default function register(state = {
         return Object.assign({}, state, {
             isLoading: false,
             errorMessage: action.payload,
+            selectedEvent: "not found"
         });
         default:
             return state; 

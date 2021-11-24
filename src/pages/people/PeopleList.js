@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import s from "./People.module.scss";
-import { PersonThumb } from "./PersonThumb";
 import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
 import { PageContent } from "../../elements/PageElements";
+import ImageList from "../../components/Gallery/ImageList";
 
 const PeopleList = (props) => {
-  const { peopleList, getPeopleList } = props;
+  const { peopleList, getPeopleList, toggleModal } = props;
 
   useEffect(() => {
     if (!Array.isArray(peopleList)) {
@@ -22,15 +22,7 @@ const PeopleList = (props) => {
     <React.Fragment>
       {peopleList && (
         <PageContent>
-          {peopleList.map((e, index) => {
-            return <PersonThumb person={e} />;
-          })}
-          {peopleList.map((e, index) => {
-            return <PersonThumb person={e} />;
-          })}
-          {peopleList.map((e, index) => {
-            return <PersonThumb person={e} />;
-          })}
+          <ImageList items={peopleList} type={"people"} toggleModal={toggleModal} />
         </PageContent>
       )}
     </React.Fragment>

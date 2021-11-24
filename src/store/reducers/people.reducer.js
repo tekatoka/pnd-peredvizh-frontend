@@ -39,13 +39,15 @@ export default function register(
     case GET_PERSON_BY_SLUG_SUCCESS:
       return Object.assign({}, state, {
         isLoading: false,
-        selectedPerson: action.payload,
+        selectedPerson: action.payload ? action.payload : "not found",
         errorMessage: "",
       });
     case GET_PERSON_BY_SLUG_FAILURE:
+     
       return Object.assign({}, state, {
         isLoading: false,
         errorMessage: action.payload,
+        selectedPerson: "not found"
       });
     default:
       return state;

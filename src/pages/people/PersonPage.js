@@ -25,24 +25,21 @@ import s from "./People.module.scss";
 const Person = (props) => {
   const slug = props.match.params.slug;
   const { isLoading, selectedPerson, getPersonBySlug } = props;
-  const [loadedData, setLoadedData] = useState(false);
 
   useEffect(() => {
     if (!selectedPerson || slug != selectedPerson.slug) {
       getPersonBySlug(slug);
     }
-    setLoadedData(true);
   }, [selectedPerson]);
-  
+
   return (
     <React.Fragment>
-      {!isLoading && loadedData && (
+      {!isLoading && (
         <PageContent>
-          {selectedPerson && slug == selectedPerson.slug ? (
+          {selectedPerson && slug == selectedPerson.slug && (
             <PageTitle>{selectedPerson.Name}</PageTitle>
-          ) : (
-            <NotFoundPage />
           )}
+          {!selectedPerson || selectedPerson == "not found" && <NotFoundPage />}
         </PageContent>
       )}
     </React.Fragment>

@@ -21,39 +21,53 @@ import Moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { PageContent, PageTitle } from "../../elements/PageElements";
 import { EventLocation } from "../../components/EventLocations/EventLocation";
+import ImageList from "../../components/Gallery/ImageList";
 import s from "./Events.module.scss";
 
 const EventPage = (props) => {
   const slug = props.match.params.slug;
 
-  const { isLoading, selectedEvent, getEventBySlug } = props;
-  const [loadedData, setLoadedData] = useState(false);
+  const { isLoading, selectedEvent, getEventBySlug, toggleModal } = props;
 
   useEffect(() => {
     if (!selectedEvent || slug != selectedEvent.slug) {
       getEventBySlug(slug);
     }
-    setLoadedData(true);
   }, [selectedEvent]);
   return (
     <React.Fragment>
-      {!isLoading && loadedData && (
+      {!isLoading && (
         <PageContent>
-          {selectedEvent && slug == selectedEvent.slug ? (
+          {selectedEvent && slug == selectedEvent.slug && (
             <>
-            <PageTitle>{selectedEvent.Name}</PageTitle>
-            <div>
-              {selectedEvent.event_location &&
-              <EventLocation location={selectedEvent.event_location} startDate={selectedEvent.StartDate} endDate={selectedEvent.EndDate} />}
-            </div>
+              <PageTitle>{selectedEvent.Name}</PageTitle>
+              <div>
+                {selectedEvent.event_location && (
+                  <EventLocation
+                    location={selectedEvent.event_location}
+                    startDate={selectedEvent.StartDate}
+                    endDate={selectedEvent.EndDate}
+                  />
+                )}
+              </div>
+              {selectedEvent.PhotoGallery &&
+                selectedEvent.PhotoGallery.Photo &&
+                selectedEvent.PhotoGallery.Photo.length > 0 && (
+                  <ImageList
+                    items={selectedEvent.PhotoGallery.Photo}
+                    type={"event"}
+                    toggleModal={toggleModal}
+                  />
+                )}
             </>
-          ) : (
-            <NotFoundPage />
           )}
+          {selectedEvent == "not found" && <NotFoundPage />}
         </PageContent>
       )}
     </React.Fragment>
   );
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(EventPage));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(EventPage)
+);
