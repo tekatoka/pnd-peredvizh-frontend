@@ -8,6 +8,7 @@ import EventsList from "./pages/events/EventsList";
 import PeopleList from "./pages/people/PeopleList";
 import PersonPage from "./pages/people/PersonPage";
 import EventPage from "./pages/events/EventPage";
+import BlogPage from "./pages/blog/BlogPage";
 import NotFoundPage from "./pages/404";
 
 const Routes = () => {
@@ -35,6 +36,11 @@ const Routes = () => {
       />
 
       <Route path="/people" render={(props) => <PeopleList {...props} />} />
+
+      <Route path="/context" render={(props) => <BlogPage {...props} />} />
+
+      <Route path="/blog" render={(props) => <BlogPage {...props} />} />
+
       <Route
         path="/impressum"
         render={(props) => <Subpage {...props} slug={`impressum`} />}

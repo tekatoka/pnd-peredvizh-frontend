@@ -27,7 +27,7 @@ export const ImageThumb = (props) => {
               {imagePublicId ? (
                   <CloudinaryLazyImage type={"fluid"} imagePublicId={imagePublicId} description={description} maxWidth={300} maxHeight={300}/>
               ) : (
-                <img src={imageUrl} className={s.image} />
+                <img src={imageUrl} />
               )}
               {description && <div className={s.imageTitle}>{description}</div>}
             </div>

@@ -5,6 +5,7 @@ import { getSubpageBySlug } from "../actions/subpages.actions";
 import { resetStore } from "../actions/store.actions";
 import { getProjectYear } from "../actions/projectYear.actions";
 import { getCities, setMapLoading, getEventsByCity, getPeopleByCity } from "../actions/cities.actions";
+import { getBlogArticles, getBlogArticleBySlug } from "../actions/blog.actions";
 
 export const mapStateToProps = (store) => {
   return {
@@ -17,7 +18,8 @@ export const mapStateToProps = (store) => {
       store.cities.isEventsLoading ||
       store.cities.isPeopleLoading ||
       store.cities.isMapLoading ||
-      store.projectYear.isLoading,
+      store.projectYear.isLoading ||
+      store.blog.isLoading,
     eventList: store.events.eventList,
     selectedEvent: store.events.selectedEvent,
     peopleList: store.people.peopleList,
@@ -25,7 +27,9 @@ export const mapStateToProps = (store) => {
     currentPage: store.subpage.current,
     currentProjectYear: store.projectYear.current,
     cities: store.cities.citiesList,
-    selectedCity: store.cities.selectedCity
+    selectedCity: store.cities.selectedCity,
+    blogArticlesList: store.blog.blogArticlesList,
+    selectedBlogArticle: store.blog.selectedBlogArticle
   };
 };
 
@@ -66,6 +70,12 @@ export const mapDispatchToProps = (dispatch) => {
     },
     getPeopleByCity: (cityId) => {
       dispatch(getPeopleByCity(cityId))
+    },
+    getBlogArticles: () => {
+      dispatch(getBlogArticles())
+    },
+    getBlogArticleBySlug: (slug) => {
+      dispatch(getBlogArticleBySlug(slug))
     }
   };
 };
