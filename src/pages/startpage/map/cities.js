@@ -1,66 +1,74 @@
+import * as am4core from "@amcharts/amcharts4/core";
+
 const TOP = 90;
 const BOTTOM = 270;
 
 export default [
     {
-        latitude: 52.520008,
-        longitude: 13.404954,
+        Latitude: 52.520008,
+        Longitude: 13.404954,
         size: 6,
-        name: 'Берлин',
+        Name: 'Берлин',
         date: "17-19\n12.21",
-        fill: "#F00",
-        labelPositionAngle: 90
+        fill: "#FFF",
+        labelPositionAngle: 90,
+        color: am4core.color("#FB0623")
     },
     {
-        latitude: 59.937500,
-        longitude: 30.308611,
+        Latitude: 59.937500,
+        Longitude: 30.308611,
         size: 6,
-        name: 'Санкт-Петербург',
+        Name: 'Санкт-Петербург',
         date: "10.10.21",
-        fill: "#F00",
-        labelPositionAngle: 90
+        fill: "#FFF",
+        labelPositionAngle: 90,
+        color: am4core.color("#FB0623")
     },
     {
-        latitude: 55.751244,
-        longitude: 37.618423,
+        Latitude: 55.751244,
+        Longitude: 37.618423,
         size: 7,
-        name: 'Москва',
+        Name: 'Москва',
         date: "11.10.21",
-        fill: "#F00",
-        labelPositionAngle: 90
+        fill: "#FB0623",
+        labelPositionAngle: 90,
+        color: am4core.color("#FFF")
     },
     {
-        latitude: 55.78874,
-        longitude: 49.12214,
+        Latitude: 55.78874,
+        Longitude: 49.12214,
         size: 7,
-        name: 'Казань',
+        Name: 'Казань',
         date: "12.10.21",
         fill: "#F00",
-        labelPositionAngle: 90
+        labelPositionAngle: 90,
+        color: am4core.color("#FB0623")
     },
     {
-        latitude: 56.833332,
-        longitude: 60.583332,
+        Latitude: 56.833332,
+        Longitude: 60.583332,
         size: 7,
-        name: 'Екатеринбург',
+        Name: 'Екатеринбург',
         date: "14.10.21",
         fill: "#F00",
-        labelPositionAngle: 90
+        labelPositionAngle: 90,
+        color: am4core.color("#FB0623")
     },
     {
-        latitude: 56.01839,
-        longitude: 92.86717,
+        Latitude: 56.01839,
+        Longitude: 92.86717,
         size: 5,
-        name: 'Красноярск',
+        Name: 'Красноярск',
         date: "16.10.21",
         fill: "#F00",
-        labelPositionAngle: 90
+        labelPositionAngle: 90,
+        color: am4core.color("#FB0623")
     },
     {
-        latitude: 52.29778,
-        longitude: 104.29639,
+        Latitude: 52.29778,
+        Longitude: 104.29639,
         size: 4,
-        name: 'Иркутск',
+        Name: 'Иркутск',
         date: "17.10.21",
         fill: "#F00",
         labelPositionAngle: 90

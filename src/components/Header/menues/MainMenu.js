@@ -50,7 +50,7 @@ const MainMenuMobile = ({handleClick, isOpen, currentPath}) => {
 
             return (
               <NavItem>
-                <NavLink className={`${s.navItem} ${currentPath == el.link ? s.activeMobile : ''}`} href={el.link}>{el.name}</NavLink>
+                <NavLink className={`${s.navItem} ${currentPath.includes(el.link) ? s.activeMobile : ''}`} href={el.link}>{el.name}</NavLink>
               </NavItem>
             )
           })

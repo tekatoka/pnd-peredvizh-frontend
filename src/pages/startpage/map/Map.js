@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4maps from "@amcharts/amcharts4/maps";
+import * as am4charts from "@amcharts/amcharts4/charts";
 import * as am4plugins_bullets from "@amcharts/amcharts4/plugins/bullets";
 import am4geodata_continentsHigh from "@amcharts/amcharts4-geodata/continentsHigh";
 
@@ -17,6 +18,8 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../../store/mapToProps/mapToProps";
+
+// import cities2 from "./cities";
 
 const Map = (props) => {
   const [citiesList, setCitiesList] = useState();
@@ -37,7 +40,9 @@ const Map = (props) => {
   }, []);
 
   useEffect(() => {
-    if (cities && cities.length > 0)
+    if (cities && cities.length > 0) {
+
+      //cities.map(city => city.ColorCode = am4core.color(city.ColorCode));
       setCitiesList(
         _.orderBy(
           cities,
@@ -47,6 +52,7 @@ const Map = (props) => {
           ["asc"]
         )
       );
+        }
   }, [cities]);
 
   useEffect(() => {
@@ -86,36 +92,6 @@ const Map = (props) => {
       longitude: 55,
     };
 
-    let polygonTemplate = polygonSeries.mapPolygons.template;
-    polygonTemplate.tooltipText = "{Name}";
-    polygonTemplate.fill = am4core.color(colors.lightgray);
-    polygonTemplate.stroke = am4core.color(colors.darkgray);
-    polygonTemplate.strokeWidth = 1;
-
-    // polygonTemplate.events.on("hit", (ev) => {
-    //   toggleModal(false);
-    // });
-
-    let hs = polygonTemplate.states.create("hover");
-    hs.properties.fill = am4core.color(colors.gray);
-    let citySeries = map.series.push(new am4maps.MapImageSeries());
-
-    citySeries.data = citiesList;
-
-    citySeries.dataFields.value = 4;
-    let cityTemplate = citySeries.mapImages.template;
-    cityTemplate.nonScaling = true;
-    cityTemplate.propertyFields.latitude = "Latitude";
-    cityTemplate.propertyFields.longitude = "Longitude";
-    let circle = cityTemplate.createChild(am4core.Circle);
-    circle.fill = am4core.color(colors.red);
-    circle.strokeWidth = 0;
-    let circleHoverState = circle.states.create("hover");
-    circleHoverState.properties.strokeWidth = 1;
-    circle.tooltipText = "{Name}";
-    circle.showTooltip = true;
-    circle.propertyFields.radius = 4;
-
     // Add line series
     var lineSeries = map.series.push(new am4maps.MapSplineSeries());
     lineSeries.mapLines.template.stroke = am4core.color(colors.red);
@@ -141,29 +117,84 @@ const Map = (props) => {
       },
     ];
 
-    // Creating a pin bullet
-    var pin = cityTemplate.createChild(am4plugins_bullets.PinBullet);
-    // Configuring pin appearance
-    pin.background.fill = am4core.color(colors.darkgray);
-    pin.background.pointerBaseWidth = 5;
-    pin.background.pointerLength = 30;
-    pin.background.radius = 35;
-    pin.background.propertyFields.pointerLength = "length";
-    pin.background.pointerAngle = 90; //bottom: 270
-    pin.circle.fill = am4core.color(colors.white);
-    pin.circle.radius = 30;
+    let polygonTemplate = polygonSeries.mapPolygons.template;
+    polygonTemplate.tooltipText = "{Name}";
+    polygonTemplate.fill = am4core.color(colors.lightgray);
+    polygonTemplate.stroke = am4core.color(colors.darkgray);
+    polygonTemplate.strokeWidth = 1;
 
-    let pinHoverState = pin.circle.states.create("hover");
-    pinHoverState.properties.fill = am4core.color(colors.lightgray);
+    // polygonTemplate.events.on("hit", (ev) => {
+    //   toggleModal(false);
+    // });
 
-    pin.label = new am4core.Label();
-    // pin.label.text = "{date}";
-    // pin.label.fontSize = "12px";
-    // pin.label.fontWeight = "bold";
-    pin.label.fill = am4core.color(colors.paleblack);
+    let hs = polygonTemplate.states.create("hover");
+    hs.properties.fill = am4core.color(colors.gray);
+    let citySeries = map.series.push(new am4maps.MapImageSeries());
 
-    let pinLabelHoverState = pin.label.states.create("hover");
-    pinLabelHoverState.properties.fill = am4core.color(colors.red);
+    citySeries.data = citiesList;
+
+    citySeries.dataFields.value = 4;
+    let cityTemplate = citySeries.mapImages.template;
+    cityTemplate.nonScaling = true;
+    cityTemplate.propertyFields.latitude = "Latitude";
+    cityTemplate.propertyFields.longitude = "Longitude";
+
+    // let circle = cityTemplate.createChild(am4core.Circle);
+    // circle.fill = am4core.color(colors.red);
+    // circle.strokeWidth = 0;
+    // let circleHoverState = circle.states.create("hover");
+    // circleHoverState.properties.strokeWidth = 1;
+    // circle.tooltipText = "{Name}";
+    // circle.showTooltip = true;
+    // circle.propertyFields.radius = 4;
+
+    var pin = cityTemplate.createChild(am4core.Rectangle);
+    pin.horizontalCenter = "middle";
+    pin.verticalCenter = "middle";
+    //pin.stroke = am4core.color("#fff");
+    pin.width = 25;
+    pin.height = 25;
+    pin.stroke = am4core.color(colors.gray);
+    pin.strokeWidth = 1;
+    pin.propertyFields.fill = "ColorCode";
+
+    var label = cityTemplate.createChild(am4core.Label);
+    label.text = "{Name}";
+    label.fontSize = "16px";
+    label.fontWeight = "bold";
+    label.position = "bottom";
+    label.propertyFields.dy = "length";
+    label.verticalCenter = "middle";
+    label.horizontalCenter = "middle";
+    label.fill = am4core.color(colors.paleblack);
+    label.adapter.add("dy", function (dy) {
+      return (30 + dy) * -1;
+    });
+  
+    
+    // // Creating a pin bullet
+    // var pin = cityTemplate.createChild(am4plugins_bullets.PinBullet);
+    // // Configuring pin appearance
+    // pin.background.fill = am4core.color(colors.darkgray);
+    // pin.background.pointerBaseWidth = 5;
+    // pin.background.pointerLength = 30;
+    // pin.background.radius = 35;
+    // pin.background.propertyFields.pointerLength = "length";
+    // pin.background.pointerAngle = 90; //bottom: 270
+    // pin.circle.fill = am4core.color(colors.white);
+    // pin.circle.radius = 30;
+
+    // let pinHoverState = pin.circle.states.create("hover");
+    // pinHoverState.properties.fill = am4core.color(colors.lightgray);
+
+    // pin.label = new am4core.Label();
+    // // pin.label.text = "{date}";
+    // // pin.label.fontSize = "12px";
+    // // pin.label.fontWeight = "bold";
+    // pin.label.fill = am4core.color(colors.paleblack);
+
+    // let pinLabelHoverState = pin.label.states.create("hover");
+    // pinLabelHoverState.properties.fill = am4core.color(colors.red);
 
     cityTemplate.events.on("hit", (ev) => {
       // zoom to an object
@@ -173,18 +204,6 @@ const Map = (props) => {
       //   id: ev.target.dataItem.dataContext.id,
       // });
       handleToggleModal(ev.target.dataItem.dataContext);
-    });
-
-    var label = pin.createChild(am4core.Label);
-    label.text = "{Name}";
-    label.fontSize = "16px";
-    label.fontWeight = "bold";
-    label.position = "bottom";
-    label.propertyFields.dy = "length";
-    label.verticalCenter = "middle";
-    label.fill = am4core.color(colors.paleblack);
-    label.adapter.add("dy", function (dy) {
-      return (110 + dy) * -1;
     });
 
     map.preloader.preventShow = false;
