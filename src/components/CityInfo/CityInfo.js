@@ -9,6 +9,7 @@ import {
 import Loader from "../Loader/Loader";
 import s from "./CityInfo.module.scss";
 import { Events, People } from "./Items";
+import { PageTitle } from "../../elements/PageElements";
 
 const CityInfo = (props) => {
   const { city, selectedCity, getEventsByCity, getPeopleByCity, isLoading } =
@@ -33,7 +34,7 @@ const CityInfo = (props) => {
 
   return (
     <>
-      <h2 className="page-title">{city.name}</h2>
+      <PageTitle>{city.name}</PageTitle>
       <div className={s.infoContainer}>
         {isLoading && <Loader />}
         {!isLoading && selectedCity && eventsList && eventsList.length > 0 && (

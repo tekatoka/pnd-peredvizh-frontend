@@ -37,8 +37,13 @@ const Routes = () => {
 
       <Route path="/people" render={(props) => <PeopleList {...props} />} />
 
+      <Route
+        path="/context/:slug"
+        render={(props) => <BlogPage {...props} />}
+      />
       <Route path="/context" render={(props) => <BlogPage {...props} />} />
 
+      <Route path="/blog/:slug" render={(props) => <BlogPage {...props} />} />
       <Route path="/blog" render={(props) => <BlogPage {...props} />} />
 
       <Route

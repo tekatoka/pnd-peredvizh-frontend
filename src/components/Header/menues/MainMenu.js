@@ -19,7 +19,7 @@ const MainMenu = ({currentPath}) => {
             mainMenu.map(el => {
               return (
                 <NavItem className={s.mainMenuItem}>
-                  <NavLink className={`${s.navItem} ${currentPath == el.link ? s.active : ''}`} href={el.link}>{el.name}</NavLink>
+                  <NavLink className={`${s.navItem} ${currentPath.includes(el.link) ? s.active : ''}`} href={el.link}>{el.name}</NavLink>
                 </NavItem>
               )
             })

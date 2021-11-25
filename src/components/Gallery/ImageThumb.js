@@ -20,7 +20,7 @@ export const ImageThumb = (props) => {
 
   return (
     <React.Fragment>
-      <Col xs={12} sm={6} lg={4} style={{ padding: "1px" }}>
+      <Col xs={6} sm={4} lg={3} style={{ padding: "1px" }}>
         <ImageWrapper link={link} action={toggleModal}>
           <div className={s.imageItem}>
             <div className={s.imageContainer}>

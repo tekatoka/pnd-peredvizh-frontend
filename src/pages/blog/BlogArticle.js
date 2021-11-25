@@ -1,37 +1,58 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
+import moment from "moment";
+import { Col } from "reactstrap";
 import ReactMarkdown from "react-markdown";
+import { Link } from "react-router-dom";
 import {
-  mapStateToProps,
-  mapDispatchToProps,
-} from "../../store/mapToProps/mapToProps";
-import { PageContent, PageTitle } from "../../elements/PageElements";
-
+  DateElement,
+  PageTitle,
+  MetadataContainer,
+  AuthorElement,
+} from "../../elements/PageElements";
+import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
 import s from "./Blog.module.scss";
 
 const BlogArticle = (props) => {
-  const slug = props.slug;
-  const { isLoading, currentPage, getSubpageBySlug } = props;
+  const { selectedBlogArticle } = props;
 
-  useEffect(() => {
-    if (!currentPage || slug != currentPage.slug) {
-      getSubpageBySlug(slug);
-    }
-  }, [currentPage]);
-
+  const articleUrl = "/context/" + selectedBlogArticle.slug;
   return (
     <React.Fragment>
-      {!isLoading && currentPage && (
-        <PageContent>
-          <PageTitle>{currentPage.title}</PageTitle>
-          <ReactMarkdown>{currentPage.content}</ReactMarkdown>
-        </PageContent>
+      {selectedBlogArticle && (
+        <Col md={8} xs={12}>
+          <Link to={articleUrl}>
+            <PageTitle>{selectedBlogArticle.Title}</PageTitle>
+          </Link>
+          {selectedBlogArticle.Image &&
+            selectedBlogArticle.Image.provider_metadata && (
+              <div>
+                <CloudinaryLazyImage
+                  type={"fixed"}
+                  imagePublicId={
+                    selectedBlogArticle.Image.provider_metadata.public_id
+                  }
+                  description={selectedBlogArticle.Image.alternativeText}
+                  maxWidth={800}
+                  maxHeight={800}
+                />
+              </div>
+            )}
+          <MetadataContainer>
+            <DateElement>{`${moment(selectedBlogArticle.published_at).format(
+              "DD/MM/YYYY" // | HH:mm
+            )}`}</DateElement>{" "}
+            |
+            <span className={s.author}>
+              {selectedBlogArticle.Author
+                ? selectedBlogArticle.Author
+                : `${selectedBlogArticle.created_by.firstname} ${selectedBlogArticle.created_by.lastname}`}
+            </span>
+          </MetadataContainer>
+          <ReactMarkdown>{selectedBlogArticle.Text}</ReactMarkdown>
+        </Col>
       )}
     </React.Fragment>
   );
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BlogArticle)
-);
+export default BlogArticle;

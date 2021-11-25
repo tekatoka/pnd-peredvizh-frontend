@@ -1,36 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router";
-import ReactMarkdown from "react-markdown";
+import moment from "moment";
+import { Col } from "reactstrap";
 import {
-  mapStateToProps,
-  mapDispatchToProps,
-} from "../../store/mapToProps/mapToProps";
-import { PageContent, PageTitle } from "../../elements/PageElements";
+  PageContent,
+  PageTitle,
+  DateElement,
+} from "../../elements/PageElements";
+import { Excerpt } from "./Excerpt";
 
 import s from "./Blog.module.scss";
 
 const BlogArticlesList = (props) => {
-  const { isLoading, blogArticlesList, getBlogArticles } = props;
-
-  useEffect(() => {
-    if (!blogArticlesList) {
-      getBlogArticles();
-    }
-  }, []);
-
+  const { blogArticlesList } = props;
   return (
     <React.Fragment>
-      {!isLoading && blogArticlesList && (
-        <PageContent>
-          <PageTitle>КОНТЕКСТ</PageTitle>
-          {/* <ReactMarkdown>{currentPage.content}</ReactMarkdown> */}
-        </PageContent>
-      )}
+      {blogArticlesList &&
+        blogArticlesList.length > 0 &&
+        (
+          <Col md={4} xs={12}>
+            <PageTitle>Другое по теме:</PageTitle>
+            <div className={s.listWrapper}>
+            {blogArticlesList.map((article, index) => {
+              return <Excerpt item={article} key={index} />;
+            })}
+            </div>
+          </Col>
+        )}
     </React.Fragment>
   );
 };
 
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(BlogArticlesList)
-);
+export default BlogArticlesList;
