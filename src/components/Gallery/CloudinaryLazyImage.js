@@ -1,6 +1,7 @@
 import React from "react";
 import Img from "react-cloudinary-lazy-image";
 import config from "../../config";
+import s from "./Gallery.module.scss";
 
 export const CloudinaryLazyImage = (props) => {
   const { type, imagePublicId, description, maxWidth, maxHeight } = props;
