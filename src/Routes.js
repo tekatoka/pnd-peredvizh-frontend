@@ -59,6 +59,7 @@ const Routes = () => {
         path="/impressum"
         render={(props) => <Subpage {...props} slug={`impressum`} />}
       />
+      {/* //TODO: Datenschutz!!! */}
       <Route
         path="*"
         render={(props) => <NotFoundPage {...props} slug={`404`} />}

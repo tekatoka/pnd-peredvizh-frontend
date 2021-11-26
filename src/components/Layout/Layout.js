@@ -12,6 +12,7 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 import s from "./Layout.module.scss";
 

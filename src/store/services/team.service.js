@@ -6,7 +6,7 @@ class teamService {
   }
 
   async getTeamMemberBySlug(slug) {
-    return await client.get('/team-members/slugs/' + slug);
+    return await client.get('/team-member/slugs/' + slug);
   }
 }
 
