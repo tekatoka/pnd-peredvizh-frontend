@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
 import { PageTitle } from "../../elements/PageElements";
+import { DateElement } from "../../elements/PageElements";
 
 import s from "./Events.module.scss";
 
@@ -25,9 +26,9 @@ export const Event = (props) => {
           <Link to={eventUrl}>
             <PageTitle>{event.Name}</PageTitle>
           </Link>
-          <div className={s.date}>{`${moment(event.StartDate).format(
+          <DateElement>{`${moment(event.StartDate).format(
             "DD/MM/YYYY"
-          )} ${moment(event.StartDate).format("HH:mm")}`}</div>
+          )} ${moment(event.StartDate).format("HH:mm")}`}</DateElement>
           <ReactMarkdown>{event.Description}</ReactMarkdown>
 
           {event.Links && (

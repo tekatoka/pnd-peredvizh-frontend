@@ -8,8 +8,9 @@ import {
 } from "../../store/mapToProps/mapToProps";
 import Loader from "../Loader/Loader";
 import s from "./CityInfo.module.scss";
-import { Events, People } from "./Items";
 import { PageTitle } from "../../elements/PageElements";
+import { EventsList } from "../Events/EventsList";
+import { PoetsList } from "../People/PoetsList";
 
 const CityInfo = (props) => {
   const { city, selectedCity, getEventsByCity, getPeopleByCity, isLoading } =
@@ -38,15 +39,12 @@ const CityInfo = (props) => {
       <div className={s.infoContainer}>
         {isLoading && <Loader />}
         {!isLoading && selectedCity && eventsList && eventsList.length > 0 && (
-          <>
-            <h3>Мероприятия</h3>
-            <Events events={eventsList} />
-          </>
+            <EventsList events={eventsList} />
         )}
         {!isLoading && selectedCity && peopleList && peopleList.length > 0 && (
           <>
             <h3 style={{marginTop:"10px"}}>Поэты</h3>
-            <People people={peopleList} />
+            <PoetsList poets={peopleList} />
           </>
         )}
       </div>

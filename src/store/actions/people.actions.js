@@ -37,7 +37,7 @@ export function getPersonBySlug(slug) {
       dispatch(request());
       peopleService.getPersonBySlug(slug).then(
         (res) => {
-          dispatch(success(res.data[0]));
+          dispatch(success(res.data));
         },
         (error) => {
           dispatch(failure(error.toString()));

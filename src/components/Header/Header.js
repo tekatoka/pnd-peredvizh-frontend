@@ -8,10 +8,12 @@ import {
 
 import { MainMenu, MainMenuMobile } from "./menues/MainMenu";
 import { HashTagMenu, HashTagMenuMobile } from "./menues/HashTagMenu";
-import { SocialMediaMenu } from "./menues/SocialMediaMenu";
+import { SocialMediaMenu } from "../SocialMediaLinks/SocialMediaMenu";
 
 import s from "./Header.module.scss";
 import "animate.css";
+
+import socialMediaMenu from "./menues/data/socialMediaMenu.json";
 
 class Header extends React.Component {
   static propTypes = {
@@ -72,12 +74,12 @@ class Header extends React.Component {
         </header>
         <div className={`${s.root}`}>
 
-          <SocialMediaMenu />
+          <SocialMediaMenu items={socialMediaMenu} />
           <MainMenu currentPath={this.state.currentPath} />
         </div>
         <HashTagMenu toggleSearchOpen={this.toggleSearchOpen} />
         <HashTagMenuMobile searchOpen={this.state.searchOpen} />
-        <MainMenuMobile handleClick={this.toggleMobileMenu} isOpen={this.state.mobileMenuOpen} currentPath={this.state.currentPath} />
+        <MainMenuMobile handleClick={this.toggleMobileMenu} isOpen={this.state.mobileMenuOpen} currentPath={this.state.currentPath} socialMediaMenu={socialMediaMenu} />
       </Navbar>
 
       

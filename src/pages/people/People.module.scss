@@ -73,3 +73,18 @@
       }
     }
 }
+
+.personPageImageContainer {
+  display: inline-block;
+  max-height: 500px;
+
+  > img {
+    max-width: 500px;
+  }
+}
+
+.poemBody {
+  margin: 10px 0;
+  border-bottom: 1px solid $gray-200;
+  white-space: pre-line;
+}

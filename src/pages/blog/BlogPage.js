@@ -50,6 +50,7 @@ const BlogPage = (props) => {
           return a.id !== article.id;
         })
       );
+      window.scrollTo({top: 0, behavior: 'smooth'});
     }
   }, [blogArticlesList, slug]);
 

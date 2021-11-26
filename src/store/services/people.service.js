@@ -6,7 +6,7 @@ class peopleService {
   }
 
   async getPersonBySlug(slug) {
-    return await client.get('/people?slug=' + slug);
+    return await client.get('/people/slugs/' + slug);
   }
 }
 

@@ -18,7 +18,7 @@ const HashTagMenu = ({toggleSearchOpen}) => {
           className={s.navItem}
           href="#"
         >
-          <i className={`${s.headerIcon} fa fa-hashtag`} />
+          <i className={`common-icon fa fa-hashtag`} />
           {
             //<SearchIcon addId='header-search' className={s.headerIcon} />
           }

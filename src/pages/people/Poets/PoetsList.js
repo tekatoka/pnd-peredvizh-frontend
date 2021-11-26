@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import s from "./People.module.scss";
+import s from "../People.module.scss";
 import {
   mapStateToProps,
   mapDispatchToProps,
-} from "../../store/mapToProps/mapToProps";
-import { PageContent } from "../../elements/PageElements";
-import ImageList from "../../components/Gallery/ImageList";
+} from "../../../store/mapToProps/mapToProps";
+import { PageContent } from "../../../elements/PageElements";
+import ImageList from "../../../components/Gallery/ImageList";
 
-const PeopleList = (props) => {
+const PoetsList = (props) => {
   const { peopleList, getPeopleList, toggleModal } = props;
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const PeopleList = (props) => {
     <React.Fragment>
       {peopleList && (
         <PageContent>
-          <ImageList items={peopleList} type={"people"} toggleModal={toggleModal} />
+          <ImageList items={peopleList} type={"poets"} toggleModal={toggleModal} />
         </PageContent>
       )}
     </React.Fragment>
@@ -30,5 +30,5 @@ const PeopleList = (props) => {
 };
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(PeopleList)
+  connect(mapStateToProps, mapDispatchToProps)(PoetsList)
 );

@@ -12,7 +12,11 @@
     "link": "/events"
   },
   {
-    "name": "Участники",
-    "link": "/people"
+    "name": "Команда",
+    "link": "/team"
+  },
+  {
+    "name": "Поэты",
+    "link": "/poets"
   }
 ]

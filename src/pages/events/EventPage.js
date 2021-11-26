@@ -56,7 +56,7 @@ const EventPage = (props) => {
                 selectedEvent.PhotoGallery.Photo.length > 0 && (
                   <ImageList
                     items={selectedEvent.PhotoGallery.Photo}
-                    type={"event"}
+                    type={"imageGallery"}
                     toggleModal={toggleModal}
                   />
                 )}

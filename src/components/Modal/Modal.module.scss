@@ -1,5 +1,4 @@
-@import '../../styles/app';
-
+@import "../../styles/app";
 
 .modalWrapper {
   position: fixed;
@@ -10,14 +9,23 @@
   background-color: rgba($color: #000000, $alpha: 0.3);
   z-index: 1000;
   width: 100%;
+  height: auto;
+  overflow-y: scroll;
+
+  &.large > div {
+    max-width: 1250px;
+  }
+
+  &.normal > div {
+    max-width: 750px;
+  }
 
   > div {
-      max-width: 750px;
-      margin: auto;
-      
-      @media (max-width: breakpoint-max(sm)) {
-          max-width: 95%;
-      }
+    margin: auto;
+
+    @media (max-width: breakpoint-max(sm)) {
+      max-width: 95%;
+    }
   }
 }
 
@@ -27,9 +35,6 @@
 }
 
 .root {
-
-  
-
   :global {
     .location-selector {
       width: 100%;
@@ -48,7 +53,7 @@
     }
 
     .location-selector .bit:hover {
-      background-color: rgba($subtle-blue,.8);
+      background-color: rgba($subtle-blue, 0.8);
     }
 
     .location-selector .bit.top,
@@ -81,7 +86,6 @@
     .location-selector .bit.left {
       left: 0;
     }
-
   }
 }
 

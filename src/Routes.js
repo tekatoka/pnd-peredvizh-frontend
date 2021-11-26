@@ -5,8 +5,10 @@ import Startpage from "./pages/startpage/Startpage";
 import Subpage from "./pages/subpages/Subpage";
 import About from "./pages/about/About";
 import EventsList from "./pages/events/EventsList";
-import PeopleList from "./pages/people/PeopleList";
-import PersonPage from "./pages/people/PersonPage";
+import PoetsList from "./pages/people/Poets/PoetsList";
+import PoetPage from "./pages/people/Poets/PoetPage";
+import TeamMembersList from "./pages/people/Team/TeamMembersList";
+import TeamMemberPage from "./pages/people/Team/TeamMemberPage";
 import EventPage from "./pages/events/EventPage";
 import BlogPage from "./pages/blog/BlogPage";
 import NotFoundPage from "./pages/404";
@@ -31,11 +33,18 @@ const Routes = () => {
       />
 
       <Route
-        path="/people/:slug"
-        render={(props) => <PersonPage {...props} slug={`people`} />}
+        path="/poets/:slug"
+        render={(props) => <PoetPage {...props} slug={`poets`} />}
       />
 
-      <Route path="/people" render={(props) => <PeopleList {...props} />} />
+      <Route path="/poets" render={(props) => <PoetsList {...props} />} />
+
+      <Route
+        path="/team/:slug"
+        render={(props) => <TeamMemberPage {...props} slug={`poets`} />}
+      />
+
+      <Route path="/team" render={(props) => <TeamMembersList {...props} />} />
 
       <Route
         path="/context/:slug"

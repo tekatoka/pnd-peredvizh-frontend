@@ -6,6 +6,7 @@ import subpage from "./subpages.reducer";
 import projectYear from "./projectYear.reducer";
 import cities from "./cities.reducer";
 import blog from "./blog.reducer";
+import team from "./team.reducer";
 
 import { RESET_STORE } from '../actions/store.actions';
 
@@ -16,7 +17,8 @@ const appReducer = combineReducers({
   subpage,
   projectYear,
   cities,
-  blog
+  blog,
+  team
 });
 
 const rootReducer = (state, action) => {

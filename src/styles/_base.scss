@@ -48,6 +48,14 @@
   margin: 25px 0;
 }
 
+.common-icon {
+  fill: $icon-color;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
 .form-control {
   color: $content-color;
   &:focus,

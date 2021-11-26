@@ -175,7 +175,7 @@
   -webkit-box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.1);
 
-  > #socialMedia {
+  > ul {
     padding: 1.25rem 0;
   }
 
@@ -230,8 +230,4 @@
 .mobileNav {
   width: 100%;
   display: block;
-}
-
-.headerIcon {
-  fill: $icon-color;
 }

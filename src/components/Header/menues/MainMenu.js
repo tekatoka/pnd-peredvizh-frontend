@@ -7,7 +7,7 @@ import {
 } from "reactstrap";
 
 import BurgerIcon from "../../Icons/HeaderIcons/BurgerIcon";
-import { SocialMediaMenu } from "./SocialMediaMenu";
+import { SocialMediaMenu } from "../../SocialMediaLinks/SocialMediaMenu";
 import s from "./../Header.module.scss";
 
 import mainMenu from "./data/mainMenu.json";
@@ -28,7 +28,7 @@ const MainMenu = ({currentPath}) => {
     )
 }
 
-const MainMenuMobile = ({handleClick, isOpen, currentPath}) => {
+const MainMenuMobile = ({handleClick, isOpen, currentPath,socialMediaMenu}) => {
     return (
     <>
     <div className={s.burger}>
@@ -37,7 +37,7 @@ const MainMenuMobile = ({handleClick, isOpen, currentPath}) => {
             className={`${s.navItem} text-white`}
             href="#"
         >
-            <BurgerIcon className={s.headerIcon} />
+            <BurgerIcon className="common-icon" />
         </NavLink>
     </div>
     <Collapse
@@ -56,7 +56,7 @@ const MainMenuMobile = ({handleClick, isOpen, currentPath}) => {
           })
         }
       </Nav>
-      <SocialMediaMenu />
+      <SocialMediaMenu items={socialMediaMenu} />
   </Collapse>
   </>
     )

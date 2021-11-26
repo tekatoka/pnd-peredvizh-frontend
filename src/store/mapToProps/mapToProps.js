@@ -6,6 +6,7 @@ import { resetStore } from "../actions/store.actions";
 import { getProjectYear } from "../actions/projectYear.actions";
 import { getCities, setMapLoading, getEventsByCity, getPeopleByCity } from "../actions/cities.actions";
 import { getBlogArticles, getBlogArticleBySlug } from "../actions/blog.actions";
+import { getTeamMembersList, getTeamMemberBySlug } from "../actions/team.actions";
 
 export const mapStateToProps = (store) => {
   return {
@@ -19,7 +20,8 @@ export const mapStateToProps = (store) => {
       store.cities.isPeopleLoading ||
       store.cities.isMapLoading ||
       store.projectYear.isLoading ||
-      store.blog.isLoading,
+      store.blog.isLoading ||
+      store.team.isLoading,
     eventList: store.events.eventList,
     selectedEvent: store.events.selectedEvent,
     peopleList: store.people.peopleList,
@@ -29,7 +31,9 @@ export const mapStateToProps = (store) => {
     cities: store.cities.citiesList,
     selectedCity: store.cities.selectedCity,
     blogArticlesList: store.blog.blogArticlesList,
-    selectedBlogArticle: store.blog.selectedBlogArticle
+    selectedBlogArticle: store.blog.selectedBlogArticle,
+    teamList: store.team.teamList,
+    selectedTeamMember: store.team.selectedTeamMember
   };
 };
 
@@ -76,6 +80,12 @@ export const mapDispatchToProps = (dispatch) => {
     },
     getBlogArticleBySlug: (slug) => {
       dispatch(getBlogArticleBySlug(slug))
+    },
+    getTeamMembersList: () => {
+      dispatch(getTeamMembersList())
+    },
+    getTeamMemberBySlug: (slug) => {
+      dispatch(getTeamMemberBySlug(slug))
     }
   };
 };
