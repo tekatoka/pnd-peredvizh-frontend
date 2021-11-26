@@ -15,12 +15,12 @@ const ImageWrapper = ({ children, link, action }) => {
 };
 
 export const ImageThumb = (props) => {
-  const { imagePublicId, imageUrl, description, type, toggleModal, link } =
+  const { imagePublicId, imageUrl, description, type, toggleModal, link, sizeLg, sizeSm, sizeXs } =
     props;
 
   return (
     <React.Fragment>
-      <Col xs={6} sm={4} lg={3} style={{ padding: "1px" }}>
+      <Col xs={sizeXs} sm={sizeSm} lg={sizeLg} style={{ padding: "1px" }}>
         <ImageWrapper link={link} action={toggleModal}>
           <div className={s.imageItem}>
             <div className={s.imageContainer}>

@@ -64,6 +64,9 @@ const ImageList = (props) => {
                 link={link}
                 toggleModal={() => handleToggleModal(item, type)}
                 type={type}
+                sizeLg={type == "team" ? 4 : 3}
+                sizeSm={type == "team" ? 6 : 4}
+                sizeXs={type == "team" ? 12 : 6}
               />
             );
           })}
