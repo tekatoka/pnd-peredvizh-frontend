@@ -6,7 +6,7 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
-import { PageContent, PageTitle } from "../../elements/PageElements";
+import { PageContent, PageTitleCentered } from "../../elements/PageElements";
 
 import s from "./Subpage.module.scss";
 
@@ -24,7 +24,7 @@ const Subpage = (props) => {
     <React.Fragment>
       {!isLoading && currentPage && (
         <PageContent>
-          <PageTitle>{currentPage.title}</PageTitle>
+          <PageTitleCentered>{currentPage.title}</PageTitleCentered>
           <ReactMarkdown>{currentPage.content}</ReactMarkdown>
         </PageContent>
       )}

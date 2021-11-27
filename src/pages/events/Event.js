@@ -4,7 +4,7 @@ import { Container, Form, FormGroup, Input, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
-import { PageTitle } from "../../elements/PageElements";
+import { PageTitleCentered } from "../../elements/PageElements";
 import { DateElement } from "../../elements/PageElements";
 
 import s from "./Events.module.scss";
@@ -24,7 +24,7 @@ export const Event = (props) => {
       {event && (
         <div className={s.eventItem}>
           <Link to={eventUrl}>
-            <PageTitle>{event.Name}</PageTitle>
+            <PageTitleCentered>{event.Name}</PageTitleCentered>
           </Link>
           <DateElement>{`${moment(event.StartDate).format(
             "DD/MM/YYYY"

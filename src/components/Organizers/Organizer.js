@@ -6,13 +6,13 @@ import s from "./OrganizersList.module.scss";
 
 export const Organizer = ({ organizer }) => {
   return (
-    <div>
+    <p>
       {organizer.Link ? (
         <a href={`${organizer.Link}`}>{organizer.Name}</a>
       ) : (
         organizer.Name
       )}{" "}
       {organizer.Description && <span> — {organizer.Description}</span>}
-    </div>
+    </p>
   );
 };

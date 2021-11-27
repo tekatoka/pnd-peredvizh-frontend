@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NotFoundPage from "../404";
-import { PageContent, PageTitle } from "../../elements/PageElements";
+import { PageContent, PageTitleCentered } from "../../elements/PageElements";
 
 import {
   Container,
@@ -23,7 +23,7 @@ const PersonInfoTemplate = ({ person }) => {
   return (
     person && (
       <>
-        <PageTitle>{person.Name}</PageTitle>
+        <PageTitleCentered>{person.Name}</PageTitleCentered>
         {person.Image && person.Image.provider_metadata && (
           <div className={s.personPageImageContainer}>
             <CloudinaryLazyImage

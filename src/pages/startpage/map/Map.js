@@ -94,14 +94,14 @@ const Map = (props) => {
 
     // Add line series
     var lineSeries = map.series.push(new am4maps.MapSplineSeries());
-    lineSeries.mapLines.template.stroke = am4core.color(colors.red);
-    lineSeries.mapLines.template.line.strokeWidth = 4;
+    lineSeries.mapLines.template.stroke = am4core.color(colors.darkgray);
+    lineSeries.mapLines.template.line.strokeWidth = 2;
     lineSeries.mapLines.template.line.nonScalingStroke = true;
-    lineSeries.mapLines.template.line.strokeDasharray = "5 3";
+    lineSeries.mapLines.template.line.strokeDasharray = "30";
     lineSeries.mapLines.template.line.adapter.add(
       "strokeWidth",
       function (strokeWidth, target) {
-        target.strokeDasharray = 5 / map.zoomLevel + " " + 3 / map.zoomLevel;
+        target.strokeDasharray = 10 / map.zoomLevel + " " + 3 / map.zoomLevel;
         return strokeWidth;
       }
     );
@@ -152,9 +152,9 @@ const Map = (props) => {
     pin.horizontalCenter = "middle";
     pin.verticalCenter = "middle";
     //pin.stroke = am4core.color("#fff");
-    pin.width = 25;
-    pin.height = 25;
-    pin.stroke = am4core.color(colors.gray);
+    pin.width = 30;
+    pin.height = 30;
+    pin.stroke = am4core.color(colors.darkgray);
     pin.strokeWidth = 1;
     pin.propertyFields.fill = "ColorCode";
 

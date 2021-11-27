@@ -8,7 +8,7 @@ import {
 } from "../../store/mapToProps/mapToProps";
 import Loader from "../Loader/Loader";
 import s from "./CityInfo.module.scss";
-import { PageTitle } from "../../elements/PageElements";
+import { PageTitleCentered } from "../../elements/PageElements";
 import { EventsList } from "../Events/EventsList";
 import { PoetsList } from "../People/PoetsList";
 
@@ -35,7 +35,7 @@ const CityInfo = (props) => {
 
   return (
     <>
-      <PageTitle>{city.name}</PageTitle>
+      <PageTitleCentered>{city.name}</PageTitleCentered>
       <div className={s.infoContainer}>
         {isLoading && <Loader />}
         {!isLoading && selectedCity && eventsList && eventsList.length > 0 && (

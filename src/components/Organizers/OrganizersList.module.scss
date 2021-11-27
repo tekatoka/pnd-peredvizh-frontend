@@ -1,2 +1,16 @@
 @import '../../styles/app';
 
+.teamContainer {
+    text-align: center;
+    margin-bottom: 25px;
+
+    p {
+        font-size: 1.25rem;
+        position: relative;
+
+        &.disclaimer {
+            font-weight: bold;
+            margin: 45px 0;
+        }
+      }
+}

@@ -5,12 +5,13 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../store/mapToProps/mapToProps";
-
 import { Link } from "react-router-dom";
+import { PageContent } from "../elements/PageElements";
 import PageNotFound from "../assets/404.png";
 
 const NotFoundPage = (props) => {
   return (
+    <PageContent>
     <div
       style={{
         textAlign: "center",
@@ -24,7 +25,9 @@ const NotFoundPage = (props) => {
         <Link to="/">На главную</Link>
       </p>
     </div>
+    </PageContent>
   );
+  
 };
 
 export default withRouter(

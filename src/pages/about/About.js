@@ -11,7 +11,7 @@ import {
 import { EventLocationsList } from "../../components/EventLocations/EventLocationsList";
 import { PoetTeamsList } from "../../components/PoetTeams/PoetTeamsList";
 import { OrganizersList } from "../../components/Organizers/OrganizersList";
-import { PageContent, PageTitle } from "../../elements/PageElements";
+import { PageContent, PageTitle, PageTitleCentered } from "../../elements/PageElements";
 
 import s from "./About.module.scss";
 
@@ -67,28 +67,28 @@ const About = (props) => {
     <React.Fragment>
       {!isLoading && currentPage && (
         <PageContent>
-          <PageTitle>{currentPage.title}</PageTitle>
+          <PageTitleCentered>{currentPage.title}</PageTitleCentered>
           <ReactMarkdown>{currentPage.content}</ReactMarkdown>
 
           {eventsList && (
-            <>
-              <PageTitle>ПЛОЩАДКИ PEREDVIЖ</PageTitle>
+            <div style={{marginTop: "45px"}}>
+              <PageTitleCentered centered={true}>ПЛОЩАДКИ PEREDVIЖ</PageTitleCentered>
               <EventLocationsList events={eventsList} />
-            </>
+            </div>
           )}
 
           {eventsList && poetTeamsList && (
-            <>
-              <PageTitle>СБОРНЫЕ ПОЭТОВ В ГОРОДАХ ПРОЕКТА</PageTitle>
+            <div style={{marginTop: "45px"}}>
+              <PageTitleCentered>СБОРНЫЕ ПОЭТОВ В ГОРОДАХ ПРОЕКТА</PageTitleCentered>
               <PoetTeamsList events={eventsList} poetTeams={poetTeamsList} />
-            </>
+            </div>
           )}
 
           {organizersList && (
-            <>
-              <PageTitle>В ПРОЕКТЕ УЧАСТВУЮТ:</PageTitle>
+            <div style={{marginTop: "45px"}}>
+              <PageTitleCentered>В ПРОЕКТЕ УЧАСТВУЮТ:</PageTitleCentered>
               <OrganizersList organizers={organizersList} />
-            </>
+              </div>
           )}
         </PageContent>
       )}

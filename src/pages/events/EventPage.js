@@ -19,7 +19,7 @@ import {
 import { Link } from "react-router-dom";
 import Moment from "moment";
 import ReactMarkdown from "react-markdown";
-import { PageContent, PageTitle } from "../../elements/PageElements";
+import { PageContent, PageTitleCentered } from "../../elements/PageElements";
 import { EventLocation } from "../../components/EventLocations/EventLocation";
 import ImageList from "../../components/Gallery/ImageList";
 import s from "./Events.module.scss";
@@ -40,7 +40,7 @@ const EventPage = (props) => {
         <PageContent>
           {selectedEvent && slug == selectedEvent.slug && (
             <>
-              <PageTitle>{selectedEvent.Name}</PageTitle>
+              <PageTitleCentered>{selectedEvent.Name}</PageTitleCentered>
               <div>
                 {selectedEvent.event_location && (
                   <EventLocation

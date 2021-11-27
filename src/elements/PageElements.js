@@ -14,6 +14,15 @@ export const PageTitle = ({ children }) => {
   return <h3 className="page-title">{children}</h3>;
 };
 
+export const PageTitleCentered = ({ children }) => {
+  return (
+    <>
+      <h3 className="page-title centered">{children}</h3>
+      <div class="small-border" />
+    </>
+  );
+};
+
 export const DateElement = ({ children }) => {
   return <span className="date-element">{children}</span>;
 };

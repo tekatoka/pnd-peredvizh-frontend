@@ -8,6 +8,7 @@ import {
   PageTitle,
   MetadataContainer,
   AuthorElement,
+  PageTitleCentered
 } from "../../elements/PageElements";
 import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
 import s from "./Blog.module.scss";
@@ -21,7 +22,7 @@ const BlogArticle = (props) => {
       {selectedBlogArticle && (
         <Col md={8} xs={12}>
           <Link to={articleUrl}>
-            <PageTitle>{selectedBlogArticle.Title}</PageTitle>
+            <PageTitleCentered>{selectedBlogArticle.Title}</PageTitleCentered>
           </Link>
           {selectedBlogArticle.Image &&
             selectedBlogArticle.Image.provider_metadata && (

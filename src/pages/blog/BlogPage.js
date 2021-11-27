@@ -58,7 +58,7 @@ const BlogPage = (props) => {
     <React.Fragment>
       {!isLoading && blogArticlesList && visibleArticle && (
         <PageContent>
-          <Row>
+          <Row className="full-width">
             <BlogArticle selectedBlogArticle={visibleArticle} />
             <BlogArticlesList blogArticlesList={otherArticles} />
           </Row>

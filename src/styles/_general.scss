@@ -59,7 +59,7 @@ ol {
   padding-left: 0;
 }
 
-.row {
+.row:not(.full-width) {
   margin-left: 0;
   margin-right: 0;
 }

@@ -5,6 +5,7 @@ import {
   PageContent,
   PageTitle,
   DateElement,
+  PageTitleCentered
 } from "../../elements/PageElements";
 import { Excerpt } from "./Excerpt";
 
@@ -18,7 +19,7 @@ const BlogArticlesList = (props) => {
         blogArticlesList.length > 0 &&
         (
           <Col md={4} xs={12}>
-            <PageTitle>Другое по теме:</PageTitle>
+            <PageTitleCentered>Другое по теме:</PageTitleCentered>
             <div className={s.listWrapper}>
             {blogArticlesList.map((article, index) => {
               return <Excerpt item={article} key={index} />;
