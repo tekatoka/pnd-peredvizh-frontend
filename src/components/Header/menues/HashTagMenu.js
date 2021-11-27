@@ -10,11 +10,11 @@ import s from "./../Header.module.scss";
 
 import hashTags from "./data/hashTags.json";
 
-const HashTagMenu = ({toggleSearchOpen}) => {
+const HashTagMenu = ({toggleHashtagsOpen}) => {
     return (
       <div className={s.miniSearch}>
         <NavLink
-          onClick={toggleSearchOpen}
+          onClick={toggleHashtagsOpen}
           className={s.navItem}
           href="#"
         >
@@ -27,11 +27,11 @@ const HashTagMenu = ({toggleSearchOpen}) => {
     )
 }
 
-const HashTagMenuMobile = ({searchOpen}) => {
+const HashTagMenuMobile = ({isHashtagsOpen}) => {
     return (
       <Collapse
         className={`${s.collapsedMenu}`}
-        isOpen={searchOpen}
+        isOpen={isHashtagsOpen}
       >
         <Nav className={s.mobileNav}>
           {

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import React from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import {
@@ -15,56 +15,31 @@ import "animate.css";
 
 import socialMediaMenu from "./menues/data/socialMediaMenu.json";
 
-class Header extends React.Component {
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    sidebarPosition: PropTypes.string.isRequired,
-  };
+const Header = (props) => {
 
-  constructor(props) {
-    super(props);
+  const [currentPath, setCurrentPath] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [isHashtagsOpen, setIsHashtagsOpen] = useState(false)
 
-    this.onDismiss = this.onDismiss.bind(this);
-    this.toggleSearchOpen = this.toggleSearchOpen.bind(this);
+  useEffect(() => {
+    setCurrentPath(window.location.pathname)
+  }, [])
 
-    this.state = {
-      currentPath: '',
-      mobileMenuOpen: false,
-      visible: true,
-      messagesOpen: false,
-      supportOpen: false,
-      settingsOpen: false,
-      searchFocused: false,
-      searchOpen: false,
-      notificationsOpen: false,
-    };
+
+  const onDismiss = () => {
+    setVisible(false);
   }
 
-  componentDidMount() {
-    this.setState({
-      currentPath: window.location.pathname
-    })
+  const toggleHashtagsOpen = () => {
+    setIsHashtagsOpen(!isHashtagsOpen);
+    setIsMobileMenuOpen(false);
   }
 
-  onDismiss() {
-    this.setState({ visible: false });
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+    setIsHashtagsOpen(false);
   }
-
-  toggleSearchOpen() {
-    this.setState({
-      searchOpen: !this.state.searchOpen,
-      mobileMenuOpen: false
-    });
-  }
-
-  toggleMobileMenu = () => {
-    this.setState({
-      mobileMenuOpen: !this.state.mobileMenuOpen,
-      searchOpen: false
-    })
-  }
-
-  render() {
 
     return (
 
@@ -75,16 +50,15 @@ class Header extends React.Component {
         <div className={`${s.root}`}>
 
           <SocialMediaMenu items={socialMediaMenu} />
-          <MainMenu currentPath={this.state.currentPath} />
+          <MainMenu currentPath={currentPath} />
         </div>
-        <HashTagMenu toggleSearchOpen={this.toggleSearchOpen} />
-        <HashTagMenuMobile searchOpen={this.state.searchOpen} />
-        <MainMenuMobile handleClick={this.toggleMobileMenu} isOpen={this.state.mobileMenuOpen} currentPath={this.state.currentPath} socialMediaMenu={socialMediaMenu} />
+        <HashTagMenu toggleHashtagsOpen={toggleHashtagsOpen} />
+        <HashTagMenuMobile isHashtagsOpen={isHashtagsOpen} />
+        <MainMenuMobile handleClick={toggleMobileMenu} isOpen={isMobileMenuOpen} currentPath={currentPath} socialMediaMenu={socialMediaMenu} />
       </Navbar>
 
       
     );
-  }
 }
 
 function mapStateToProps(store) {

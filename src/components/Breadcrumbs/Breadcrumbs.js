@@ -26,7 +26,7 @@ const routes = [
   { path: "/events", breadcrumb: "События" },
   { path: "/poets", breadcrumb: "Поэты" },
   { path: "/team", breadcrumb: "Команда" },
-  { path: "/impressum", breadcrumb: "Импрессум" },
+  { path: "/impressum", breadcrumb: "Impressum" },
   { path: "/privacy", breadcrumb: "Защита данных" },
   { path: "/hashtags", breadcrumb: "Hashtags" },
 ];
