@@ -57,14 +57,22 @@ const Routes = () => {
       <Route path="/blog/:slug" render={(props) => <BlogPage {...props} />} />
       <Route path="/blog" render={(props) => <BlogPage {...props} />} />
 
-      <Route path="/hashtags/:hashtag" render={(props) => <HashtagPage {...props} />} />
+      <Route
+        path="/hashtags/:hashtag"
+        render={(props) => <HashtagPage {...props} />}
+      />
       <Route path="/hashtags" render={(props) => <HashtagsList {...props} />} />
 
       <Route
         path="/impressum"
         render={(props) => <Subpage {...props} slug={`impressum`} />}
       />
-      {/* //TODO: Datenschutz!!! */}
+
+      <Route
+        path="/privacy"
+        render={(props) => <Subpage {...props} slug={`privacy`} />}
+      />
+
       <Route
         path="*"
         render={(props) => <NotFoundPage {...props} slug={`404`} />}

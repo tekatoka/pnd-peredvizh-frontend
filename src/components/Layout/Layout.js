@@ -12,7 +12,7 @@ import {
   mapStateToProps,
   mapDispatchToProps,
 } from "../../store/mapToProps/mapToProps";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
+import RouteChangeTracker from "../../RouteChangeTracker";
 
 import s from "./Layout.module.scss";
 
@@ -48,6 +48,7 @@ const Layout = (props) => {
 
   return (
     <div className={s.wrap}>
+      <RouteChangeTracker />
       <Header />
       <Hammer>
         <main className={s.content}>
@@ -59,7 +60,7 @@ const Layout = (props) => {
             </span>
             <span className={`${s.footerLinksRight} pull-right`}>
               <a href="/impressum">Impressum</a>
-              <a href="#">Datenschutz</a>
+              <a href="/privacy">Datenschutzerklärung</a>
               <a href="https://panda-platforma.berlin" target="_blank">
                 &copy; {new Date().getFullYear()} by PANDA platforma
               </a>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { TagCloud } from "react-tagcloud";
 import { PageContent } from "../../elements/PageElements";
 import s from "./Hashtags.module.scss";
 

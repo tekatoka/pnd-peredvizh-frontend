@@ -15,6 +15,7 @@ export default {
     siteKeywords:           'peredvizh poetry slam poets поэзия стихи poetry clash panda platforma berlin',
     scssIncludes:           [],
     locale:                 'ru' ,
+    ga_trackingId:          'UA-28162337-2'
 },
   auth: {
     email: 'info@panda-platforma-berlin',
