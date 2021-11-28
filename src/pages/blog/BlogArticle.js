@@ -8,9 +8,10 @@ import {
   PageTitle,
   MetadataContainer,
   AuthorElement,
-  PageTitleCentered
+  PageTitleCentered,
 } from "../../elements/PageElements";
 import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
+import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 import s from "./Blog.module.scss";
 
 const BlogArticle = (props) => {
@@ -50,6 +51,10 @@ const BlogArticle = (props) => {
             </span>
           </MetadataContainer>
           <ReactMarkdown>{selectedBlogArticle.Text}</ReactMarkdown>
+          {selectedBlogArticle.hashtags &&
+            selectedBlogArticle.hashtags != "" && (
+              <SplittedHashtags tags={selectedBlogArticle.hashtags} />
+            )}
         </Col>
       )}
     </React.Fragment>

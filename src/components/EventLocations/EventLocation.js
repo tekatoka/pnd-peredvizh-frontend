@@ -52,19 +52,3 @@ export const EventLocation = ({
     </Col>
   );
 };
-
-{
-  /* <div>
-      {location && (
-        <>
-          <h4>{location.City && location.City.Name}</h4>
-          
-          <p className={s.date}><strong>{moment(startDate).format("DD.MM.yyyy")}</strong></p>
-
-          <p><strong>{location.Name}</strong></p>
-          <p>{location.Address}</p>
-        </>
-      )}
-      </div>
-      <div className={s.counterSymbol}>{counterNumber && counterNumber}</div> */
-}

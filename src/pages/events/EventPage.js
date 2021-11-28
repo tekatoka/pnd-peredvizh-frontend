@@ -22,12 +22,19 @@ import ReactMarkdown from "react-markdown";
 import { PageContent, PageTitleCentered } from "../../elements/PageElements";
 import { EventLocation } from "../../components/EventLocations/EventLocation";
 import ImageList from "../../components/Gallery/ImageList";
+import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 import s from "./Events.module.scss";
 
 const EventPage = (props) => {
   const slug = props.match.params.slug;
 
-  const { isLoading, selectedEvent, getEventBySlug, toggleModal, modalVisible } = props;
+  const {
+    isLoading,
+    selectedEvent,
+    getEventBySlug,
+    toggleModal,
+    modalVisible,
+  } = props;
 
   useEffect(() => {
     if (!selectedEvent || slug != selectedEvent.slug) {
@@ -60,6 +67,9 @@ const EventPage = (props) => {
                     toggleModal={toggleModal}
                   />
                 )}
+              {selectedEvent.hashtags && selectedEvent.hashtags != "" && (
+                <SplittedHashtags tags={selectedEvent.hashtags} />
+              )}
             </>
           )}
           {selectedEvent == "not found" && <NotFoundPage />}

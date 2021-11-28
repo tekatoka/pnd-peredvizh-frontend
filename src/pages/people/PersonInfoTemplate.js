@@ -17,7 +17,8 @@ import ReactMarkdown from "react-markdown";
 import s from "./People.module.scss";
 import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
 import { SocialMediaMenu } from "../../components/SocialMediaLinks/SocialMediaMenu";
-import { EventsList } from "../../components/Events/EventsList";
+import { EventsList } from "../../components/Lists/EventsList";
+import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 
 const PersonInfoTemplate = ({ person }) => {
   return (
@@ -55,6 +56,9 @@ const PersonInfoTemplate = ({ person }) => {
 
         {person.Events && person.Events.length > 0 && (
           <EventsList events={person.Events} />
+        )}
+        {person.hashtags && person.hashtags != "" && (
+          <SplittedHashtags tags={person.hashtags} />
         )}
       </>
     )

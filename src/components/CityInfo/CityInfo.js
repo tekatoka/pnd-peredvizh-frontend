@@ -9,8 +9,8 @@ import {
 import Loader from "../Loader/Loader";
 import s from "./CityInfo.module.scss";
 import { PageTitleCentered } from "../../elements/PageElements";
-import { EventsList } from "../Events/EventsList";
-import { PoetsList } from "../People/PoetsList";
+import { EventsList } from "../Lists/EventsList";
+import { PoetsList } from "../Lists/PoetsList";
 
 const CityInfo = (props) => {
   const { city, selectedCity, getEventsByCity, getPeopleByCity, isLoading } =
@@ -21,8 +21,8 @@ const CityInfo = (props) => {
 
   useEffect(() => {
     if (city || !selectedCity || (selectedCity && city.id != selectedCity.id)) {
-    getEventsByCity(city.id);
-    getPeopleByCity(city.id);
+      getEventsByCity(city.id);
+      getPeopleByCity(city.id);
     }
   }, []);
 
@@ -39,11 +39,13 @@ const CityInfo = (props) => {
       <div className={s.infoContainer}>
         {isLoading && <Loader />}
         {!isLoading && selectedCity && eventsList && eventsList.length > 0 && (
+          <>
             <EventsList events={eventsList} />
+            <br />
+          </>
         )}
         {!isLoading && selectedCity && peopleList && peopleList.length > 0 && (
           <>
-            <h3 style={{marginTop:"10px"}}>Поэты</h3>
             <PoetsList poets={peopleList} />
           </>
         )}

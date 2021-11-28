@@ -7,6 +7,7 @@ import projectYear from "./projectYear.reducer";
 import cities from "./cities.reducer";
 import blog from "./blog.reducer";
 import team from "./team.reducer";
+import hashtags from "./hashtags.reducer";
 
 import { RESET_STORE } from '../actions/store.actions';
 
@@ -18,7 +19,8 @@ const appReducer = combineReducers({
   projectYear,
   cities,
   blog,
-  team
+  team,
+  hashtags
 });
 
 const rootReducer = (state, action) => {

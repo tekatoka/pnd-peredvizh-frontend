@@ -7,6 +7,7 @@ import { getProjectYear } from "../actions/projectYear.actions";
 import { getCities, setMapLoading, getEventsByCity, getPeopleByCity } from "../actions/cities.actions";
 import { getBlogArticles, getBlogArticleBySlug } from "../actions/blog.actions";
 import { getTeamMembersList, getTeamMemberBySlug } from "../actions/team.actions";
+import { getAllHashtags, getEntitiesByHashtag } from "../actions/hashtags.actions";
 
 export const mapStateToProps = (store) => {
   return {
@@ -21,7 +22,8 @@ export const mapStateToProps = (store) => {
       store.cities.isMapLoading ||
       store.projectYear.isLoading ||
       store.blog.isLoading ||
-      store.team.isLoading,
+      store.team.isLoading || 
+      store.hashtags.isLoading,
     eventList: store.events.eventList,
     selectedEvent: store.events.selectedEvent,
     peopleList: store.people.peopleList,
@@ -33,7 +35,9 @@ export const mapStateToProps = (store) => {
     blogArticlesList: store.blog.blogArticlesList,
     selectedBlogArticle: store.blog.selectedBlogArticle,
     teamList: store.team.teamList,
-    selectedTeamMember: store.team.selectedTeamMember
+    selectedTeamMember: store.team.selectedTeamMember,
+    hashtagsList: store.hashtags.hashtagsList,
+    selectedHashtag: store.hashtags.selectedHashtag
   };
 };
 
@@ -86,6 +90,12 @@ export const mapDispatchToProps = (dispatch) => {
     },
     getTeamMemberBySlug: (slug) => {
       dispatch(getTeamMemberBySlug(slug))
+    },
+    getAllHashtags: () => {
+      dispatch(getAllHashtags())
+    },
+    getEntitiesByHashtag: (tag) => {
+      dispatch(getEntitiesByHashtag(tag))
     }
   };
 };

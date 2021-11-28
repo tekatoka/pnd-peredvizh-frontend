@@ -199,7 +199,6 @@
         color: $red-pale!important;
       }
   }
-
   a.hashTagItem {
     color: $red-pale!important;
 
@@ -207,6 +206,10 @@
       color: $gray-dark!important;
     }
   }
+}
+
+.hashTagMenu > li {
+  display: inline-block;
 }
 
 .socialMediaItem {

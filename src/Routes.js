@@ -11,6 +11,8 @@ import TeamMembersList from "./pages/people/Team/TeamMembersList";
 import TeamMemberPage from "./pages/people/Team/TeamMemberPage";
 import EventPage from "./pages/events/EventPage";
 import BlogPage from "./pages/blog/BlogPage";
+import HashtagsList from "./pages/hashtags/HashtagsList";
+import HashtagPage from "./pages/hashtags/HashtagPage";
 import NotFoundPage from "./pages/404";
 
 const Routes = () => {
@@ -54,6 +56,9 @@ const Routes = () => {
 
       <Route path="/blog/:slug" render={(props) => <BlogPage {...props} />} />
       <Route path="/blog" render={(props) => <BlogPage {...props} />} />
+
+      <Route path="/hashtags/:hashtag" render={(props) => <HashtagPage {...props} />} />
+      <Route path="/hashtags" render={(props) => <HashtagsList {...props} />} />
 
       <Route
         path="/impressum"
