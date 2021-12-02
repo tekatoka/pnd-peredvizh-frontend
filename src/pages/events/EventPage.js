@@ -48,7 +48,7 @@ const EventPage = (props) => {
           {selectedEvent && slug == selectedEvent.slug && (
             <>
               <PageTitleCentered>{selectedEvent.Name}</PageTitleCentered>
-              <div>
+              <div className={s.eventLocation}>
                 {selectedEvent.event_location && (
                   <EventLocation
                     location={selectedEvent.event_location}

@@ -67,11 +67,27 @@
   font-size: 12px;
   font-weight: bold;
 
-  .footerLinksRight > a {
-    margin-left: 15px;
+  .footerLinksRight {
+    float: right;
+    a {
+      margin-left: 15px;
+    }
+
+    @media (max-width: breakpoint-max(md)) {
+      float: unset;
+      text-align: center;
+
+      > a:first-child {
+        margin: 0;
+      }
+    }
   }
 
-  .footerLinksLeft > a {
+  .footerLinksLeft {
+    float: left;
+  }
+
+  .footerLinksLeft > a, .copyRight > a {
     @media (max-width: breakpoint-max(md)) {
       display: none;
     }

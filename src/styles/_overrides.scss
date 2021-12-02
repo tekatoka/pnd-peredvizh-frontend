@@ -486,9 +486,17 @@ small {
 ///////// Breadcrumbs //////////
 
 .breadcrumb {
-  color: $content-color;
   margin-bottom: 1.5rem;
   margin-top: 0;
+  font-size: $font-size-base;
+
+  a {
+    color: $red-pale;
+
+    &:hover {
+      color: $content-color;
+    }
+  }
 
   > .active {
     color: $white;

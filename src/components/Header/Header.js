@@ -49,6 +49,7 @@ const Header = (props) => {
         <a href="./">
           <span style={{ color: "#3c484f" }}>ПЕРЕ</span>
           <span className="fw-bold">ДВИЖ</span>
+          <span className={s.currentYear}>2021</span>
         </a>
       </header>
       <div className={`${s.root}`}>

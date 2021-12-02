@@ -1,12 +1,13 @@
 import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { PageSubtitle } from "../../elements/PageElements";
 
 export const EventsList = ({ events }) => {
   return (
     events && (
       <>
-        <h3>Мероприятия</h3>
+        <PageSubtitle>Мероприятия</PageSubtitle>
         {events.map((e, index) => {
           return (
             <div key={index}>

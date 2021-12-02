@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import ReactDOM from 'react-dom';
+import ReactDOM from "react-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import Hammer from "rc-hammerjs";
@@ -19,7 +19,7 @@ import s from "./Layout.module.scss";
 import Loader from "../Loader/Loader";
 
 const Layout = (props) => {
-  const {history, toggleModal, isLoading, resetStore} = props;
+  const { history, toggleModal, isLoading, resetStore } = props;
   useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27) {
@@ -41,10 +41,14 @@ const Layout = (props) => {
     toggleModal(false);
   }, []);
 
-  useEffect(() => history.listen(() => {
-    // do something on route change
-    toggleModal(false);
-}), [])
+  useEffect(
+    () =>
+      history.listen(() => {
+        // do something on route change
+        toggleModal(false);
+      }),
+    []
+  );
 
   return (
     <div className={s.wrap}>
@@ -55,16 +59,18 @@ const Layout = (props) => {
           {isLoading && <Loader />}
           <Routes />
           <footer className={s.contentFooter}>
-            <span className={`${s.footerLinksLeft}`}>
+            <div className={`${s.footerLinksLeft}`}>
               <a href="/">peredvizh.org</a>
-            </span>
-            <span className={`${s.footerLinksRight} pull-right`}>
+            </div>
+            <div className={`${s.footerLinksRight}`}>
               <a href="/impressum">Impressum</a>
               <a href="/privacy">Datenschutzerklärung</a>
-              <a href="https://panda-platforma.berlin" target="_blank">
-                &copy; {new Date().getFullYear()} by PANDA platforma
-              </a>
-            </span>
+              <span className={s.copyRight}>
+                <a href="https://panda-platforma.berlin" target="_blank">
+                  &copy; {new Date().getFullYear()} by PANDA platforma
+                </a>
+              </span>
+            </div>
           </footer>
           <CookieNotice />
         </main>

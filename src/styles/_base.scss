@@ -18,29 +18,40 @@
   }
 }
 
+.page-subtitle {
+  color: $red-pale;
+  text-transform: none;
+  margin-bottom: 15px;
+  font-weight: 400;
+  position: relative;
+
+  &::before {
+    content: "'";
+    position: absolute;
+    background-color: red;
+    border-block: unset;
+    left: -30px;
+    height: 25px;
+    top: 4px;
+  }
+}
+
 .page-content {
   max-width: 1200px;
   margin: auto;
   margin-top: 25px;
   margin-bottom: 125px;
-  padding: 15px;
+  padding: 20px;
+
+  .page-subtitle {
+    &::before {
+      @media (min-width: breakpoint-max(md)) {
+        left: -175px;
+        width: 160px;
+      }
+    }
+  }
 }
-
-// .page-title {
-//   color: $text-color;
-//   font-weight: 400;
-//   line-height: 1;
-//   /* stylelint-disable-next-line */
-//   margin: 11px 0 (1.5*$spacer);
-
-//   small {
-//     color: rgba($white, 0.7);
-//   }
-
-//   @media (max-width: breakpoint-max(sm)) {
-//     margin-top: 0;
-//   }
-// }
 
 .page-top-line {
   display: flex;

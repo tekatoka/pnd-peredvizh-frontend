@@ -13,4 +13,12 @@
             margin: 45px 0;
         }
       }
+
+    a {
+        font-weight: $font-weight-bold;
+        color: $red-pale;
+        &:hover {
+            color: $gray-dark;
+        }
+    }
 }

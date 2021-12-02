@@ -19,6 +19,7 @@ export const CloudinaryLazyImage = (props) => {
         height: "100%",
       }}
       alt={description}
+      placeholderStyle={{ width: maxWidth, height: maxHeight }}
     />
   ) : (
     <Img
@@ -33,6 +34,7 @@ export const CloudinaryLazyImage = (props) => {
         height: "100%",
       }}
       alt={description}
+      placeholderStyle={{ width: maxWidth, height: maxHeight }}
     />
   );
 };

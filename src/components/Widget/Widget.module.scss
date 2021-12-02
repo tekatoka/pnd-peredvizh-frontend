@@ -93,6 +93,7 @@
   border-radius: $widget-border-radius;
   background: $widget-bg-color;
   box-shadow: $widget-shadow;
+  overflow: hidden;
   > header {
     transition: padding .3s linear;
     padding: $widget-padding-vertical $widget-padding-horizontal 0;

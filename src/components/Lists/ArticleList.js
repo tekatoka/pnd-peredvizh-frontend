@@ -1,12 +1,13 @@
 import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { PageSubtitle } from "../../elements/PageElements";
 
 export const ArticleList = ({ articles }) => {
   return (
     articles && (
       <>
-        <h3>Контекст</h3>
+        <PageSubtitle>Контекст</PageSubtitle>
         {articles.map((e, index) => {
           return (
             <div key={index}>

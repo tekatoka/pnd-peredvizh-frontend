@@ -11,16 +11,24 @@ export const PageContent = ({ children }) => {
 };
 
 export const PageTitle = ({ children }) => {
-  return <h3 className="page-title">{children}</h3>;
+  return <h1 className="page-title">{children}</h1>;
 };
 
 export const PageTitleCentered = ({ children }) => {
   return (
     <>
-      <h3 className="page-title centered">{children}</h3>
-      <div class="small-border" />
+      <h1 className="page-title centered">{children}</h1>
+      {/* <div class="small-border" /> */}
     </>
   );
+};
+
+export const PageSubtitle = ({ children }) => {
+  return <h2 className="page-subtitle">{children}</h2>;
+};
+
+export const PageSubtitleDecorated = ({ children }) => {
+  return <h2 className="page-subtitle decorated">{children}</h2>;
 };
 
 export const DateElement = ({ children }) => {

@@ -8,7 +8,7 @@ const HashtagsCloud = (props) => {
     return {
       value: t,
       active: t == selectedHashtag,
-      count: Math.floor(Math.random() * 10) + 3,
+      //count: Math.floor(Math.random() * 10) + 3,
     };
   });
   return (
@@ -26,7 +26,8 @@ const HashtagsCloud = (props) => {
                 <a
                   className={s.hashTagItem}
                   href={`/hashtags/${tagData.value}`}
-                  style={{ fontSize: `${20 + tagData.count}px` }}
+                  //style={{ fontSize: `${20 + tagData.count}px` }}
+                  style={{ fontSize: "1.5rem" }}
                 >
                   #{tagData.value}
                 </a>

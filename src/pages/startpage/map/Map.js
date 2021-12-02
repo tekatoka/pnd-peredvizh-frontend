@@ -155,8 +155,12 @@ const Map = (props) => {
     pin.width = 30;
     pin.height = 30;
     pin.stroke = am4core.color(colors.darkgray);
-    pin.strokeWidth = 1;
+    pin.strokeWidth = 0;
     pin.propertyFields.fill = "ColorCode";
+
+    let hoveredPin = pin.states.create("hover");
+    hoveredPin.properties.stroke = am4core.color(colors.darkgray);
+    hoveredPin.properties.strokeWidth = 2;
 
     var label = cityTemplate.createChild(am4core.Label);
     label.text = "{Name}";

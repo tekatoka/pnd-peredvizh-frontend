@@ -94,7 +94,7 @@ $theme-colors: (
   red: $red-pale
 );
 
-$link-color: $red-pale;
+$link-color: $gray-dark;
 $icon-color: $main-gray;
 
 $text-color: $gray-dark !default;
@@ -152,8 +152,8 @@ $breadcrumb-bg: transparent;
 // -------------------------
 $widget-bg: $white;
 $widget-border-radius: 0px;
-$widget-padding-vertical: 25px !default;
-$widget-padding-horizontal: 25px !default;
+$widget-padding-vertical: 30px !default;
+$widget-padding-horizontal: 30px !default;
 $widget-bg-color: $white;
 
 $widget-title-color: $gray-dark;

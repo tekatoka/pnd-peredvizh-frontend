@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { PageSubtitle } from "../../elements/PageElements";
 
 export const PoetsList = ({ poets }) => {
   return (
     poets && (
       <>
-        <h3 className="mt-10">Поэты</h3>
+        <PageSubtitle className="mt-10">Поэты</PageSubtitle>
         {poets.map((p, index) => {
           return (
             <>

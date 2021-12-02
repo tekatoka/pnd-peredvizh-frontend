@@ -31,8 +31,8 @@ const PersonInfoTemplate = ({ person }) => {
               type={"fixed"}
               imagePublicId={person.Image.provider_metadata.public_id}
               description={person.Image.alternativeText}
-              maxWidth={800}
-              maxHeight={442}
+              maxWidth={500}
+              maxHeight={500}
             />
           </div>
         )}

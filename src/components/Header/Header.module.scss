@@ -37,7 +37,12 @@
     color: $gray-dark;
   }
 
-
+  > a {
+    color: $red-pale;
+    &:hover {
+      color: $gray-dark
+    }
+  }
 
   @media (max-width: breakpoint-max(sm)) {
     top: 10px;
@@ -51,6 +56,11 @@
   &.logoHidden {
     display: none;
   }
+}
+
+.currentYear {
+  margin: 0 0 0 15px;
+  font-size: $font-size-lg;
 }
 
 .searchCollapse {
@@ -147,6 +157,12 @@
   top: 7px;
   right: 45px;
 
+  > a {
+    color: $red-pale;
+    &:hover {
+      color: $gray-dark
+    }
+  }
 
   @media (min-width: breakpoint-max(md)) {
     right: 15px;

@@ -20,11 +20,13 @@ export const EventLocation = ({
       {location && (
         <div className={s.itemWrapper}>
           <div>
-            <div className={s.title}>
-              <p>
-                <strong>{location.City && location.City.Name}</strong>
-              </p>
-            </div>
+            {location.City && location.City.Name && (
+              <div className={s.title}>
+                <p>
+                  <strong>{location.City && location.City.Name}</strong>
+                </p>
+              </div>
+            )}
             <div className={s.descr}>
               <p className={s.date}>
                 <strong>{moment(startDate).format("DD.MM.yyyy")}</strong>
