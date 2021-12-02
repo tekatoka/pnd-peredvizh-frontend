@@ -23,10 +23,17 @@ const SocialMediaMenu = ({ items }) => {
             case "vkontakte":
               icon = "fa-vk";
               break;
+            case "website":
+              icon = "fa-link";
+              break;
+            case "email":
+              icon = "fa-envelope";
+              break;
           }
 
           return (
-            icon && items[key] && (
+            icon &&
+            items[key] && (
               <NavItem className={`${s.socialMediaItem} ${key.toLowerCase()}`}>
                 <NavLink href={items[key]} target="_blank">
                   <i className={`common-icon fa ${icon}`} />
