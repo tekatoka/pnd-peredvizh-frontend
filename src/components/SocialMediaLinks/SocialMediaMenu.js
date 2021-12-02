@@ -32,6 +32,9 @@ const SocialMediaMenu = ({ items }) => {
             case "telegram":
               icon = "fa-telegram";
               break;
+            case "youtube":
+              icon = "fa-youtube";
+              break;
           }
 
           return (

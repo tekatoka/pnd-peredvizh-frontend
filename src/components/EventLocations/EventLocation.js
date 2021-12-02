@@ -9,6 +9,7 @@ export const EventLocation = ({
   endDate,
   counterNumber,
   lastItem,
+  hideCity
 }) => {
   return (
     <Col
@@ -20,7 +21,7 @@ export const EventLocation = ({
       {location && (
         <div className={s.itemWrapper}>
           <div>
-            {location.City && location.City.Name && (
+            {!hideCity && location.City && location.City.Name && (
               <div className={s.title}>
                 <p>
                   <strong>{location.City && location.City.Name}</strong>

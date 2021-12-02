@@ -29,8 +29,15 @@ a,
 }
 
 a:hover {
-  color: $red-pale;
+  color: $content-color;
   text-decoration: none;
+}
+
+a.inverted {
+  color: $content-color;
+  &:hover {
+    color: $red-pale;
+  }
 }
 
 th {

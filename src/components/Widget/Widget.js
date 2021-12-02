@@ -2,6 +2,7 @@ import React, {useRef} from "react";
 import s from "./Widget.module.scss";
 import classNames from "classnames";
 import AnimateHeight from "react-animate-height";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Widget = (props) => {
 

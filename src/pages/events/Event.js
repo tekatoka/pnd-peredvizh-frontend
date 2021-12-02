@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 
-import { Container, Form, FormGroup, Input, Button } from "reactstrap";
+import {
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Button,
+  Col,
+  Row,
+} from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import ReactMarkdown from "react-markdown";
-import { PageTitleCentered } from "../../elements/PageElements";
+import { PageTitle } from "../../elements/PageElements";
 import { DateElement } from "../../elements/PageElements";
+import { EventLocation } from "../../components/EventLocations/EventLocation";
 
 import s from "./Events.module.scss";
 
@@ -24,12 +33,36 @@ export const Event = (props) => {
       {event && (
         <div className={s.eventItem}>
           <Link to={eventUrl}>
-            <PageTitleCentered>{event.Name}</PageTitleCentered>
+            <PageTitle>{event.Name}</PageTitle>
           </Link>
-          <DateElement>{`${moment(event.StartDate).format(
-            "DD/MM/YYYY"
-          )} ${moment(event.StartDate).format("HH:mm")}`}</DateElement>
           <ReactMarkdown>{event.Description}</ReactMarkdown>
+          <Link to={eventUrl} className="inverted">
+            <Row className={s.eventLocationWrapper}>
+              <Col xs={12} md={11}>
+                <div className={s.eventLocation}>
+                  {event.event_location && (
+                    <EventLocation
+                      location={event.event_location}
+                      startDate={event.StartDate}
+                      endDate={event.EndDate}
+                      hideCity={true}
+                    />
+                  )}
+                </div>
+              </Col>
+              <Col
+                xs={12}
+                md={1}
+                className={`flex-vertical ${s.moreIconWrapper}`}
+                className="flex-vertical"
+              >
+                <div className={`${s.icon} fa fa-angle-double-right`} />
+              </Col>
+            </Row>
+          </Link>
+          {/* <DateElement>{`${moment(event.StartDate).format(
+            "DD/MM/YYYY"
+          )} ${moment(event.StartDate).format("HH:mm")}`}</DateElement> */}
 
           {event.Links && (
             <>

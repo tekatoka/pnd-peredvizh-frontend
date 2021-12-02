@@ -41,7 +41,6 @@ const CityInfo = (props) => {
         {!isLoading && selectedCity && eventsList && eventsList.length > 0 && (
           <>
             <EventsList events={eventsList} />
-            <br />
           </>
         )}
         {!isLoading && selectedCity && peopleList && peopleList.length > 0 && (

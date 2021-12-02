@@ -40,7 +40,7 @@ const TeamMember = (props) => {
               <PersonInfoTemplate person={selectedTeamMember} />
             </PageContent>
           )}
-          {person && <PersonInfoTemplate person={person} />}
+          {person && <PersonInfoTemplate person={person} url={`/team/${person.slug}`} />}
           {!person && (!selectedTeamMember || selectedTeamMember == "not found") && (
             <NotFoundPage />
           )}

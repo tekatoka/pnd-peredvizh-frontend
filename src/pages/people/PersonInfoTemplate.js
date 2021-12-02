@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import NotFoundPage from "../404";
-import { PageContent, PageTitleCentered } from "../../elements/PageElements";
+import {
+  PageContent,
+  PageSubtitle,
+  PageTitleCentered,
+} from "../../elements/PageElements";
 
 import {
   Container,
@@ -20,11 +24,24 @@ import { SocialMediaMenu } from "../../components/SocialMediaLinks/SocialMediaMe
 import { EventsList } from "../../components/Lists/EventsList";
 import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 
-const PersonInfoTemplate = ({ person }) => {
+const TitleWrapper = ({ children, url }) => {
+  if (url) {
+    return <Link to={url}>{children}</Link>;
+  } else {
+    return <>{children}</>;
+  }
+};
+
+const PersonInfoTemplate = ({ person, url }) => {
   return (
     person && (
       <>
-        <PageTitleCentered>{person.Name}</PageTitleCentered>
+        <TitleWrapper url={url}>
+          <PageTitleCentered>
+            {person.FirstName} {person.Name}
+          </PageTitleCentered>
+        </TitleWrapper>
+
         {person.Image && person.Image.provider_metadata && (
           <div className={s.personPageImageContainer}>
             <CloudinaryLazyImage
@@ -39,23 +56,24 @@ const PersonInfoTemplate = ({ person }) => {
         {person.SocialMediaLinks && (
           <SocialMediaMenu items={person.SocialMediaLinks} />
         )}
-
         {person.Info && <ReactMarkdown>{person.Info}</ReactMarkdown>}
         {person.Biography && <ReactMarkdown>{person.Biography}</ReactMarkdown>}
-
-        {person.Poems &&
-          person.Poems.length > 0 &&
-          person.Poems.map((poem) => {
-            return (
-              <div className={s.poemBody}>
-                {poem.Title && <h4>{poem.Title}</h4>}
-                {poem.Text && <ReactMarkdown>{poem.Text}</ReactMarkdown>}
-              </div>
-            );
-          })}
-
         {person.Events && person.Events.length > 0 && (
           <EventsList events={person.Events} />
+        )}
+        <br />
+        {person.Poems && person.Poems.length > 0 && (
+          <>
+            <PageSubtitle>Стихи</PageSubtitle>
+            {person.Poems.map((poem) => {
+              return (
+                <div className={s.poemBody}>
+                  {poem.Title && <h4><strong>{poem.Title}</strong></h4>}
+                  {poem.Text && <ReactMarkdown>{poem.Text}</ReactMarkdown>}
+                </div>
+              );
+            })}
+          </>
         )}
         {person.hashtags && person.hashtags != "" && (
           <SplittedHashtags tags={person.hashtags} />

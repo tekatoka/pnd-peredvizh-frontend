@@ -4,7 +4,7 @@ import { mapStateToProps } from "../../store/mapToProps/mapToProps";
 
 const PoetBreadcrumb = (props) => {
   const { selectedPerson } = props;
-  return selectedPerson && <span>{selectedPerson.Name}</span>;
+  return selectedPerson && <span>{selectedPerson.FirstName} {selectedPerson.Name}</span>;
 };
 
 export default connect(mapStateToProps)(PoetBreadcrumb);

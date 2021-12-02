@@ -54,7 +54,7 @@ const ImageList = (props) => {
           items.map((item) => {
             const imagePublicId = item.Image && item.Image.provider_metadata ? item.Image.provider_metadata.public_id : null;
             const imageUrl = item.Image && item.ImageUrl ? item.ImageUrl : NoImage;
-            const description = type == "imageGallery" ? "" : item.Name;
+            const description = type == "imageGallery" ? "" : `${item.FirstName} ${item.Name}`;
             const link = ""; //type == "poets" ? "/poets/" + item.slug : "";
             return (
               <ImageThumb

@@ -17,6 +17,7 @@ import RouteChangeTracker from "../../RouteChangeTracker";
 import s from "./Layout.module.scss";
 
 import Loader from "../Loader/Loader";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Layout = (props) => {
   const { history, toggleModal, isLoading, resetStore } = props;
@@ -58,6 +59,7 @@ const Layout = (props) => {
         <main className={s.content}>
           {isLoading && <Loader />}
           <Routes />
+          <ScrollButton />
           <footer className={s.contentFooter}>
             <div className={`${s.footerLinksLeft}`}>
               <a href="/">peredvizh.org</a>

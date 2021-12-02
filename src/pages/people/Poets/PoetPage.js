@@ -40,7 +40,7 @@ const Poet = (props) => {
               <PersonInfoTemplate person={selectedPerson} />
             </PageContent>
           )}
-          {person && <PersonInfoTemplate person={person} />}
+          {person && <PersonInfoTemplate person={person} url={`/poets/${person.slug}`}  />}
           {!person && (!selectedPerson || selectedPerson == "not found") && (
             <NotFoundPage />
           )}
