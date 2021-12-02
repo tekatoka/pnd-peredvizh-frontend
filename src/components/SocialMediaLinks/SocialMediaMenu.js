@@ -29,6 +29,9 @@ const SocialMediaMenu = ({ items }) => {
             case "email":
               icon = "fa-envelope";
               break;
+            case "telegram":
+              icon = "fa-telegram";
+              break;
           }
 
           return (
