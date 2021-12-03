@@ -17,7 +17,11 @@
     max-width: 1200px;
   }
 
-  &.normal > div {
+  &.midi > div {
+    max-width: 850px;
+  }
+
+  &.small > div {
     max-width: 650px;
   }
 

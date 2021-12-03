@@ -55,8 +55,9 @@ const MainMenuMobile = ({handleClick, isOpen, currentPath,socialMediaMenu}) => {
             )
           })
         }
+        <SocialMediaMenu items={socialMediaMenu} />
       </Nav>
-      <SocialMediaMenu items={socialMediaMenu} />
+      
   </Collapse>
   </>
     )

@@ -44,7 +44,7 @@ const ImageList = (props) => {
 
   return (
     <React.Fragment>
-      <ModalDialog large={type == "poets" || type == "team"}>
+      <ModalDialog large={type == "poets" || type == "team"} midi={type=="imageGallery"}>
         {type == "imageGallery" && <ImageCarousel items={items} activeItem={currentItemId} /> }
         {type == "poets" && <PoetPage person={currentItem} />}
         {type == "team" && <TeamMemberPage person={currentItem} />}

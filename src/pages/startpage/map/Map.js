@@ -83,13 +83,14 @@ const Map = (props) => {
     map.percentHeight = 100;
     map.dy = 10;
     map.projection = new am4maps.projections.Miller();
+    map.responsive.enabled = true;
 
     let polygonSeries = map.series.push(new am4maps.MapPolygonSeries());
     polygonSeries.useGeodata = true;
-    map.homeZoomLevel = 4.5;
+    map.homeZoomLevel = 6;
     map.homeGeoPoint = {
       latitude: 55,
-      longitude: 55,
+      longitude: 35,
     };
 
     // Add line series

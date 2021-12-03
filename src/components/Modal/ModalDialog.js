@@ -7,7 +7,7 @@ import { toggleModal } from "../../store/actions/modal.actions";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
 const ModalDialog = (props) => {
-  const { modalVisible, toggleModal, children, large } = props;
+  const { modalVisible, toggleModal, children, large, midi } = props;
 
   const ref = useRef();
   useOutsideClick(ref, () => {
@@ -16,7 +16,7 @@ const ModalDialog = (props) => {
 
   return (
     modalVisible && (
-      <div className={`${s.modalWrapper} ${ large ? s.large : s.normal}`}>
+      <div className={`${s.modalWrapper} ${ large ? s.large : midi ? s.midi : s.small}`}>
         <div
           className={`mt-4 mb-4 py-0 animate__animated animate__faster animate__fadeInUp `}
         >
