@@ -4,8 +4,8 @@
     "link": "/about"
   },
   {
-    "name": "Контекст",
-    "link": "/context"
+    "name": "Поэты",
+    "link": "/poets"
   },
   {
     "name": "События",
@@ -16,7 +16,7 @@
     "link": "/team"
   },
   {
-    "name": "Поэты",
-    "link": "/poets"
+    "name": "Контекст",
+    "link": "/context"
   }
 ]
