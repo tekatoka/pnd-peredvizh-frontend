@@ -25,7 +25,7 @@ import s from "../People.module.scss";
 
 const TeamMember = (props) => {
   const slug = props.match.params.slug;
-  const { isLoading, person, selectedTeamMember, getTeamMemberBySlug } = props;
+  const { isLoading, person, selectedTeamMember, getTeamMemberBySlug, modalVisible } = props;
   useEffect(() => {
     if (slug && (!selectedTeamMember || slug != selectedTeamMember.slug)) {
       getTeamMemberBySlug(slug);
@@ -37,10 +37,10 @@ const TeamMember = (props) => {
         <>
           {selectedTeamMember && slug && slug == selectedTeamMember.slug && (
             <PageContent>
-              <PersonInfoTemplate person={selectedTeamMember} />
+              <PersonInfoTemplate person={selectedTeamMember} type={"team"} />
             </PageContent>
           )}
-          {person && <PersonInfoTemplate person={person} url={`/team/${person.slug}`} />}
+          {person && <PersonInfoTemplate person={person} url={`/team/${person.slug}`} type={"team"} />}
           {!person && (!selectedTeamMember || selectedTeamMember == "not found") && (
             <NotFoundPage />
           )}

@@ -8,18 +8,6 @@ import {
 import NotFoundPage from "../../404";
 import { PageContent, PageTitle } from "../../../elements/PageElements";
 
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-} from "reactstrap";
-import { Link } from "react-router-dom";
-import Moment from "moment";
-import ReactMarkdown from "react-markdown";
 import PersonInfoTemplate from "../PersonInfoTemplate";
 import s from "../People.module.scss";
 
@@ -37,10 +25,10 @@ const Poet = (props) => {
         <>
           {selectedPerson && slug && slug == selectedPerson.slug && (
             <PageContent>
-              <PersonInfoTemplate person={selectedPerson} />
+              <PersonInfoTemplate person={selectedPerson} type={"poet"}/>
             </PageContent>
           )}
-          {person && <PersonInfoTemplate person={person} url={`/poets/${person.slug}`}  />}
+          {person && <PersonInfoTemplate person={person} url={`/poets/${person.slug}`} type={"poet"} />}
           {!person && (!selectedPerson || selectedPerson == "not found") && (
             <NotFoundPage />
           )}

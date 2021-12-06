@@ -10,12 +10,13 @@ import {
 import { PageContent, PageTitle } from "../../elements/PageElements";
 import BlogArticle from "./BlogArticle";
 import BlogArticlesList from "./BlogArticlesList";
+import NotFoundPage from "./../../pages/404";
 
 import s from "./Blog.module.scss";
 
 const BlogPage = (props) => {
   const slug = props.match.params.slug;
-  
+
   const {
     isLoading,
     blogArticlesList,
@@ -43,27 +44,33 @@ const BlogPage = (props) => {
       } else {
         article = blogArticlesList[0];
       }
-
-      setVisibleArticle(article);
-      setOtherArticles(
-        blogArticlesList.filter((a) => {
-          return a.id !== article.id;
-        })
-      );
-      window.scrollTo({top: 0, behavior: 'smooth'});
+      {
+        if (article) {
+          setVisibleArticle(article);
+          setOtherArticles(
+            blogArticlesList.filter((a) => {
+              return a.id !== article.id;
+            })
+          );
+        }
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [blogArticlesList, slug]);
 
   return (
     <React.Fragment>
-      {!isLoading && blogArticlesList && visibleArticle && (
-        <PageContent>
-          <Row className="full-width">
-            <BlogArticle selectedBlogArticle={visibleArticle} />
-            <BlogArticlesList blogArticlesList={otherArticles} />
-          </Row>
-        </PageContent>
-      )}
+      {!isLoading &&
+        (blogArticlesList && visibleArticle ? (
+          <PageContent>
+            <Row className="full-width">
+              <BlogArticle selectedBlogArticle={visibleArticle} />
+              <BlogArticlesList blogArticlesList={otherArticles} />
+            </Row>
+          </PageContent>
+        ) : (
+          <NotFoundPage />
+        ))}
     </React.Fragment>
   );
 };

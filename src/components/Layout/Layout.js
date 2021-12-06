@@ -20,7 +20,7 @@ import Loader from "../Loader/Loader";
 import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Layout = (props) => {
-  const { history, toggleModal, isLoading, resetStore } = props;
+  const { history, toggleModal, isLoading, resetStore, modalVisible } = props;
   useEffect(() => {
     const close = (e) => {
       if (e.keyCode === 27) {
@@ -56,7 +56,7 @@ const Layout = (props) => {
       <RouteChangeTracker />
       <Header />
       <Hammer>
-        <main className={s.content}>
+        <main className={s.content} style={{overflowY: modalVisible ? "hidden" : "visible"}}>
           {isLoading && <Loader />}
           <Routes />
           <ScrollButton />

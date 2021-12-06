@@ -1,4 +1,48 @@
-@import '../../styles/app';
+@import "../../styles/app";
+
+.personPage {
+  position: relative;
+
+  .anchorsBlock {
+    position: fixed;
+    right: -100px;
+    top: 350px;
+    transform: rotate(90deg);
+    z-index: 1000;
+
+    @media (max-width: breakpoint-max(sm)) {
+      right: -80px;
+      top:225px;
+    }
+  }
+
+  .anchor {
+    cursor: pointer;
+    padding: 10px;
+    color: white;
+    background-color: $red-pale;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    margin-left: 2px;
+
+    @media (max-width: breakpoint-max(sm)) {
+      padding: 5px;
+      font-size: 15px;
+    }
+
+    &:focus, &:hover, &:active {
+      background-color: $gray-600;
+      padding-bottom: 12px;
+
+      @media (max-width: breakpoint-max(sm)) {
+        padding-bottom: 7px;
+      }
+    }
+  }
+  .scrollableSection {
+    scroll-margin-top: 60px;
+  }
+}
 
 .pageTitle {
   color: $red-pale;
@@ -8,70 +52,69 @@
 }
 
 .personItem {
-  float:left;
+  float: left;
   position: relative;
   width: 30%;
-  padding-bottom : 30%; /* = width for a 1:1 aspect ratio */
-  margin:1.66%;
-  background-color:$white;
-  overflow:hidden;
+  padding-bottom: 30%; /* = width for a 1:1 aspect ratio */
+  margin: 1.66%;
+  background-color: $white;
+  overflow: hidden;
   cursor: pointer;
 
-    .imageContainer {
-      position:absolute;
-      height:100%; /* = 100% - 2*5% padding */
-      width:100%; /* = 100% - 2*5% padding */
-      padding: 5%;
-      text-align:center;
-    }
+  .imageContainer {
+    position: absolute;
+    height: 100%; /* = 100% - 2*5% padding */
+    width: 100%; /* = 100% - 2*5% padding */
+    padding: 5%;
+    text-align: center;
+  }
 
+  .image {
+    width: auto;
+    height: auto;
+    min-height: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  .text {
+    width: 100%;
+    background-color: $white;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 10px;
+    height: 25%;
+    vertical-align: middle;
+    padding-top: 15px;
+    left: 0;
+    display: none;
+
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+  }
+
+  &:hover {
     .image {
-        width:auto;
-        height:auto;
-        min-height:100%;
-        min-width:100%;
-        max-height:100%;
-        max-width:100%;
+      opacity: 0.7;
+      -webkit-transform: scale(1.1);
+      -moz-transform: scale(1.1);
+      transform: scale(1.1);
     }
 
     .text {
-      width: 100%;
-      background-color: $white;
-      text-transform: uppercase;
-      position: absolute;
-      bottom: 10px;
-      height: 25%;
-      vertical-align: middle;
-      padding-top: 15px;
-      left: 0;
-      display: none;
+      display: block;
 
-      -webkit-transition: all 0.3s linear 0s;
-      -moz-transition: all 0.3s linear 0s;
-      -ms-transition: all 0.3s linear 0s;
-      -o-transition: all 0.3s linear 0s;
-      transition: all 0.3s linear 0s;
+      -webkit-transition: all 1.3s linear 0s;
+      -moz-transition: all 1.3s linear 0s;
+      -ms-transition: all 1.3s linear 0s;
+      -o-transition: all 1.3s linear 0s;
+      transition: all 1.3s linear 0s;
     }
-
-    &:hover {
-
-      .image {
-        opacity: .7;
-        -webkit-transform: scale(1.1);
-        -moz-transform: scale(1.1);
-        transform: scale(1.1);
-      }
-
-      .text {
-        display: block;
-
-        -webkit-transition: all 1.3s linear 0s;
-        -moz-transition: all 1.3s linear 0s;
-        -ms-transition: all 1.3s linear 0s;
-        -o-transition: all 1.3s linear 0s;
-        transition: all 1.3s linear 0s;
-      }
-    }
+  }
 }
 
 .personPageImageContainer {

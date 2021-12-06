@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
-import NotFoundPage from "../404";
+import React, { useRef } from "react";
+import { PageSubtitle, PageTitleCentered } from "../../elements/PageElements";
+import { connect } from "react-redux";
 import {
-  PageContent,
-  PageSubtitle,
-  PageTitleCentered,
-} from "../../elements/PageElements";
-
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  FormGroup,
-  Input,
-  Button,
-} from "reactstrap";
+  mapStateToProps,
+  mapDispatchToProps,
+} from "../../store/mapToProps/mapToProps";
 import { Link } from "react-router-dom";
-import Moment from "moment";
 import ReactMarkdown from "react-markdown";
 import s from "./People.module.scss";
 import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
 import { SocialMediaMenu } from "../../components/SocialMediaLinks/SocialMediaMenu";
 import { EventsList } from "../../components/Lists/EventsList";
 import { SplittedHashtags } from "../hashtags/SplittedHashtags";
+import { AnchorLinks } from "./AnchorLinks";
 
 const TitleWrapper = ({ children, url }) => {
   if (url) {
@@ -32,10 +22,21 @@ const TitleWrapper = ({ children, url }) => {
   }
 };
 
-const PersonInfoTemplate = ({ person, url }) => {
+const PersonInfoTemplate = ({ person, url, type, modalVisible }) => {
+  const bioRef = useRef();
+  const eventsRef = useRef();
+  const poemsRef = useRef();
+debugger;
   return (
     person && (
-      <>
+      <div className={s.personPage}>
+        {type == "poet" && (
+          <AnchorLinks
+            bioRef={bioRef}
+            eventsRef={eventsRef}
+            poemsRef={poemsRef}
+          />
+        )}
         <TitleWrapper url={url}>
           <PageTitleCentered>
             {person.FirstName} {person.Name}
@@ -57,30 +58,48 @@ const PersonInfoTemplate = ({ person, url }) => {
           <SocialMediaMenu items={person.SocialMediaLinks} />
         )}
         {person.Info && <ReactMarkdown>{person.Info}</ReactMarkdown>}
-        {person.Biography && <ReactMarkdown>{person.Biography}</ReactMarkdown>}
-        {person.Events && person.Events.length > 0 && (
-          <EventsList events={person.Events} />
+        {person.Biography && (
+          <section
+            className={!modalVisible ? s.scrollableSection : ""}
+            ref={bioRef}
+          >
+            <ReactMarkdown>{person.Biography}</ReactMarkdown>
+          </section>
         )}
-        <br />
+        {person.Events && person.Events.length > 0 && (
+          <section
+            className={!modalVisible ? s.scrollableSection : ""}
+            ref={eventsRef}
+          >
+            <EventsList events={person.Events} />
+          </section>
+        )}
         {person.Poems && person.Poems.length > 0 && (
-          <>
+          <section
+            className={!modalVisible ? s.scrollableSection : ""}
+            ref={poemsRef}
+          >
             <PageSubtitle>Стихи</PageSubtitle>
             {person.Poems.map((poem) => {
               return (
                 <div className={s.poemBody}>
-                  {poem.Title && <h4><strong>{poem.Title}</strong></h4>}
+                  {poem.Title && (
+                    <h4>
+                      <strong>{poem.Title}</strong>
+                    </h4>
+                  )}
                   {poem.Text && <ReactMarkdown>{poem.Text}</ReactMarkdown>}
                 </div>
               );
             })}
-          </>
+          </section>
         )}
         {person.hashtags && person.hashtags != "" && (
           <SplittedHashtags tags={person.hashtags} />
         )}
-      </>
+      </div>
     )
   );
 };
 
-export default PersonInfoTemplate;
+export default connect(mapStateToProps, mapDispatchToProps)(PersonInfoTemplate);

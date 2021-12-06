@@ -35,7 +35,7 @@ const BlogArticle = (props) => {
                   }
                   description={selectedBlogArticle.Image.alternativeText}
                   maxWidth={800}
-                  maxHeight={442}
+                  maxHeight={600}
                 />
               </div>
             )}

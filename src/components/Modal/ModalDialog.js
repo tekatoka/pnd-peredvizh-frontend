@@ -5,18 +5,26 @@ import Widget from "../Widget/Widget";
 import s from "./Modal.module.scss";
 import { toggleModal } from "../../store/actions/modal.actions";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import ScrollButton from "../ScrollButton/ScrollButton";
 
 const ModalDialog = (props) => {
   const { modalVisible, toggleModal, children, large, midi } = props;
 
   const ref = useRef();
+  const modalRef = useRef();
+
   useOutsideClick(ref, () => {
     toggleModal(!modalVisible);
   });
 
   return (
     modalVisible && (
-      <div className={`${s.modalWrapper} ${ large ? s.large : midi ? s.midi : s.small}`}>
+      <div
+        className={`${s.modalWrapper} ${
+          large ? s.large : midi ? s.midi : s.small
+        }`}
+        ref={modalRef}
+      >
         <div
           className={`mt-4 mb-4 py-0 animate__animated animate__faster animate__fadeInUp `}
         >
@@ -26,6 +34,7 @@ const ModalDialog = (props) => {
             </Widget>
           </div>
         </div>
+        <ScrollButton forwardedRef={modalRef} />
       </div>
     )
   );

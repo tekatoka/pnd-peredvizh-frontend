@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import s from "./ScrollButton.module.scss";
 
-const ScrollButton = () => {
+const ScrollButton = (props) => {
   const [visible, setVisible] = useState(false);
 
+  const { forwardedRef } = props;
+
+  useEffect(() => {
+    if (forwardedRef && forwardedRef.current) {
+      forwardedRef.current.addEventListener("scroll", toggleVisible);
+    } else {
+      window.addEventListener("scroll", toggleVisible);
+    }
+  }, [props]);
+
   const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
+    let scrolled = document.documentElement.scrollTop;
+    if (forwardedRef) {
+      scrolled = forwardedRef.current.scrollTop;
+    }
     if (scrolled > 600) {
       setVisible(true);
     } else if (scrolled <= 600) {
@@ -14,20 +27,19 @@ const ScrollButton = () => {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({
+    let selector = window;
+    if(forwardedRef) selector = forwardedRef.current;
+
+    selector.scrollTo({
       top: 0,
-      behavior: "smooth",
-      /* you can also use 'auto' behaviour
-         in place of 'smooth' */
+      behavior: "smooth"
     });
   };
 
-  window.addEventListener("scroll", toggleVisible);
-  
   return (
     <div className={s.button}>
       <i
-        className={`fa fa-angle-double-up ${visible ? s.visible : s.hidden }`}
+        className={`fa fa-angle-double-up ${visible ? s.visible : s.hidden}`}
         onClick={scrollToTop}
       />
     </div>

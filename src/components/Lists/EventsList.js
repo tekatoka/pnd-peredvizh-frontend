@@ -10,10 +10,10 @@ export const EventsList = ({ events }) => {
     events && (
       <>
         <PageSubtitle>Мероприятия</PageSubtitle>
-        <div className={s.block} style={{ marginBottom: "50px" }}>
+        <div className={s.block}>
           {events.map((e, index) => {
             return (
-              <div key={index}>
+              <div key={index} className={s.event}>
                 <Link to={`/events/${e.slug}`} className="inverted">
                   <div className={s.dateElement}>
                     <div className={s.date}>

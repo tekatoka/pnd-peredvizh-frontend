@@ -1,11 +1,9 @@
-import React, {useRef} from "react";
+import React from "react";
 import s from "./Widget.module.scss";
 import classNames from "classnames";
 import AnimateHeight from "react-animate-height";
-import ScrollButton from "../ScrollButton/ScrollButton";
 
 const Widget = (props) => {
-
   const {
     title,
     className,
@@ -22,11 +20,7 @@ const Widget = (props) => {
   return (
     <React.Fragment>
       <section
-        className={classNames(
-          "widget",
-          s.widget,
-          className
-        )}
+        className={classNames("widget", s.widget, className)}
         {...attributes}
       >
         {title &&

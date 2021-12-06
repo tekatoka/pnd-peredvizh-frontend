@@ -14,4 +14,7 @@
 
 .block {
   margin-bottom: 20px;
+  > div.event {
+    min-height: 75px;
+  }
 }
