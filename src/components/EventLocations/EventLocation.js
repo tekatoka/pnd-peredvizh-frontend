@@ -31,6 +31,9 @@ export const EventLocation = ({
             <div className={s.descr}>
               <p className={s.date}>
                 <strong>{moment(startDate).format("DD.MM.yyyy")}</strong>
+                {endDate && 
+                <strong> — {moment(endDate).format("DD.MM.yyyy")}</strong>
+                }
               </p>
               <p>
                 <strong>{location.Name}</strong>

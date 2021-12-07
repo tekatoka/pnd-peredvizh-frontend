@@ -57,7 +57,7 @@ const EventPage = (props) => {
                   />
                 )}
               </div>
-
+              <ReactMarkdown>{selectedEvent.Description}</ReactMarkdown>
               {selectedEvent.PhotoGallery &&
                 selectedEvent.PhotoGallery.Photo &&
                 selectedEvent.PhotoGallery.Photo.length > 0 && (
