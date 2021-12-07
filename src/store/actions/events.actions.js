@@ -20,7 +20,7 @@ export function getEventsList() {
           //order events by date
           data = _.orderBy(data, (o) => {
             return moment(o.StartDate)
-          }, ['asc']);
+          }, ['desc']);
         }
         dispatch(success(data));
       },
