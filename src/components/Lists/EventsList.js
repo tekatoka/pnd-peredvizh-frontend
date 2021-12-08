@@ -5,7 +5,7 @@ import { Row, Col } from "reactstrap";
 import { PageSubtitle } from "../../elements/PageElements";
 import s from "./List.module.scss";
 
-export const EventsList = ({ events }) => {
+export const EventsList = ({ events, showCity }) => {
   return (
     events && (
       <>
@@ -24,6 +24,7 @@ export const EventsList = ({ events }) => {
                     </div>
                   </div>
                   {e.event_location ? e.event_location.Name : e.Name}
+                  {showCity && e.event_location && e.event_location.City && <div>{e.event_location.City.Name}</div>}
                 </Link>
               </div>
             );

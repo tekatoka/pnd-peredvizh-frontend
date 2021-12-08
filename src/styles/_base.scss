@@ -26,6 +26,10 @@
   font-weight: 400;
   position: relative;
 
+  &.centered {
+    text-align: center;
+  }
+
   &::before {
     content: "'";
     position: absolute;

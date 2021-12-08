@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { PageSubtitle, PageTitleCentered } from "../../elements/PageElements";
+import { PageSubtitle, PageSubtitleSmall, PageTitleCentered } from "../../elements/PageElements";
 import { connect } from "react-redux";
 import {
   mapStateToProps,
@@ -26,7 +26,6 @@ const PersonInfoTemplate = ({ person, url, type, modalVisible }) => {
   const bioRef = useRef();
   const eventsRef = useRef();
   const poemsRef = useRef();
-debugger;
   return (
     person && (
       <div className={s.personPage}>
@@ -41,6 +40,7 @@ debugger;
           <PageTitleCentered>
             {person.FirstName} {person.Name}
           </PageTitleCentered>
+          {person.City && <h5 className="page-title centered">{person.City.Name}</h5>}
         </TitleWrapper>
 
         {person.Image && person.Image.provider_metadata && (
@@ -71,7 +71,7 @@ debugger;
             className={!modalVisible ? s.scrollableSection : ""}
             ref={eventsRef}
           >
-            <EventsList events={person.Events} />
+            <EventsList events={person.Events} showCity={true} />
           </section>
         )}
         {person.Poems && person.Poems.length > 0 && (

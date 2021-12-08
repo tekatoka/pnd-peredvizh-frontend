@@ -31,6 +31,10 @@ export const PageSubtitleDecorated = ({ children }) => {
   return <h2 className="page-subtitle decorated">{children}</h2>;
 };
 
+export const PageSubtitleSmall  = ({ children }) => {
+  return <h5 className="page-subtitle centered">{children}</h5>;
+};
+
 export const DateElement = ({ children }) => {
   return <span className="date-element">{children}</span>;
 };
