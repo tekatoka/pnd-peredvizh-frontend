@@ -24,6 +24,7 @@ import { EventLocation } from "../../components/EventLocations/EventLocation";
 import ImageList from "../../components/Gallery/ImageList";
 import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 import s from "./Events.module.scss";
+import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
 
 const EventPage = (props) => {
   const slug = props.match.params.slug;
@@ -57,6 +58,20 @@ const EventPage = (props) => {
                   />
                 )}
               </div>
+              {selectedEvent.TitleImage && (
+                <>
+                  <CloudinaryLazyImage
+                    type={"fluid"}
+                    imagePublicId={
+                      selectedEvent.TitleImage.provider_metadata.public_id
+                    }
+                    description={selectedEvent.TitleImage.alternativeText}
+                    maxWidth={1000}
+                    maxHeight={500}
+                  />
+                  <br />
+                </>
+              )}
               <ReactMarkdown>{selectedEvent.Description}</ReactMarkdown>
               {selectedEvent.PhotoGallery &&
                 selectedEvent.PhotoGallery.Photo &&
