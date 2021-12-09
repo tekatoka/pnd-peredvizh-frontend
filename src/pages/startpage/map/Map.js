@@ -170,6 +170,9 @@ const Map = (props) => {
     pinImage.fill = am4core.color(colors.lightgray);
     pinImage.strokeWidth = 2;
 
+    let hoveredPinImage = pinImage.states.create("hover");
+    hoveredPinImage.properties.fill = am4core.color(colors.white);
+
     //---------------------------------
 
     var label = cityTemplate.createChild(am4core.Label);
