@@ -149,19 +149,28 @@ const Map = (props) => {
     // circle.showTooltip = true;
     // circle.propertyFields.radius = 4;
 
+    //------------------------------
     var pin = cityTemplate.createChild(am4core.Rectangle);
     pin.horizontalCenter = "middle";
     pin.verticalCenter = "middle";
-    //pin.stroke = am4core.color("#fff");
     pin.width = 30;
     pin.height = 30;
-    pin.stroke = am4core.color(colors.darkgray);
+    pin.stroke = am4core.color(colors.lightgray);
     pin.strokeWidth = 0;
     pin.propertyFields.fill = "ColorCode";
 
     let hoveredPin = pin.states.create("hover");
     hoveredPin.properties.stroke = am4core.color(colors.darkgray);
     hoveredPin.properties.strokeWidth = 2;
+
+    var pinImage = cityTemplate.createChild(am4core.Sprite);
+    pinImage.path = "M2.07 17.64L7.72 11.98L2.07 6.32L4.39 4L12.37 11.98L4.39 19.96L2.07 17.64ZM21.93 11.98L13.91 4L11.59 6.28L17.29 11.98L11.59 17.68L13.91 20L21.93 11.98Z";
+    pinImage.horizontalCenter = "middle";
+    pinImage.verticalCenter = "middle";
+    pinImage.fill = am4core.color(colors.lightgray);
+    pinImage.strokeWidth = 2;
+
+    //---------------------------------
 
     var label = cityTemplate.createChild(am4core.Label);
     label.text = "{Name}";
