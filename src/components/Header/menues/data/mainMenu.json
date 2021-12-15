@@ -12,11 +12,11 @@
     "link": "/events"
   },
   {
-    "name": "Команда",
-    "link": "/team"
-  },
-  {
     "name": "Контекст",
     "link": "/context"
+  },
+  {
+    "name": "Команда",
+    "link": "/team"
   }
 ]

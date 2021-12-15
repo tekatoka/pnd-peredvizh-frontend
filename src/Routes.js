@@ -46,7 +46,12 @@ const Routes = () => {
         render={(props) => <TeamMemberPage {...props} slug={`poets`} />}
       />
 
-      <Route path="/team" render={(props) => <TeamMembersList {...props} />} />
+      {/* <Route path="/team" render={(props) => <TeamMembersList {...props} />} /> */}
+
+      <Route
+        path="/team"
+        render={(props) => <Subpage {...props} slug={`team-2021`} />}
+      />
 
       <Route
         path="/context/:slug"
