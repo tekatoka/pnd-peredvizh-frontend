@@ -25,7 +25,6 @@ import ImageList from "../../components/Gallery/ImageList";
 import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 import s from "./Events.module.scss";
 import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
-import rehypeRaw from "rehype-raw";
 
 const EventPage = (props) => {
   const slug = props.match.params.slug;
@@ -73,7 +72,7 @@ const EventPage = (props) => {
                   <br />
                 </>
               )}
-              <ReactMarkdown rehypePlugins={rehypeRaw}>{selectedEvent.Description}</ReactMarkdown>
+              <ReactMarkdown>{selectedEvent.Description}</ReactMarkdown>
               {selectedEvent.PhotoGallery &&
                 selectedEvent.PhotoGallery.Photo &&
                 selectedEvent.PhotoGallery.Photo.length > 0 && (
