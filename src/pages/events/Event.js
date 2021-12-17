@@ -15,6 +15,7 @@ import ReactMarkdown from "react-markdown";
 import { PageTitle } from "../../elements/PageElements";
 import { DateElement } from "../../elements/PageElements";
 import { EventLocation } from "../../components/EventLocations/EventLocation";
+import rehypeRaw from "rehype-raw";
 
 import s from "./Events.module.scss";
 
@@ -35,7 +36,7 @@ export const Event = (props) => {
           <Link to={eventUrl}>
             <PageTitle>{event.Name}</PageTitle>
           </Link>
-          <ReactMarkdown>{event.Description}</ReactMarkdown>
+          <ReactMarkdown rehypePlugins={rehypeRaw}>{event.Description}</ReactMarkdown>
           <Link to={eventUrl} className="inverted">
             <Row className={s.eventLocationWrapper}>
               <Col xs={12} md={11}>

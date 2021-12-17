@@ -109,6 +109,7 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0",
+    "rehype-raw": "^6.1.0",
     "rickshaw": "1.7.1",
     "roboto-font": "^0.1.0",
     "tabler-icons": "^1.10.0"
