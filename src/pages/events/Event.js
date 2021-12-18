@@ -36,6 +36,20 @@ export const Event = (props) => {
             <PageTitle>{event.Name}</PageTitle>
           </Link>
           <ReactMarkdown>{event.Description}</ReactMarkdown>
+
+          {event.Links && event.Links.length > 0 && (
+            <>
+              {event.Links.map(link => 
+              link.url && 
+              <span
+                title={link.description}
+                className={`${s.icon} ${s.videoLink} glyphicon glyphicon-facetime-video`}
+                onClick={() => handleVideoLinkClick(link.url)}
+              />
+              )}
+            </>
+          )}
+
           <Link to={eventUrl} className="inverted">
             <Row className={s.eventLocationWrapper}>
               <Col xs={12} md={11}>
@@ -63,16 +77,6 @@ export const Event = (props) => {
           {/* <DateElement>{`${moment(event.StartDate).format(
             "DD/MM/YYYY"
           )} ${moment(event.StartDate).format("HH:mm")}`}</DateElement> */}
-
-          {event.Links && (
-            <>
-              <br />
-              <span
-                className={`${s.icon} glyphicon glyphicon-facetime-video`}
-                onClick={() => handleVideoLinkClick(event.Links)}
-              />
-            </>
-          )}
         </div>
       )}
     </React.Fragment>

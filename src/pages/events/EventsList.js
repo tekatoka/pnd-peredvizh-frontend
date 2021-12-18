@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 import { Event } from "./Event";
 import ModalDialog from "../../components/Modal/ModalDialog";
-import Video from "../../components/Video";
+import Video from "../../components/VideoPlayer/Video";
 import {
   mapStateToProps,
   mapDispatchToProps,
@@ -28,7 +28,7 @@ const EventsList = (props) => {
 
   return (
     <React.Fragment>
-      <ModalDialog>
+      <ModalDialog large={true}>
         <Video video={videoUrl} />
       </ModalDialog>
 

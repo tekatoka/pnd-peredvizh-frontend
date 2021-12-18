@@ -25,6 +25,7 @@ import ImageList from "../../components/Gallery/ImageList";
 import { SplittedHashtags } from "../hashtags/SplittedHashtags";
 import s from "./Events.module.scss";
 import { CloudinaryLazyImage } from "../../components/Gallery/CloudinaryLazyImage";
+import Video from "../../components/VideoPlayer/Video";
 
 const EventPage = (props) => {
   const slug = props.match.params.slug;
@@ -85,6 +86,10 @@ const EventPage = (props) => {
               {selectedEvent.hashtags && selectedEvent.hashtags != "" && (
                 <SplittedHashtags tags={selectedEvent.hashtags} />
               )}
+
+              {selectedEvent.Links && selectedEvent.Links.length > 0 && 
+                selectedEvent.Links.map(l => <Video video={l.url} />)
+              }
             </>
           )}
           {selectedEvent == "not found" && <NotFoundPage />}
