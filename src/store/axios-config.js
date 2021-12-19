@@ -1,7 +1,7 @@
 import axios from 'axios';
 import baseUrl from './api-config';
 
-const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM3Mjc5NTcxLCJleHAiOjE2Mzk4NzE1NzF9.9TXKimPP5ose6sUN0lYGLcfbLVLoww5JCE3xGTuA2fc";
+const jwt = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjM5OTIxODYzLCJleHAiOjE2NDI1MTM4NjN9.GBLxh4ykH5QkaRMJo3Q1-0EfcoiVak1ZVurHUpMYV5c";
 
 const instance = axios.create({
     baseURL: baseUrl,
