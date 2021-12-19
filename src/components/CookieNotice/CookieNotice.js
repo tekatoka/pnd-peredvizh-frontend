@@ -15,6 +15,7 @@ export const CookieNotice = () => {
             location="bottom"
             buttonText={okButtonText}
             declineButtonText={declineButtonText}
+            buttonWrapperClasses={s.buttonWrapper}
             buttonClasses={`${s.cookieButton} ${s.okButton}`}
             declineButtonClasses={`${s.cookieButton} ${s.declineButton}`}
             cookieName="PeredvizhSiteCookie"
