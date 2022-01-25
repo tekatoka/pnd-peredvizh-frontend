@@ -128,7 +128,7 @@
       width: 105%;
       height: 25%;
       position: absolute;
-      bottom: 0;
+      bottom: -2px;
       left: -2px;
       z-index: -1;
       background: $red-pale;
@@ -138,8 +138,8 @@
 
     &.active::after,
     &:hover::after {
-      bottom: 5px;
-      z-index: 1;
+      bottom: 10px;
+      z-index: -1;
     }
   }
 }
